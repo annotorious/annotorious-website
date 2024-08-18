@@ -4,7 +4,17 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import { ImageExample } from '../../components/ImageExample';
 ---
 
-<StarlightPage frontmatter={{ title: 'Getting Started' }}>
+<StarlightPage 
+  frontmatter={{ title: 'Getting Started' }}
+  headings={[{
+    depth: 2,
+    slug:'drawing-tools',
+    text: 'Drawing Tools'
+  },{
+    depth: 2,
+    slug:'javascript-api',
+    text: 'JavaScript API'
+  }]}>
   <p>
     Annotorious is a library that provides advanced image annotation 
     capabilities for your web applications. It offers two main features 
@@ -16,7 +26,7 @@ import { ImageExample } from '../../components/ImageExample';
     <li>JavaScript API</li>
   </ol>
 
-  <h3>Drawing Tools</h3>
+  <h3 id="drawing-tools">Drawing Tools</h3>
 
   <p>
     Annotorious comes with two drawing tools out of the box: rectangle 
@@ -49,7 +59,7 @@ import { ImageExample } from '../../components/ImageExample';
     <ImageExample client:only="react" />
   </p>
 
-  <h3>JavaScript API</h3>
+  <h3 id="javascript-api">JavaScript API</h3>
 
   <p>
     The Annotorious JavaScript API gives you programmatic control over 
