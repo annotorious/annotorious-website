@@ -1,0 +1,28 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { ImageExample } from '../../components/ImageExample';
+---
+
+<StarlightPage frontmatter={{ title: 'Getting Started' }}>
+  <p>
+    Annotorious is a library that adds drawing and annotation functionality to images on your website.
+  </p>
+
+  <p>
+    Two key features are provided:
+  </p>
+
+  <h3>Drawing Tools</h3>
+
+  <p>
+    Annotorious lets your users create rectangle and polygon shapes on images. Try it on the image below: 
+    <strong>click</strong> or <strong>tap</strong> the annotation to edit, <strong>click or tap anywhere</strong>
+    and drag to create a new rectangle shape.
+  </p>
+
+  <p>
+    <ImageExample client:only="react" />
+  </p>
+</StarlightPage>
+
+
