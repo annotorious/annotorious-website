@@ -68,17 +68,17 @@ anno.loadAnnotations('./annotations.w3c.json');
 5. Handle events:
 
    ```bash frame="none"
-    anno.on('createAnnotation', (annotation) => {
-      console.log('Annotation created:', annotation);
-    });
+   anno.on('createAnnotation', (annotation) => {
+     console.log('Annotation created:', annotation);
+   });
 
-    anno.on('updateAnnotation', (annotation, previous) => {
-      console.log('Annotation updated:', annotation);
-    });
+   anno.on('updateAnnotation', (annotation, previous) => {
+     console.log('Annotation updated:', annotation);
+   });
 
-    anno.on('deleteAnnotation', (annotation) => {
-      console.log('Annotation deleted:', annotation);
-    });
+   anno.on('deleteAnnotation', (annotation) => {
+     console.log('Annotation deleted:', annotation);
+   });
    ```
 </Steps>
 

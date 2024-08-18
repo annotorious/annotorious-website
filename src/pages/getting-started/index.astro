@@ -4,7 +4,6 @@ import { Icon } from '@astrojs/starlight/components';
 import { ImageExample } from '../../components/ImageExample';
 import { Check } from 'lucide-react';
 ---
-
 <StarlightPage 
   frontmatter={{ title: 'Getting Started' }}
   headings={[{
@@ -18,10 +17,10 @@ import { Check } from 'lucide-react';
   }]}>
 
   <p>
-    Annotorious is a JavaScript library for adding advanced image annotation 
+    Annotorious is a JavaScript library for adding image annotation 
     capabilities to your web application. Try it out below: <strong>click</strong> or 
-    <strong>tap</strong> the annotation to edit, 
-    <strong>click or tap anywhere and drag</strong> to create a new annotation.
+    <strong>tap</strong> the annotation to edit.
+    <strong>Click or tap anywhere and drag</strong> to create a new annotation.
   </p>
 
   <p>
@@ -29,10 +28,10 @@ import { Check } from 'lucide-react';
   </p>
 
   <p>
-    Use the icons to <strong>switch between rectangle and polygon</strong> 
-    drawing modes. When drawing a polygon, <strong>double click with your 
-    mouse</strong> to close the shape, or <strong>keep your finger on the 
-    screen and hold for a moment</strong> on a touch device.
+    Use the icons to switch between rectangle and polygon drawing modes. To 
+    close a polygon shape, <strong>double click with your mouse</strong>, or 
+    <strong>keep your finger on the screen and hold for a moment</strong> on 
+    a touch device.
   </p>
 
   <h2 id="javascript-api">JavaScript API</h2>
@@ -40,18 +39,21 @@ import { Check } from 'lucide-react';
   <p>
     The Annotorious JavaScript API gives you programmatic control over 
     annotations, enables you to customize behavior and visual styling, and
-    integrate Annotorious with the rest of your application. With the API, 
-    you can:
+    integrate Annotorious with the rest of your application. 
+  </p>
+
+  <p>
+    With the API, you can:
   </p>
 
   <ul>
     <li>add, remove or update annotations programmatically,</li>
     <li>listen to user events,</li>
     <li>set filters,</li>
-    <li>create data-driven styles, etc.</li>
+    <li>apply data-driven styles, etc.</li>
   </ul>
 
-  <h3 id="using-annotorious">Using Annotorious</h3>
+  <h2 id="using-annotorious">Using Annotorious</h2>
 
   <p>
     You can use Annotorious into your project in several ways, depending
@@ -59,11 +61,14 @@ import { Check } from 'lucide-react';
   </p>
   
   <p>
-    Annotorious supports <strong>standard images</strong> (JPEGs, PNGs, etc.) and 
+    Annotorious supports <strong>standard images</strong> (JPEGs, PNGs) and 
     high-resolution <strong>zoomable images</strong> with the 
-    <a href="https://openseadragon.github.io/" target="_blank">OpenSeadragon viewer</a>.
-    It works with vanilla JavaScript, and provides bindings for <a href="https://react.dev/" target="_blank">React</a>.
-    Bindings for <a href="https://svelte.dev/" target="_blank">Svelte</a> are currently in development.
+    <a href="https://openseadragon.github.io/" target="_blank">OpenSeadragon viewer</a>, including
+    images served via <a href="https://iiif.io/" target="_blank">IIIF</a>.
+    It works with vanilla JavaScript, but also provides bindings for 
+    <a href="https://react.dev/" target="_blank">React</a>.
+    Bindings for <a href="https://svelte.dev/" target="_blank">Svelte</a> 
+    are currently under development.
   </p>
 
   <table>
