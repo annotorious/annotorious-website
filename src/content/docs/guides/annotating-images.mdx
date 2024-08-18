@@ -1,0 +1,103 @@
+---
+title: Annotating Images
+description: Using Annotorious to annotate images.
+---
+import { Steps } from '@astrojs/starlight/components';
+
+This guide explains how to make an existing image on your webpage annotatable using 
+Annotorious with vanilla JavaScript.
+
+## Quick Start
+
+Here's a basic example to get you started. The code below initializes Annotorious 
+on an existing image, attaches an event listener, and loads annotations from a file.
+
+```js
+import { createImageAnnotator } from '@annotorious/annotorious';
+
+// Import essential CSS styles
+import '@annotorious/annotorious/annotorious.css';
+
+// Image element ID or DOM element
+const anno = createImageAnnotator('sample-image');
+
+// Attach listeners to handle annotation events
+anno.on('createAnnotation', function(annotation) {
+  console.log('created', annotation);
+});
+
+// Load annotations in W3C Web Annotation format
+anno.loadAnnotations('./annotations.w3c.json');
+```
+
+## Step-by-Step Guide
+
+<Steps>
+1. In your JavaScript file, import `createImageAnnotator` and the Annotorious stylesheet:
+
+   ```bash frame="none"
+   import { createImageAnnotator } from '@annotorious/annotorious';
+   import '@annotorious/annotorious/annotorious.css';
+   ```
+
+2. Create an annotator instance on your image:
+
+   ```bash frame="none"
+   const anno = createImageAnnotator('sample-image');
+   ```
+
+   You can pass either the ID of the image element or the DOM element itself.
+
+3. You can pass an options object to customize the annotator:
+
+   ```bash frame="none"
+   const anno = createImageAnnotator('sample-image', {
+     drawingEnabled: true,
+     style: {
+      fill: '#ff0000',
+      fillOpacity: 0.25
+     }
+   });
+   ```
+4. Load existing annotations (optional):
+   
+   ```bash frame="none"
+   anno.loadAnnotations('./annotations.w3c.json');
+   ```
+
+5. Handle events:
+
+   ```bash frame="none"
+    anno.on('createAnnotation', (annotation) => {
+      console.log('Annotation created:', annotation);
+    });
+
+    anno.on('updateAnnotation', (annotation, previous) => {
+      console.log('Annotation updated:', annotation);
+    });
+
+    anno.on('deleteAnnotation', (annotation) => {
+      console.log('Annotation deleted:', annotation);
+    });
+   ```
+</Steps>
+
+## Script Import
+
+```html
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@annotorious/annotorious@latest/dist/annotorious.css">
+    <script src="https://cdn.jsdelivr.net/npm/@annotorious/annotorious@latest/dist/annotorious.js"></script>
+  </head>
+  <body>
+    <img id="my-image" src="my-image.jpg" />
+
+    <script>
+      window.onload = function() {
+        var anno = Annotorious.createImageAnnotator('my-image');
+      }
+    </script>
+  </body>
+</html>
+```

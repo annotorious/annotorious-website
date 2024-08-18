@@ -32,13 +32,7 @@ export default defineConfig({
       }]
     }, {
       label: 'Guides',
-      items: [{
-        label: 'Annotating Images',
-        link: 'js/images'
-      }, {
-        label: 'OpenSeadragon',
-        link: 'js/openseadragon'
-      }]
+      autogenerate: { directory: 'guides' }
     }, {
       label: 'Tutorials',
       items: []

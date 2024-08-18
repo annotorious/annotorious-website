@@ -27,6 +27,10 @@
   background-color: #f8fafc;
 }
 
+code {
+  border-radius: 3px;
+}
+
 h1, h2, h3, h4 {
   font-family: Raleway;
   font-weight: 700;
