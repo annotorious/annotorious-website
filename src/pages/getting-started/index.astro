@@ -1,5 +1,4 @@
 ---
-import { LinkCard, CardGrid } from '@astrojs/starlight/components';
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import { ImageExample } from '../../components/ImageExample';
 ---
@@ -8,55 +7,26 @@ import { ImageExample } from '../../components/ImageExample';
   frontmatter={{ title: 'Getting Started' }}
   headings={[{
     depth: 2,
-    slug:'drawing-tools',
-    text: 'Drawing Tools'
-  },{
-    depth: 2,
     slug:'javascript-api',
     text: 'JavaScript API'
   }]}>
-  <p>
-    Annotorious is a library that provides advanced image annotation 
-    capabilities for your web applications. It offers two main features 
-    to help you integrate and customize annotations in your projects:
-  </p>
-
-  <ol>
-    <li>Drawing tools</li>
-    <li>JavaScript API</li>
-  </ol>
-
-  <h3 id="drawing-tools">Drawing Tools</h3>
 
   <p>
-    Annotorious comes with two drawing tools out of the box: rectangle 
-    and polygon. Try them out on the image below: 
+    Annotorious is a JavaScript library for adding advanced image annotation 
+    capabilities to your web application. Try it out below: <strong>click</strong> or 
+    <strong>tap</strong> the annotation to edit, 
+    <strong>click or tap anywhere and drag</strong> to create a new annotation.
   </p>
-
-  <ul>
-    <li>
-      <strong>Click</strong> or <strong>tap</strong> an existing annotation to 
-      edit it.
-    </li>
-
-    <li>
-      <strong>Click or tap anywhere</strong> and drag to create a new rectangle shape.
-    </li>
-
-    <li>
-      Use the icons to <strong>switch between rectangle and polygon</strong> 
-      drawing modes.
-    </li>
-
-    <li>
-      When drawing a polygon, <strong>double click with your mouse</strong> to close 
-      the shape, or <strong>keep your finger on the screen and hold for a 
-      moment</strong> on a touch device.
-    </li>
-  </ul>
 
   <p>
     <ImageExample client:only="react" />
+  </p>
+
+  <p>
+    Use the icons to <strong>switch between rectangle and polygon</strong> 
+    drawing modes. When drawing a polygon, <strong>double click with your 
+    mouse</strong> to close the shape, or <strong>keep your finger on the 
+    screen and hold for a moment</strong> on a touch device.
   </p>
 
   <h3 id="javascript-api">JavaScript API</h3>
