@@ -2,9 +2,66 @@
 title: Installation
 ---
 
-Reference pages are ideal for outlining how things work in terse and clear terms.
-Less concerned with telling a story or addressing a specific use case, they should give a comprehensive outline of what you're documenting.
+There are different versions of Annotorious available for different platforms.
+You can install with a package manager like npm, or import to your page 
+using a `<script>` tag. 
 
-## Further reading
+## Vanilla
 
-- Read [about reference](https://diataxis.fr/reference/) in the Diátaxis framework
+To annotate JPEG or PNG images, install the standard version of Annotorious.
+
+```bash frame="none"
+npm install @annotorious/annotorious
+```
+
+To annotate zoomable images in OpenSeadragon, install the OpenSeadragon 
+plugin version of Annotorious.
+
+```bash frame="none"
+npm install  @annotorious/openseadragon
+```
+
+### Script Import
+
+To use the standard version of Annotorious without a bundler, import the 
+__script__ and the __stylesheet__ file into the `<head>` of your HTML page.
+
+```html
+<head>
+  <link 
+    rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/@annotorious/annotorious@latest/dist/annotorious.css">
+  <script 
+    src="https://cdn.jsdelivr.net/npm/@annotorious/annotorious@latest/dist/annotorious.js"></script>
+</head>
+```
+
+To use the OpenSeadragon version without a bundler:
+
+```html
+<head>
+  <link 
+    rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/@annotorious/openseadragon@latest/dist/annotorious-openseadragon.css">
+  <script 
+    src="https://cdn.jsdelivr.net/npm/@annotorious/openseadragon@latest/dist/annotorious-openseadragon.js"></script>
+</head>
+```
+
+## React
+
+Use with React. The `@annotorious/react` package includes bindings for 
+the standard version of Annotorious as well as the OpenSeadragon plugin.
+
+```bash frame="none"
+npm install  @annotorious/react
+```
+
+## Svelte
+
+Use with Svelte. The `@annotorious/svelte` package includes bindings for 
+the standard version of Annotorious as well as the OpenSeadragon plugin.
+
+```bash frame="none"
+npm install  @annotorious/svelte
+```

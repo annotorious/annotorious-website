@@ -1,6 +1,8 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { Icon } from '@astrojs/starlight/components';
 import { ImageExample } from '../../components/ImageExample';
+import { Check } from 'lucide-react';
 ---
 
 <StarlightPage 
@@ -9,6 +11,10 @@ import { ImageExample } from '../../components/ImageExample';
     depth: 2,
     slug:'javascript-api',
     text: 'JavaScript API'
+  },{
+    depth: 2,
+    slug:'using-annotorious',
+    text: 'Using Annotorious'
   }]}>
 
   <p>
@@ -29,58 +35,103 @@ import { ImageExample } from '../../components/ImageExample';
     screen and hold for a moment</strong> on a touch device.
   </p>
 
-  <h3 id="javascript-api">JavaScript API</h3>
+  <h2 id="javascript-api">JavaScript API</h2>
 
   <p>
     The Annotorious JavaScript API gives you programmatic control over 
-    annotations, enabling you to customize behavior and visual styling, and
+    annotations, enables you to customize behavior and visual styling, and
     integrate Annotorious with the rest of your application. With the API, 
     you can:
   </p>
 
   <ul>
-    <li>Add, remove or update annotations programmatically</li>
-    <li>Listen to user events</li>
-    <li>Set filters</li>
-    <li>Declare data-driven styles</li>
+    <li>add, remove or update annotations programmatically,</li>
+    <li>listen to user events,</li>
+    <li>set filters,</li>
+    <li>create data-driven styles, etc.</li>
   </ul>
 
+  <h3 id="using-annotorious">Using Annotorious</h3>
+
   <p>
-    You can integrate Annotorious into your project in several ways, depending
-    on your types of images and preferred JavaScript framework. Annotorious 
-    supports <strong>standard images (JPEGs, PNGs, etc.)</strong> as well as 
-    high-resolution zoomable images with the 
-    <a href="https://openseadragon.github.io/" target="_blank">OpenSeadragon viewer</a>,
-    and works with vanilla JavaScript as well as <a href="https://react.dev/" target="_blank">React</a> 
-    and <a href="https://svelte.dev/" target="_blank">Svelte</a>.
+    You can use Annotorious into your project in several ways, depending
+    on your types of images and preferred JavaScript framework. 
+  </p>
+  
+  <p>
+    Annotorious supports <strong>standard images</strong> (JPEGs, PNGs, etc.) and 
+    high-resolution <strong>zoomable images</strong> with the 
+    <a href="https://openseadragon.github.io/" target="_blank">OpenSeadragon viewer</a>.
+    It works with vanilla JavaScript, and provides bindings for <a href="https://react.dev/" target="_blank">React</a>.
+    Bindings for <a href="https://svelte.dev/" target="_blank">Svelte</a> are currently in development.
   </p>
 
   <table>
     <thead>
       <tr>
         <th></th>
-        <th>Standard Images</th>
-        <th>OpenSeadragon</th>
+        <th>
+          <div>Images</div>
+        </th>
+        <th>
+          <div>OpenSeadragon</div>
+        </th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Vanilla JS</td>
-        <td>✅</td>
-        <td>✅</td>
+        <td>
+          <span><Icon name="seti:javascript" /> Vanilla JavaScript</span>
+        </td>
+        <td>
+          <div><Check size={18} /></div>
+        </td>
+        <td>
+          <div><Check size={18} /></div>
+        </td>
       </tr>
       <tr>
-        <td>React</td>
-        <td>✅</td>
-        <td>✅</td>
+        <td>
+          <span><Icon name="seti:react" /> React</span>
+        </td>
+        <td>
+          <div><Check size={18} /></div>
+        </td>
+        <td>
+          <div><Check size={18} /></div>
+        </td>
       </tr>
       <tr>
-        <td>Svelte</td>
-        <td>✅</td>
-        <td>✅</td>
+        <td>
+          <span><Icon name="seti:svelte" /> Svelte</span>
+        </td>
+        <td>
+          <div>incomplete</div>
+        </td>
+        <td>
+          <div>incomplete</div>
+        </td>
       </tr>
     </tbody>
   </table>
 </StarlightPage>
+
+<style>
+  table {
+    padding-top: 2rem;
+  }
+
+  td > span {
+    align-items: center;
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  td > div,
+  th > div {
+    display: flex;
+    justify-content: center;
+  }
+</style>
 
 

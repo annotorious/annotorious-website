@@ -12,9 +12,9 @@
   --sl-color-bg-sidebar: #f8fafc;
   --sl-color-hairline-shade: #e2e8f0;
   --sl-color-text-accent: #f8942c;
-  --sl-text-h1: 1.6rem;
-  --sl-text-h2: 1.4rem;
-  --sl-text-h3: 1.25rem;
+  --sl-text-h1: 2rem;
+  --sl-text-h2: 1.5rem;
+  --sl-text-h3: 1rem;
 }
 
 .site-title {
@@ -30,6 +30,11 @@
 h1, h2, h3, h4 {
   font-family: Raleway;
   font-weight: 700;
+}
+
+.sl-markdown-content table {
+  display: table;
+  width: 100%;
 }
 
 svg.a9s-annotationlayer {
