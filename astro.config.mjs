@@ -10,12 +10,15 @@ export default defineConfig({
       github: 'https://github.com/withastro/starlight'
     },
     sidebar: [{
-      label: 'Guides',
+      label: 'Start Here',
       items: [
       // Each item here is one entry in the navigation menu.
       {
-        label: 'Example Guide',
-        slug: 'guides/example'
+        label: 'Getting Started',
+        link: 'getting-started',
+      }, {
+        label: 'Installation',
+        slug: 'installation'
       }]
     }, {
       label: 'Reference',

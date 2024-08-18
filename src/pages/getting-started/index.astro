@@ -1,28 +1,106 @@
 ---
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import { ImageExample } from '../../components/ImageExample';
 ---
 
 <StarlightPage frontmatter={{ title: 'Getting Started' }}>
   <p>
-    Annotorious is a library that adds drawing and annotation functionality to images on your website.
+    Annotorious is a library that provides advanced image annotation 
+    capabilities for your web applications. It offers two main features 
+    to help you integrate and customize annotations in your projects:
   </p>
 
-  <p>
-    Two key features are provided:
-  </p>
+  <ol>
+    <li>Drawing tools</li>
+    <li>JavaScript API</li>
+  </ol>
 
   <h3>Drawing Tools</h3>
 
   <p>
-    Annotorious lets your users create rectangle and polygon shapes on images. Try it on the image below: 
-    <strong>click</strong> or <strong>tap</strong> the annotation to edit, <strong>click or tap anywhere</strong>
-    and drag to create a new rectangle shape.
+    Annotorious comes with two drawing tools out of the box: rectangle 
+    and polygon. Try them out on the image below: 
   </p>
+
+  <ul>
+    <li>
+      <strong>Click</strong> or <strong>tap</strong> an existing annotation to 
+      edit it.
+    </li>
+
+    <li>
+      <strong>Click or tap anywhere</strong> and drag to create a new rectangle shape.
+    </li>
+
+    <li>
+      Use the icons to <strong>switch between rectangle and polygon</strong> 
+      drawing modes.
+    </li>
+
+    <li>
+      When drawing a polygon, <strong>double click with your mouse</strong> to close 
+      the shape, or <strong>keep your finger on the screen and hold for a 
+      moment</strong> on a touch device.
+    </li>
+  </ul>
 
   <p>
     <ImageExample client:only="react" />
   </p>
+
+  <h3>JavaScript API</h3>
+
+  <p>
+    The Annotorious JavaScript API gives you programmatic control over 
+    annotations, enabling you to customize behavior and visual styling, and
+    integrate Annotorious with the rest of your application. With the API, 
+    you can:
+  </p>
+
+  <ul>
+    <li>Add, remove or update annotations programmatically</li>
+    <li>Listen to user events</li>
+    <li>Set filters</li>
+    <li>Declare data-driven styles</li>
+  </ul>
+
+  <p>
+    You can integrate Annotorious into your project in several ways, depending
+    on your types of images and preferred JavaScript framework. Annotorious 
+    supports <strong>standard images (JPEGs, PNGs, etc.)</strong> as well as 
+    high-resolution zoomable images with the 
+    <a href="https://openseadragon.github.io/" target="_blank">OpenSeadragon viewer</a>,
+    and works with vanilla JavaScript as well as <a href="https://react.dev/" target="_blank">React</a> 
+    and <a href="https://svelte.dev/" target="_blank">Svelte</a>.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Standard Images</th>
+        <th>OpenSeadragon</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Vanilla JS</td>
+        <td>✅</td>
+        <td>✅</td>
+      </tr>
+      <tr>
+        <td>React</td>
+        <td>✅</td>
+        <td>✅</td>
+      </tr>
+      <tr>
+        <td>Svelte</td>
+        <td>✅</td>
+        <td>✅</td>
+      </tr>
+    </tbody>
+  </table>
 </StarlightPage>
 
 
