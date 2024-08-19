@@ -1,0 +1,10 @@
+.openseadragon-canvas {
+  outline: none;
+}
+
+.osd-container {
+  background-color: #f1f5f9;
+  border: 1px solid var(--sl-color-hairline-shade);
+  height: 300px;
+  width: 100%;
+}

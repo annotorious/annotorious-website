@@ -11,7 +11,7 @@
 
 .image-example .actions button {
   all: unset;
-  border-radius: 5px;
+  border-radius: 0.25rem;
   color: var(--sl-color-gray-4);
   cursor: pointer;
   display: flex;

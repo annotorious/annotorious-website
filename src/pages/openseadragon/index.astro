@@ -1,0 +1,32 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { OpenSeadragonExample } from '../../components/OpenSeadragonExample';
+---
+<StarlightPage 
+  frontmatter={{ title: 'OpenSeadragon' }}
+  headings={[]}>
+
+  <p>
+    <OpenSeadragonExample client:only="react" />
+  </p>
+</StarlightPage>
+
+<style>
+  table {
+    padding-top: 2rem;
+  }
+
+  td > span {
+    align-items: center;
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  td > div,
+  th > div {
+    display: flex;
+    justify-content: center;
+  }
+</style>
+
+
