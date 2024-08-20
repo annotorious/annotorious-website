@@ -40,6 +40,8 @@ const App = () => {
 
     anno.addAnnotation(SAMPLE);
 
+    anno.on('createAnnotation', a => console.log(a));
+
     return () => {
       anno.clearAnnotations();
     }
