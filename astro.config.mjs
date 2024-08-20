@@ -34,9 +34,6 @@ export default defineConfig({
       label: 'Guides',
       autogenerate: { directory: 'guides' }
     }, {
-      label: 'Tutorials',
-      items: []
-    }, {
       label: 'React',
       autogenerate: { directory: 'react' }
     }, {
