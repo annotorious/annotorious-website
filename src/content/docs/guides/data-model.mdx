@@ -43,7 +43,7 @@ the following structure:
   associated with. In this example, the `selector` property specifies that the annotation 
   is a rectangular selection with the given coordinates and dimensions.
 
-Below is another example for a polygon annotation. In this case, the `geometry` object contains a 
+Here's another example for a polygon annotation, where the `geometry` object contains a 
 list of X/Y points.
 
 ```js 
@@ -92,13 +92,17 @@ building web applications:
 
 3. __Ease of Use:__ Annotorious aims to be intuitive and easy to use, with a focus on providing
    a smooth developer experience. Whereas the W3C model is designed to be more general-purpose, 
-   Annotorious' restricted use case allows it to make certain assumptions and simplifications that
-   are specific to its use case.
+   Annotorious' restricted use case allows it to make certain assumptions and simplifications.
 
 ## The W3C Adapter
 
 Despite the differences, Annotorious also provides a built-in feature that allows you to  
-use W3C Web annotations directly, through a component called the `W3CImageAdapter`. 
+use W3C Web annotations directly, through a component called the `W3CImageAdapter`.
+
+The `W3CImageAdapter` automatically crosswalks annotations between the W3C- and the native model, 
+allowing you to use the Annotorious API while still adhering to the W3C standard. Through the 
+adapter, Annotorious offers the best of both worlds - the performance and ease of use of its 
+native data model, with the flexibility to conform to the W3C standard when needed.
 
 ```js
 import { createImageAnnotator, W3CImageAdapter } from '@annotorious/annotorious';
@@ -110,7 +114,4 @@ const anno = createImageAnnotator('sample-image', {
 });
 ```
 
-The `W3CImageAdapter` automatically crosswalks annotations between the W3C- and the native model, 
-allowing you to use the Annotorious API while still adhering to the W3C standard. Through the 
-adapter, Annotorious offers the best of both worlds - the performance and ease of use of its 
-own data model, with the flexibility to conform to the W3C standard when needed.
+
