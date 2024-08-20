@@ -1,6 +1,7 @@
 .image-example {
   margin-top: 1.5rem;
 }
+
 .image-example .actions {
   display: flex;
   gap: 0.5rem;
@@ -18,7 +19,7 @@
   font-size: 0.825rem;
   font-weight: 600;
   gap: 0.325rem;
-  padding: 0.125rem 0.5rem 0.125rem 0.325rem;
+  padding: 0.25rem 0.625rem 0.25rem 0.5rem;
 }
 
 .image-example .actions button:hover:not(.active) {

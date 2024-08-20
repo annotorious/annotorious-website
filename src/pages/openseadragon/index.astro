@@ -10,48 +10,26 @@ import { OpenSeadragonExample } from '../../components/OpenSeadragonExample';
     text: 'Interactive Example'
   }, {
     depth: 2,
-    slug:'supported-formats',
-    text: 'Supported Image Formats'  
-  }, {
-    depth: 2,
-    slug:'api-reference',
-    text: 'API Reference'  
+    slug:'javascript-api',
+    text: 'JavaScript API'  
   }]}>
 
   <p>
     Annotorious integrates seamlessly with <a href="https://openseadragon.github.io/" target="_blank">OpenSeadragon</a>, 
-    allowing you to annotate high-resolution zoomable.
+    allowing you to annotate high-resolution zoomable images.
   </p>
 
   <h2 id="example">Interactive Example</h2>
 
   <p>
-    Use the icons to toggle between image navigation (zoom and pan) and annotation. You can change
-    drawing tools with the dropdown.
+    Use the icons to toggle between moving the image (zooming, panning) and annotating.
   </p>
 
   <p>
     <OpenSeadragonExample client:only="react" />
   </p>
 
-  <h2 id="supported-formats">Supported Image Formats</h2>
-
-  <p>
-    OpenSeadragon supports the following image and tile source formats:
-  </p>
-
-  <ul>
-    <li>Legacy Image Pyramids</li>
-    <li>IIIF (International Image Interoperability Framework)</li>
-    <li>DZI (Deep Zoom Images)</li>
-    <li>OSM (Open Street Maps)</li>
-    <li>TMS (Tiled Map Service)</li>
-    <li>Zoomify</li>
-    <li>Custom Tile Sources</li>
-    <li>Simple Images</li>
-  </ul>
-
-  <h2 id="api-reference">API Reference</h2>
+  <h2 id="javascript-api">JavaScript API</h2>
 
   <p>
     The JavaScript API for the Annotorious OpenSeadragon package is largely identical
@@ -60,8 +38,8 @@ import { OpenSeadragonExample } from '../../components/OpenSeadragonExample';
   </p>
 
   <ul>
-    <li>Use `createOSDAnnotator` instead of `createImageAnnotator`.</li>
-    <li>The first argument to `createOSDAnnotator` is the OpenSeadragon viewer instance, not an image element.</li>
+    <li>Use <code>createOSDAnnotator</code> instead of <code>createImageAnnotator</code>.</li>
+    <li>The first argument to <code>createOSDAnnotator</code> is the OpenSeadragon viewer instance, not an image element.</li>
   </ul>
 
   <p>
