@@ -59,6 +59,9 @@ anno.loadAnnotations('./annotations.w3c.json');
      }
    });
    ```
+
+   See the [API Reference](/api-reference) for more information.
+
 4. Load existing annotations (optional):
    
    ```bash frame="none"
@@ -84,6 +87,8 @@ anno.loadAnnotations('./annotations.w3c.json');
 
 ## Script Import
 
+If you are not using a build system, you can include Annotorious via CDN:
+
 ```html
 <html>
   <head>
@@ -101,3 +106,36 @@ anno.loadAnnotations('./annotations.w3c.json');
   </body>
 </html>
 ```
+
+## Working with Annotations
+
+Annotorious provides methods to work with Annotations programmatically:
+
+```js
+// Add a new annotation
+anno.addAnnotation({
+  id: '7fb76422-3a8c-4c87-bbad-7c8bb68399a0',
+  target: {
+    selector: {
+      type: 'RECTANGLE',
+      geometry: {
+        bounds: {
+            minX: 272,
+            minY: 169,
+            maxX: 393,
+            maxY: 259
+        },
+        x: 272,
+        y: 169,
+        w: 121,
+        h: 90,
+      }
+    }
+  }
+});
+```
+By default, Annotorious uses its native data model, which is optimized 
+for performance and ease of use. However, Annotorious also supports 
+the [W3C Web Annotation Data Model](https://www.w3.org/TR/annotation-model/).
+The next section introduces Annotorious' native data model in more detail, 
+and explains how to use the W3C Web Annotation format through the `W3CImageAdapter`.

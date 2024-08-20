@@ -15,6 +15,12 @@
   --sl-text-h1: 2rem;
   --sl-text-h2: 1.5rem;
   --sl-text-h3: 1rem;
+  --sl-text-2xl: 1.25rem;
+}
+
+.hero h1 {
+  font-family: Megrim;
+  font-weight: 500;
 }
 
 .site-title {
