@@ -2,14 +2,15 @@
 title: Annotation Data Model
 ---
 
-At the core of Annotorious is a flexible data model that closely aligns with 
-the [W3C Web Annotation Data Model](https://www.w3.org/TR/annotation-model/), but 
-with a few key differences to optimize for performance and ease of use.
+At the core of Annotorious is a flexible data model that closely 
+aligns with the [W3C Web Annotation Data Model](https://www.w3.org/TR/annotation-model/), 
+but with a few key differences to optimize for performance and 
+ease of use.
 
 ## Anatomy of an Annotation
 
-Every annotation in Annotorious is represented by a JavaScript object with 
-the following structure:
+Every annotation in Annotorious is represented by a JavaScript 
+object with the following structure:
 
 ```js
 {
@@ -34,17 +35,22 @@ the following structure:
 }
 ```
 
-* `id` - a unique identifier for the annotation. The ID can be any alphanumeric string.
-  If you provide an Annotation without an ID, Annotorious will automatically 
-  assign a globally unique UUID on load. Annotations created by users will also receive a UUID 
+* `id` - a unique identifier for the annotation. The ID can be any 
+  alphanumeric string. If you provide an Annotation without an ID, 
+  Annotorious will automatically assign a globally unique UUID on load.
+  Annotations created by users will also receive a UUID 
   automatically.
 
-* `target` - the target object represents the part of the image that the annotation is
-  associated with. In this example, the `selector` property specifies that the annotation 
-  is a rectangular selection with the given coordinates and dimensions.
+* `target` - the target object represents the part of the image 
+  that the annotation is associated with. In this example, the 
+  `selector` property specifies that the annotation is a 
+  rectangular selection with the given coordinates and dimensions.
 
-Here's another example for a polygon annotation, where the `geometry` object contains a 
-list of X/Y points.
+* `bounds` - represents the bounding box of the annotation, useful 
+  for quick calculations without parsing the entire geometry.
+
+Here's another example for a polygon annotation, where the 
+`geometry` object contains a list of X/Y points.
 
 ```js 
 {
@@ -73,36 +79,115 @@ list of X/Y points.
 
 ## Annotation Bodies
 
-...TODO...
+In addition to the `target`, annotations can also have one or more 
+`bodies`. The `bodies` property is designed to carry application-specific
+annotation payload, such as comments, tags, or other metadata.
 
-## Differences from the W3C Web Annotation Data Model
+It's important to note that Annotorious doesn't process or display 
+body information directly. Instead, bodies serve as an extensible 
+data structure that you can use according to your application's
+needs, e.g. to drive info popups, hover tooltips, or data-driven 
+filters and styles.
 
-While the Annotorious model shares similarities with the W3C Web Annotation Data Model, 
-there are key differences designed to enhance performance and simplify usage when 
-building web applications:
+```js
+{
+  id: '64d7dda8-c156-4e1e-a4f9-55192399208b',
+  bodies: [{
+    id: '3f4d0a8c-803a-4e59-ad0b-20c82d87c815',
+    purpose: 'commenting',
+    value: 'This is a comment'
+  }],
+  target: { 
+    // ...
+  }
+}
+```
 
-1. __Simplified Structure:__ Annotorious makes no claim to support the full range of the 
-   extensive W3C Web Annotation standard. Annotorious streamlines the annotation structure
-   to focus on the essential elements implemented in the library, while staying close enough
+The structure of bodies in Annotorious is closely aligned with 
+the W3C Web Annotation Data Model, with a few small differences 
+and simplifications.
+
+- `id`: any alphanumeric string. If you provide a body without an 
+  ID, Annotorious will automatically assign a UUID on load.
+- `purpose`: used [similarly to the W3C model](https://www.w3.org/TR/annotation-model/#motivation-and-purpose),
+  identifying the reason for the inclusion of the body in the annotation.
+- `value`: a generic field that you can use according to your 
+  application's needs.
+
+Other optional fields include:
+
+- `creator`: the user who created the body.
+- `created`: the creation timestamp of the body.
+- `updatedBy`: the user who last updated the body.
+- `updated`: stores the last update timestamp of the body.
+
+### Leveraging Bodies in Your Application
+
+While Annotorious provides the structure for the bodies, it's up 
+to you as the developer to decide how to use them. 
+
+Here are some ways to leverage annotation bodies:
+
+1. __Custom popups:__ display body information when users 
+  interact with annotations. This could include showing comments, 
+  tags or metadata in a tooltip or sidebar.
+2. __Data-driven styles:__ use body properties to dynamically style 
+   annotations. For example:
+   * Apply difference styles based on the `purpose`, e.g. different 
+     colors for `commenting` vs `tagging`.
+   * Use the `value` of `tagging` bodies to color-code annotations
+     based on label values.
+3. __Data-driven filters:__ filter annotations dynamically, based 
+   on body properties such as `purpose`, `creator` or `updated` 
+   timestamp. 
+4. __Application-Specific Metadata:__ store any additional 
+   metadata your application needs in the value field, or by
+   adding your own properties to the body object.
+
+Annotorious provides a number of helpers and utility functions 
+to simplify these scenarios. To read more, see documentation on:
+
+* Popup helpers for [React](#) and [Svelte](#).
+* [Data-driven styling](#)
+* [Data-driven filters](#) 
+
+## Key Differences from the W3C Model
+
+While the Annotorious model shares similarities with the W3C Web 
+Annotation Data Model, there are key differences designed to 
+enhance performance and simplify usage when building web applications:
+
+1. __Simplified Structure:__ Annotorious makes no claim to support 
+   the full range of the extensive W3C Web Annotation standard. 
+   Annotorious streamlines the annotation structure to focus on the 
+   essential elements that it implements, while staying close enough
    to the W3C model to make crosswalking as easy as possible.
 
-2. __Optimized for Performance:__ the model prioritizes performance by having explicit representations 
-   for shape geometry, thus avoiding the need to repeatedly parse and serialize the selectors from and to 
-   the W3C model's string-based representations. 
+2. __Optimized for Performance:__ the model prioritizes performance 
+   by having explicit representations for shape geometry, thus avoiding 
+   the need to repeatedly parse and serialize the selectors from and to 
+   the W3C model's string-based representations. For example, Annotorious
+   uses direct coordinate values instead of SVG path strings, allowing 
+   for faster rendering and manipulation of annotations.
 
-3. __Ease of Use:__ Annotorious aims to be intuitive and easy to use, with a focus on providing
-   a smooth developer experience. Whereas the W3C model is designed to be more general-purpose, 
-   Annotorious' restricted use case allows it to make certain assumptions and simplifications.
+3. __Ease of Use:__ Annotorious aims to be intuitive and easy to use, 
+   with a focus on providing a smooth developer experience. Whereas 
+   the W3C model is designed to be more general-purpose, Annotorious' 
+   restricted use case allows it to make certain assumptions and 
+   simplifications.
 
 ## The W3C Adapter
 
-Despite the differences, Annotorious also provides a built-in feature that allows you to  
-use W3C Web annotations directly, through a component called the `W3CImageAdapter`.
+Despite the differences, Annotorious also provides a built-in feature 
+that allows you to use W3C Web annotations directly, through a 
+component called the `W3CImageAdapter`.
 
-The `W3CImageAdapter` automatically crosswalks annotations between the W3C- and the native model, 
-allowing you to use the Annotorious API while still adhering to the W3C standard. Through the 
-adapter, Annotorious offers the best of both worlds - the performance and ease of use of its 
-native data model, with the flexibility to conform to the W3C standard when needed.
+The `W3CImageAdapter` automatically crosswalks annotations between 
+the W3C- and the native model, allowing you to use the Annotorious 
+API while still adhering to the W3C standard. Through the adapter, 
+Annotorious offers the best of both worlds - the performance and 
+ease of use of its native data model, with the flexibility to conform 
+to the W3C standard when needed.
 
 ```js
 import { createImageAnnotator, W3CImageAdapter } from '@annotorious/annotorious';
