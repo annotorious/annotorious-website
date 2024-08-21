@@ -14,7 +14,7 @@
   --sl-color-text-accent: #f8942c;
   --sl-text-h1: 2rem;
   --sl-text-h2: 1.5rem;
-  --sl-text-h3: 1rem;
+  --sl-text-h3: 1.15rem;
   --sl-text-2xl: 1.25rem;
 }
 
@@ -42,8 +42,17 @@ h1, h2, h3, h4 {
   font-weight: 700;
 }
 
-.sl-markdown-content p + h3 {
-  margin-top: 3rem;
+.sl-markdown-content h2 {
+  margin-top: 3rem !important;
+}
+
+.sl-markdown-content h3 {
+  margin-top: 1.5rem !important;
+}
+
+.sl-markdown-content p + h3,
+.sl-markdown-content table + h3 {
+  margin-top: 3rem !important;
 }
 
 .sl-markdown-content h3 + p {
