@@ -9,6 +9,7 @@ type is returned when you call the `createImageAnnotator` method.
 ```js
 const anno = createImageAnnotator('sample-image');
 ```
+
 ## Instance Fields
 
 ### `element`
@@ -118,7 +119,7 @@ Returns: __User__
 ### loadAnnotations
 
 ```js
-const loaded = await anno.loadAnnotations(url, replace?)
+const loaded = await anno.loadAnnotations(url, replace = false)
 ```
 
 Loads annotations from a JSON file at a given URL. The method returns a 
@@ -136,38 +137,166 @@ Returns: __Promise<ImageAnnotation[]>__
 
 ### listDrawingTools
 
-Returns a list of the available drawing tools, including those from registered drawing tool plugins.
-
 ```js 
 const tools = anno.listDrawingTools();
 ```
+
+Returns a list of the available drawing tools, including those from registered drawing tool plugins.
+
 Returns: __string[]__
 
-### setDrawingTool
+### redo
 
-```js 
-const tools = anno.setDrawingTool(toolName)`
+```js
+anno.redo();
 ```
 
-Switches between the different available drawing tools. Per default, Annotorious 
-provides a `rectangle` and a `polygon` tool. Additional tools may be available 
-through plugins. Use `listDrawingTool` to get the list of registered tools.
+Programmatically redo the last undone user action.
 
-| Argument | Type   | Value                             |
-|----------|--------|-----------------------------------|
-| toolName | string | e.g. __rectangle__ or __polygon__ |
+### removeAnnotation
 
-### `setDrawingEnabled`
-Enables or disables the drawing functionality.
-- Parameters:
-  - `enabled`: `boolean`
-- Example: `annotator.setDrawingEnabled(true);`
+```js
+const removedAnnotation = anno.removeAnnotation(annotationOrId);
+```
 
-### `setTheme`
-Sets the theme of the Annotorious instance.
-- Parameters:
-  - `theme`: `Theme`
-- Example: `annotator.setTheme({ /* theme options */ });`
+Removes the specified annotation from the image.
 
+| Argument       | Type                      | Value                                                 |
+|----------------|---------------------------|-------------------------------------------------------|
+| annotationOrId | ImageAnnotation \| string | The annotation object or the annotation ID to remove  |
 
+Returns: __ImageAnnotation | undefined__
 
+### setAnnotations
+
+```js
+anno.setAnnotations(annotations, replace = false);
+```
+
+Sets the annotations for the image, optionally replacing any existing ones.
+
+| Argument | Type             | Value                                                                             |
+|----------|------------------|----------------------------------------------------------------------------------|
+| annotations | E[]            | The new set of annotations to display                                           |
+| replace      | boolean (optional) | If `true`, the new annotations will replace any existing ones. Default is `false`. |
+
+### setFilter
+
+```js
+anno.setFilter(filter);
+```
+
+Sets a filter function to control which annotations are displayed.
+
+| Argument | Type             | Value                                                                             |
+|----------|------------------|----------------------------------------------------------------------------------|
+| filter   | Filter \| undefined | A function that returns `true` for annotations that should be displayed. Pass `undefined` to remove the filter. |
+
+### setSelected
+
+```js
+anno.setSelected(arg, editable?);
+```
+
+Programmatically sets the currently selected annotation(s).
+
+| Argument | Type             | Value                                                                             |
+|----------|------------------|----------------------------------------------------------------------------------|
+| arg      | string \| string[] \| undefined | The ID(s) of the annotation(s) to select, or `undefined` to clear the selection. |
+| editable | boolean (optional) | If `true`, the selected annotation(s) will be editable. If the argument is omitted, the current UserSelectAction is applied. |
+
+### setStyle
+
+```js
+anno.setStyle(style);
+```
+
+Sets the drawing style for new annotations.
+
+| Argument | Type             | Value                                                                             |
+|----------|------------------|----------------------------------------------------------------------------------|
+| style    | DrawingStyleExpression \| undefined | An object that defines the style properties for new annotations. Pass `undefined` to reset to the default style. |
+
+### setUser
+
+```js
+anno.setUser(user);
+```
+
+Sets the current user for the Annotorious instance.
+
+| Argument | Type             |
+|----------|------------------|
+| user     | User             | 
+
+### setUserSelectAction
+
+```js
+anno.setUserSelectAction(action);
+```
+
+Sets the action to be performed when the user selects an annotation.
+
+| Argument | Type             | Value                                                                             |
+|----------|------------------|----------------------------------------------------------------------------------|
+| action   | UserSelectActionExpression | An object that defines the action to be performed on annotation selection. |
+
+### setVisible
+
+```js
+anno.setVisible(visible);
+```
+
+Sets whether the Annotorious instance should be visible or not.
+
+| Argument | Typ     | Value                                                            |
+|----------|---------|------------------------------------------------------------------|
+| visible  | boolean | `true` to make the annotation layer visible, `false` to hide it. |
+
+### undo
+
+```js
+anno.undo();
+```
+
+Programmatically undo the last user action.
+
+### updateAnnotation
+
+```js
+const updatedAnnotation = anno.updateAnnotation(annotation);
+```
+
+Updates an existing annotation with new data.
+
+| Argument   | Type             | Value                          |
+|------------|------------------|--------------------------------|
+| annotation | ImageAnnotation  | The updated annotation object. |
+
+Returns: __ImageAnnotation__ - the previous version of the annotation.
+
+### on
+
+```js
+anno.on(event, callback);
+```
+
+Subscribes to a lifecycle event. See the list of available events in the LifecycleEvents type.
+
+| Argument | Type             | Value                                                                             |
+|----------|------------------|----------------------------------------------------------------------------------|
+| event    | T                | The name of the event to subscribe to, e.g. `'annotatioUpdated'`.               |
+| callback | LifecycleEvents\<E\>[T] | The callback function to be executed when the event is triggered.        |
+
+### off
+
+```js
+anno.off(event, callback);
+```
+
+Unsubscribes from a lifecycle event.
+
+| Argument | Type             | Value                                                                             |
+|----------|------------------|----------------------------------------------------------------------------------|
+| event    | T                | The name of the event to unsubscribe from, e.g. `'annotatioUpdated'`.           |
+| callback | LifecycleEvents\<E\>[T] | The callback function to be removed from the event.                      |
