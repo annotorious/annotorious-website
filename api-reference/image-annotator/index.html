@@ -1,0 +1,409 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-has-toc data-has-sidebar data-theme="dark" class="astro-bguv2lll"> <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>ImageAnnotator | Annotorious</title><link rel="canonical"/><link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml"/><meta name="generator" content="Astro v4.14.2"/><meta name="generator" content="Starlight v0.26.1"/><meta property="og:title" content="ImageAnnotator"/><meta property="og:type" content="article"/><meta property="og:url"/><meta property="og:locale" content="en"/><meta property="og:description"/><meta property="og:site_name" content="Annotorious"/><meta name="twitter:card" content="summary_large_image"/><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg> <svg aria-hidden="true" class="dark astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg> <svg aria-hidden="true" class="auto astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> </template><link rel="stylesheet" href="/_astro/index.5U6ffRZe.css">
+<style>:root{--sl-badge-default-border: var(--sl-color-accent);--sl-badge-default-bg: var(--sl-color-accent-low);--sl-badge-default-text: #fff;--sl-badge-note-border: var(--sl-color-blue);--sl-badge-note-bg: var(--sl-color-blue-low);--sl-badge-note-text: #fff;--sl-badge-danger-border: var(--sl-color-red);--sl-badge-danger-bg: var(--sl-color-red-low);--sl-badge-danger-text: #fff;--sl-badge-success-border: var(--sl-color-green);--sl-badge-success-bg: var(--sl-color-green-low);--sl-badge-success-text: #fff;--sl-badge-caution-border: var(--sl-color-orange);--sl-badge-caution-bg: var(--sl-color-orange-low);--sl-badge-caution-text: #fff;--sl-badge-tip-border: var(--sl-color-purple);--sl-badge-tip-bg: var(--sl-color-purple-low);--sl-badge-tip-text: #fff}[data-theme=light]:root{--sl-badge-default-bg: var(--sl-color-accent-high);--sl-badge-note-bg: var(--sl-color-blue-high);--sl-badge-danger-bg: var(--sl-color-red-high);--sl-badge-success-bg: var(--sl-color-green-high);--sl-badge-caution-bg: var(--sl-color-orange-high);--sl-badge-tip-bg: var(--sl-color-purple-high)}.sl-badge:where(.astro-avdet4wd){display:inline-block;border:1px solid var(--sl-color-border-badge);border-radius:.25rem;font-family:var(--sl-font-system-mono);line-height:normal;color:var(--sl-color-text-badge);background-color:var(--sl-color-bg-badge);overflow-wrap:anywhere}.sidebar-content .sl-badge:where(.astro-avdet4wd){line-height:1;font-size:var(--sl-text-xs);padding:.125rem .375rem}.sidebar-content a[aria-current=page]>.sl-badge:where(.astro-avdet4wd){--sl-color-bg-badge: transparent;--sl-color-border-badge: currentColor;color:inherit}.default:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-default-bg);--sl-color-border-badge: var(--sl-badge-default-border);--sl-color-text-badge: var(--sl-badge-default-text)}.note:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-note-bg);--sl-color-border-badge: var(--sl-badge-note-border);--sl-color-text-badge: var(--sl-badge-note-text)}.danger:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-danger-bg);--sl-color-border-badge: var(--sl-badge-danger-border);--sl-color-text-badge: var(--sl-badge-danger-text)}.success:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-success-bg);--sl-color-border-badge: var(--sl-badge-success-border);--sl-color-text-badge: var(--sl-badge-success-text)}.tip:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-tip-bg);--sl-color-border-badge: var(--sl-badge-tip-border);--sl-color-text-badge: var(--sl-badge-tip-text)}.caution:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-caution-bg);--sl-color-border-badge: var(--sl-badge-caution-border);--sl-color-text-badge: var(--sl-badge-caution-text)}.small:where(.astro-avdet4wd){font-size:var(--sl-text-xs);padding:.125rem .25rem}.medium:where(.astro-avdet4wd){font-size:var(--sl-text-sm);padding:.175rem .35rem}.large:where(.astro-avdet4wd){font-size:var(--sl-text-base);padding:.225rem .45rem}.sl-markdown-content :is(h1,h2,h3,h4,h5,h6) .sl-badge:where(.astro-avdet4wd){vertical-align:middle}
+svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-size, 1em);width:1em;height:1em}
+.sl-steps{--bullet-size: calc(var(--sl-line-height) * 1rem);--bullet-margin: .375rem;list-style:none;counter-reset:steps-counter var(--sl-steps-start, 0);padding-inline-start:0}.sl-steps>li{counter-increment:steps-counter;position:relative;padding-inline-start:calc(var(--bullet-size) + 1rem);padding-bottom:1px;min-height:calc(var(--bullet-size) + var(--bullet-margin))}.sl-steps>li+li{margin-top:0}.sl-steps>li:before{content:counter(steps-counter);position:absolute;top:0;inset-inline-start:0;width:var(--bullet-size);height:var(--bullet-size);line-height:var(--bullet-size);font-size:var(--sl-text-xs);font-weight:600;text-align:center;color:var(--sl-color-white);background-color:var(--sl-color-gray-6);border-radius:99rem;box-shadow:inset 0 0 0 1px var(--sl-color-gray-5)}.sl-steps>li:after{--guide-width: 1px;content:"";position:absolute;top:calc(var(--bullet-size) + var(--bullet-margin));bottom:var(--bullet-margin);inset-inline-start:calc((var(--bullet-size) - var(--guide-width)) / 2);width:var(--guide-width);background-color:var(--sl-color-hairline-light)}.sl-steps>li>:first-child{--lh: calc(1em * var(--sl-line-height));--shift-y: calc(.5 * (var(--bullet-size) - var(--lh)));transform:translateY(var(--shift-y));margin-bottom:var(--shift-y)}.sl-steps>li>:first-child:where(h1,h2,h3,h4,h5,h6){--lh: calc(1em * var(--sl-line-height-headings))}@supports (--prop: 1lh){.sl-steps>li>:first-child{--lh: 1lh}}
+.sl-link-button:where(.astro-xwgiixxa){align-items:center;border:1px solid transparent;border-radius:999rem;display:inline-flex;font-size:var(--sl-text-sm);gap:.5em;line-height:1.1875;outline-offset:.25rem;padding:.4375rem 1.125rem;text-decoration:none}.sl-link-button:where(.astro-xwgiixxa).primary{background:var(--sl-color-text-accent);border-color:var(--sl-color-text-accent);color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).primary:hover{color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).secondary{border-color:inherit;color:var(--sl-color-white)}.sl-link-button:where(.astro-xwgiixxa).minimal{color:var(--sl-color-white);padding-inline:0}.sl-link-button:where(.astro-xwgiixxa) svg{flex-shrink:0}@media (min-width: 50rem){.sl-link-button:where(.astro-xwgiixxa){font-size:var(--sl-text-base);padding:.9375rem 1.25rem}}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa){margin-inline-end:1rem}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa):not(:where(p *)){margin-block:1rem}
+</style><script type="module" src="/_astro/hoisted.FicniJ2Z.js"></script>
+<script type="module" src="/_astro/page.LS5KDvwX.js"></script></head> <body class="astro-bguv2lll"> <a href="#_top" class="astro-7q3lir66">Skip to content</a>  <div class="page sl-flex astro-vrdttmbt"> <header class="header astro-vrdttmbt"><div class="header sl-flex astro-kmkmnagf"> <div class="title-wrapper sl-flex astro-kmkmnagf"> <a href="/" class="site-title sl-flex astro-m46x6ez3">  <span class="astro-m46x6ez3"> Annotorious </span> </a>  </div> <div class="sl-flex astro-kmkmnagf"> <site-search data-translations="{&#34;placeholder&#34;:&#34;Search&#34;}" class="astro-v37mnknz"> <button data-open-modal disabled aria-label="Search" aria-keyshortcuts="Control+K" class="astro-v37mnknz"> <svg aria-hidden="true" class="astro-v37mnknz astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg>  <span class="sl-hidden md:sl-block astro-v37mnknz" aria-hidden="true">Search</span> <kbd class="sl-hidden md:sl-flex astro-v37mnknz" style="display: none;"> <kbd class="astro-v37mnknz">Ctrl</kbd><kbd class="astro-v37mnknz">K</kbd> </kbd> </button> <dialog style="padding:0" aria-label="Search" class="astro-v37mnknz"> <div class="dialog-frame sl-flex astro-v37mnknz">  <button data-close-modal class="sl-flex md:sl-hidden astro-v37mnknz"> Cancel </button> <div class="search-container astro-v37mnknz"> <div id="starlight__search" class="astro-v37mnknz"></div> </div> </div> </dialog> </site-search>  <script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script>    </div> <div class="sl-hidden md:sl-flex right-group astro-kmkmnagf"> <div class="sl-flex social-icons astro-kmkmnagf"> <a href="https://github.com/withastro/starlight" rel="me" class="sl-flex astro-wy4te6ga"><span class="sr-only astro-wy4te6ga">GitHub</span><svg aria-hidden="true" class="astro-wy4te6ga astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg> </a> </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg>  <select value="auto" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Dark</option><option value="light" class="astro-4yphtoen">Light</option><option value="auto" selected="true" class="astro-4yphtoen">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script>   </div> </div> </header> <nav class="sidebar astro-vrdttmbt" aria-label="Main"> <starlight-menu-button class="astro-jif73yzw"> <button aria-expanded="false" aria-label="Menu" aria-controls="starlight__sidebar" class="sl-flex md:sl-hidden astro-jif73yzw"> <svg aria-hidden="true" class="astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg>  </button> </starlight-menu-button>    <div id="starlight__sidebar" class="sidebar-pane astro-vrdttmbt"> <div class="sidebar-content sl-flex astro-vrdttmbt"> <sl-sidebar-state-persist data-hash="11ycz7w" class="astro-ul5l7bp7"> <ul class="top-level astro-3ii7xxms"> <li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <div class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Start Here</span>  </div> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/getting-started" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Getting Started</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/openseadragon" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">OpenSeadragon</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/installation" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Installation</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/migration-guide" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Migrating from v2.7</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <div class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Guides</span>  </div> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/guides/annotating-images/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Annotating Images</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/guides/data-model/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Annotation Data Model</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/guides/openseadragon/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">OpenSeadragon</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <div class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">API Reference</span>  </div> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/api-reference/image-annotator/" aria-current="page" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">ImageAnnotator</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <div class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">React</span>  </div> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/react/image-annotation/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">React Image Annotation</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/react/openseadragon/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">React OpenSeadragon</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <div class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">Svelte</span>  </div> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </summary> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/svelte/image-annotation/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Svelte Image Annotation</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/svelte/openseadragon/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Svelte OpenSeadragon</span>  </a> </li> </ul>  </details> </li> </ul>  </sl-sidebar-state-persist> <div class="md:sl-hidden astro-ul5l7bp7"> <div class="mobile-preferences sl-flex astro-wu23bvmt"> <div class="sl-flex social-icons astro-wu23bvmt"> <a href="https://github.com/withastro/starlight" rel="me" class="sl-flex astro-wy4te6ga"><span class="sr-only astro-wy4te6ga">GitHub</span><svg aria-hidden="true" class="astro-wy4te6ga astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg> </a> </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">Select theme</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg>  <select value="auto" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">Dark</option><option value="light" class="astro-4yphtoen">Light</option><option value="auto" selected="true" class="astro-4yphtoen">Auto</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg>  </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script>   </div>  </div>  <script>
+	(() => {
+		try {
+			if (!matchMedia('(min-width: 50em)').matches) return;
+			const scroller = document.getElementById('starlight__sidebar');
+			/** @type {HTMLElement | null} */
+			const target = document.querySelector('sl-sidebar-state-persist');
+			const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+			if (!scroller || !target || !state || target.dataset.hash !== state.hash) return;
+			target
+				.querySelectorAll('details')
+				.forEach((el, idx) => typeof state.open[idx] === 'boolean' && (el.open = state.open[idx]));
+			scroller.scrollTop = state.scroll;
+		} catch {}
+	})();
+</script>  </div> </div> </nav> <div class="main-frame astro-vrdttmbt">   <div class="lg:sl-flex astro-67yu43on"> <aside class="right-sidebar-container astro-67yu43on"> <div class="right-sidebar astro-67yu43on"> <div class="lg:sl-hidden astro-pb3aqygn"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-doynk5tl"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-doynk5tl"><details id="starlight__mobile-toc" class="astro-doynk5tl"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-doynk5tl"><div class="toggle sl-flex astro-doynk5tl">On this page<svg aria-hidden="true" class="caret astro-doynk5tl astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </div><span class="display-current astro-doynk5tl"></span></summary><div class="dropdown astro-doynk5tl"><ul class="isMobile astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Overview</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#instance-fields" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Instance Fields</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#element" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">element</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#instance-methods" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Instance Methods</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#addannotation" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">addAnnotation</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#cancelselected" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">cancelSelected</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#canredo" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">canRedo</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#canundo" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">canUndo</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#clearannotations" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">clearAnnotations</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#destroy" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">destroy</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#getannotationbyid" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">getAnnotationById</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#getannotations" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">getAnnotations</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#getselected" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">getSelected</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#getuser" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">getUser</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#loadannotations" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">loadAnnotations</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#listdrawingtools" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">listDrawingTools</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#redo" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">redo</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#removeannotation" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">removeAnnotation</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#setannotations" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">setAnnotations</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#setfilter" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">setFilter</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#setselected" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">setSelected</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#setstyle" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">setStyle</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#setuser" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">setUser</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#setuserselectaction" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">setUserSelectAction</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#setvisible" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">setVisible</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#undo" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">undo</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#updateannotation" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">updateAnnotation</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#on" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">on</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#off" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">off</span> </a>  </li> </ul>  </li> </ul> </div></details></nav></mobile-starlight-toc></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-pb3aqygn"><div class="sl-container astro-pb3aqygn"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">On this page</h2><ul class="astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Overview</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#instance-fields" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Instance Fields</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#element" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">element</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#instance-methods" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">Instance Methods</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#addannotation" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">addAnnotation</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#cancelselected" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">cancelSelected</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#canredo" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">canRedo</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#canundo" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">canUndo</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#clearannotations" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">clearAnnotations</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#destroy" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">destroy</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#getannotationbyid" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">getAnnotationById</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#getannotations" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">getAnnotations</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#getselected" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">getSelected</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#getuser" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">getUser</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#loadannotations" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">loadAnnotations</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#listdrawingtools" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">listDrawingTools</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#redo" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">redo</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#removeannotation" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">removeAnnotation</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#setannotations" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">setAnnotations</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#setfilter" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">setFilter</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#setselected" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">setSelected</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#setstyle" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">setStyle</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#setuser" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">setUser</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#setuserselectaction" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">setUserSelectAction</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#setvisible" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">setVisible</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#undo" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">undo</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#updateannotation" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">updateAnnotation</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#on" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">on</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#off" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">off</span> </a>  </li> </ul>  </li> </ul> </nav></starlight-toc></div></div> </div> </aside> <div class="main-pane astro-67yu43on">  <main data-pagefind-body lang="en" dir="ltr" class="astro-bguv2lll">    <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <h1 id="_top" class="astro-j6tvhyss">ImageAnnotator</h1>  </div> </div>  <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <div class="sl-markdown-content"> <p>The <code dir="auto">ImageAnnotator</code> is the main entry point into the Annotorious API
+when using the <code dir="auto">@annotorious/annotorious</code> package. An object of this
+type is returned when you call the <code dir="auto">createImageAnnotator</code> method.</p>
+<div class="expressive-code"><link rel="stylesheet" href="/_astro/ec.24254.css"><script type="module" src="/_astro/ec.8zarh.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#94AFCA">const</span><span style="--0:#D8DEE9"> anno </span><span style="--0:#94AFCA">=</span><span style="--0:#D8DEE9"> </span><span style="--0:#88C0D0">createImageAnnotator</span><span style="--0:#D8DEE9">(</span><span style="--0:#ECEFF4">'</span><span style="--0:#A3BE8C">sample-image</span><span style="--0:#ECEFF4">'</span><span style="--0:#D8DEE9">)</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="const anno = createImageAnnotator(&#x27;sample-image&#x27;);"><div></div></button></div></figure></div>
+<h2 id="instance-fields">Instance Fields</h2>
+<h3 id="element"><code dir="auto">element</code></h3>
+<p>The HTML element where the Annotorious instance is rendered.</p>
+<ul>
+<li>Type: HTMLDivElement</li>
+</ul>
+<h2 id="instance-methods">Instance Methods</h2>
+<h3 id="addannotation">addAnnotation</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#D8DEE9">anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">addAnnotation</span><span style="--0:#D8DEE9">(annotation)</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="anno.addAnnotation(annotation);"><div></div></button></div></figure></div>
+<p>Add an annotation programmatically.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Argument</th><th>Type</th></tr></thead><tbody><tr><td>annotation</td><td>ImageAnnotation</td></tr></tbody></table>
+<h3 id="cancelselected">cancelSelected</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#D8DEE9">anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">cancelSelected</span><span style="--0:#D8DEE9">()</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="anno.cancelSelected();"><div></div></button></div></figure></div>
+<p>Programmatically cancel the current selection, if any.</p>
+<h3 id="canredo">canRedo</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#94AFCA">const</span><span style="--0:#D8DEE9"> canRedo </span><span style="--0:#94AFCA">=</span><span style="--0:#D8DEE9"> anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">canRedo</span><span style="--0:#D8DEE9">()</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="const canRedo = anno.canRedo();"><div></div></button></div></figure></div>
+<p>Tests if there are any re-doable user actions in the undo stack.</p>
+<p>Returns: <strong>boolean</strong></p>
+<h3 id="canundo">canUndo</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#94AFCA">const</span><span style="--0:#D8DEE9"> canUndo </span><span style="--0:#94AFCA">=</span><span style="--0:#D8DEE9"> anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">canUndo</span><span style="--0:#D8DEE9">()</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="const canUndo = anno.canUndo();"><div></div></button></div></figure></div>
+<p>Tests if there are any undoable user actions in the undo stack.</p>
+<p>Returns: <strong>boolean</strong></p>
+<h3 id="clearannotations">clearAnnotations</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#D8DEE9">anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">clearAnnotations</span><span style="--0:#D8DEE9">()</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="anno.clearAnnotations();"><div></div></button></div></figure></div>
+<p>Delete all annotations from the image.</p>
+<h3 id="destroy">destroy</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#D8DEE9">anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">destroy</span><span style="--0:#D8DEE9">()</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="anno.destroy();"><div></div></button></div></figure></div>
+<p>Destroy this instance of Annotorious, removing the annotation layer from the image.</p>
+<h3 id="getannotationbyid">getAnnotationById</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#94AFCA">const</span><span style="--0:#D8DEE9"> annotation </span><span style="--0:#94AFCA">=</span><span style="--0:#D8DEE9"> anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">getAnnotationById</span><span style="--0:#D8DEE9">(id)</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="const annotation = anno.getAnnotationById(id);"><div></div></button></div></figure></div>
+<p>Returns the annotation with the specified ID.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Argument</th><th>Type</th><th>Value</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>the annotation ID</td></tr></tbody></table>
+<p>Returns: <strong>ImageAnnotation | undefined</strong></p>
+<h3 id="getannotations">getAnnotations</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#94AFCA">const</span><span style="--0:#D8DEE9"> all </span><span style="--0:#94AFCA">=</span><span style="--0:#D8DEE9"> anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">getAnnotations</span><span style="--0:#D8DEE9">()</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="const all = anno.getAnnotations();"><div></div></button></div></figure></div>
+<p>Returns: <strong>ImageAnnotation[]</strong></p>
+<h3 id="getselected">getSelected</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#94AFCA">const</span><span style="--0:#D8DEE9"> selected </span><span style="--0:#94AFCA">=</span><span style="--0:#D8DEE9"> anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">getSelected</span><span style="--0:#D8DEE9">()</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="const selected = anno.getSelected();"><div></div></button></div></figure></div>
+<p>Returns the currently selected annotations.</p>
+<p>Returns: <strong>ImageAnnotation[]</strong></p>
+<h3 id="getuser">getUser</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#94AFCA">const</span><span style="--0:#D8DEE9"> currentUser </span><span style="--0:#94AFCA">=</span><span style="--0:#D8DEE9"> anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">getUser</span><span style="--0:#D8DEE9">()</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="const currentUser = anno.getUser();"><div></div></button></div></figure></div>
+<p>Returns: <strong>User</strong></p>
+<h3 id="loadannotations">loadAnnotations</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#94AFCA">const</span><span style="--0:#D8DEE9"> loaded </span><span style="--0:#94AFCA">=</span><span style="--0:#D8DEE9"> </span><span style="--0:#94AFCA">await</span><span style="--0:#D8DEE9"> anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">loadAnnotations</span><span style="--0:#D8DEE9">(url</span><span style="--0:#ECEFF4">,</span><span style="--0:#D8DEE9"> replace </span><span style="--0:#94AFCA">=</span><span style="--0:#D8DEE9"> </span><span style="--0:#94AFCA">false</span><span style="--0:#D8DEE9">)</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="const loaded = await anno.loadAnnotations(url, replace = false)"><div></div></button></div></figure></div>
+<p>Loads annotations from a JSON file at a given URL. The method returns a
+promise of the fetched annotations, in case you want to perform an
+action after the they have loaded. The optional <code dir="auto">replace</code> parameter
+controls whether the new annotations should replace the current annotations,
+erasing all existing ones, or get added to them.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Argument</th><th>Type</th><th>Value</th><th>Default</th></tr></thead><tbody><tr><td>url</td><td>string</td><td>the URL to a JSON annotation file</td><td></td></tr><tr><td>replace</td><td>boolean</td><td>Optional: set to <code dir="auto">true</code> to clear the annotation canvas before adding the new annotations.</td><td><strong>false</strong></td></tr></tbody></table>
+<p>Returns: <strong>Promise&#x3C;ImageAnnotation[]></strong></p>
+<h3 id="listdrawingtools">listDrawingTools</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#94AFCA">const</span><span style="--0:#D8DEE9"> tools </span><span style="--0:#94AFCA">=</span><span style="--0:#D8DEE9"> anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">listDrawingTools</span><span style="--0:#D8DEE9">()</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="const tools = anno.listDrawingTools();"><div></div></button></div></figure></div>
+<p>Returns a list of the available drawing tools, including those from registered drawing tool plugins.</p>
+<p>Returns: <strong>string[]</strong></p>
+<h3 id="redo">redo</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#D8DEE9">anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">redo</span><span style="--0:#D8DEE9">()</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="anno.redo();"><div></div></button></div></figure></div>
+<p>Programmatically redo the last undone user action.</p>
+<h3 id="removeannotation">removeAnnotation</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#94AFCA">const</span><span style="--0:#D8DEE9"> removedAnnotation </span><span style="--0:#94AFCA">=</span><span style="--0:#D8DEE9"> anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">removeAnnotation</span><span style="--0:#D8DEE9">(annotationOrId)</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="const removedAnnotation = anno.removeAnnotation(annotationOrId);"><div></div></button></div></figure></div>
+<p>Removes the specified annotation from the image.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Argument</th><th>Type</th><th>Value</th></tr></thead><tbody><tr><td>annotationOrId</td><td>ImageAnnotation | string</td><td>The annotation object or the annotation ID to remove</td></tr></tbody></table>
+<p>Returns: <strong>ImageAnnotation | undefined</strong></p>
+<h3 id="setannotations">setAnnotations</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#D8DEE9">anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">setAnnotations</span><span style="--0:#D8DEE9">(annotations</span><span style="--0:#ECEFF4">,</span><span style="--0:#D8DEE9"> replace </span><span style="--0:#94AFCA">=</span><span style="--0:#D8DEE9"> </span><span style="--0:#94AFCA">false</span><span style="--0:#D8DEE9">)</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="anno.setAnnotations(annotations, replace = false);"><div></div></button></div></figure></div>
+<p>Sets the annotations for the image, optionally replacing any existing ones.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Argument</th><th>Type</th><th>Value</th></tr></thead><tbody><tr><td>annotations</td><td>E[]</td><td>The new set of annotations to display</td></tr><tr><td>replace</td><td>boolean (optional)</td><td>If <code dir="auto">true</code>, the new annotations will replace any existing ones. Default is <code dir="auto">false</code>.</td></tr></tbody></table>
+<h3 id="setfilter">setFilter</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#D8DEE9">anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">setFilter</span><span style="--0:#D8DEE9">(filter)</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="anno.setFilter(filter);"><div></div></button></div></figure></div>
+<p>Sets a filter function to control which annotations are displayed.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Argument</th><th>Type</th><th>Value</th></tr></thead><tbody><tr><td>filter</td><td>Filter | undefined</td><td>A function that returns <code dir="auto">true</code> for annotations that should be displayed. Pass <code dir="auto">undefined</code> to remove the filter.</td></tr></tbody></table>
+<h3 id="setselected">setSelected</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#D8DEE9">anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">setSelected</span><span style="--0:#D8DEE9">(arg</span><span style="--0:#ECEFF4">,</span><span style="--0:#D8DEE9"> editable</span><span style="--0:#94AFCA">?</span><span style="--0:#D8DEE9">);</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="anno.setSelected(arg, editable?);"><div></div></button></div></figure></div>
+<p>Programmatically sets the currently selected annotation(s).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Argument</th><th>Type</th><th>Value</th></tr></thead><tbody><tr><td>arg</td><td>string | string[] | undefined</td><td>The ID(s) of the annotation(s) to select, or <code dir="auto">undefined</code> to clear the selection.</td></tr><tr><td>editable</td><td>boolean (optional)</td><td>If <code dir="auto">true</code>, the selected annotation(s) will be editable. If the argument is omitted, the current UserSelectAction is applied.</td></tr></tbody></table>
+<h3 id="setstyle">setStyle</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#D8DEE9">anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">setStyle</span><span style="--0:#D8DEE9">(style)</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="anno.setStyle(style);"><div></div></button></div></figure></div>
+<p>Sets the drawing style for new annotations.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Argument</th><th>Type</th><th>Value</th></tr></thead><tbody><tr><td>style</td><td>DrawingStyleExpression | undefined</td><td>An object that defines the style properties for new annotations. Pass <code dir="auto">undefined</code> to reset to the default style.</td></tr></tbody></table>
+<h3 id="setuser">setUser</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#D8DEE9">anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">setUser</span><span style="--0:#D8DEE9">(user)</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="anno.setUser(user);"><div></div></button></div></figure></div>
+<p>Sets the current user for the Annotorious instance.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Argument</th><th>Type</th></tr></thead><tbody><tr><td>user</td><td>User</td></tr></tbody></table>
+<h3 id="setuserselectaction">setUserSelectAction</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#D8DEE9">anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">setUserSelectAction</span><span style="--0:#D8DEE9">(action)</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="anno.setUserSelectAction(action);"><div></div></button></div></figure></div>
+<p>Sets the action to be performed when the user selects an annotation.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Argument</th><th>Type</th><th>Value</th></tr></thead><tbody><tr><td>action</td><td>UserSelectActionExpression</td><td>An object that defines the action to be performed on annotation selection.</td></tr></tbody></table>
+<h3 id="setvisible">setVisible</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#D8DEE9">anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">setVisible</span><span style="--0:#D8DEE9">(visible)</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="anno.setVisible(visible);"><div></div></button></div></figure></div>
+<p>Sets whether the Annotorious instance should be visible or not.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Argument</th><th>Typ</th><th>Value</th></tr></thead><tbody><tr><td>visible</td><td>boolean</td><td><code dir="auto">true</code> to make the annotation layer visible, <code dir="auto">false</code> to hide it.</td></tr></tbody></table>
+<h3 id="undo">undo</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#D8DEE9">anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">undo</span><span style="--0:#D8DEE9">()</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="anno.undo();"><div></div></button></div></figure></div>
+<p>Programmatically undo the last user action.</p>
+<h3 id="updateannotation">updateAnnotation</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#94AFCA">const</span><span style="--0:#D8DEE9"> updatedAnnotation </span><span style="--0:#94AFCA">=</span><span style="--0:#D8DEE9"> anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">updateAnnotation</span><span style="--0:#D8DEE9">(annotation)</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="const updatedAnnotation = anno.updateAnnotation(annotation);"><div></div></button></div></figure></div>
+<p>Updates an existing annotation with new data.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Argument</th><th>Type</th><th>Value</th></tr></thead><tbody><tr><td>annotation</td><td>ImageAnnotation</td><td>The updated annotation object.</td></tr></tbody></table>
+<p>Returns: <strong>ImageAnnotation</strong> - the previous version of the annotation.</p>
+<h3 id="on">on</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#D8DEE9">anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">on</span><span style="--0:#D8DEE9">(event</span><span style="--0:#ECEFF4">,</span><span style="--0:#D8DEE9"> callback)</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="anno.on(event, callback);"><div></div></button></div></figure></div>
+<p>Subscribes to a lifecycle event. See the list of available events in the LifecycleEvents type.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Argument</th><th>Type</th><th>Value</th></tr></thead><tbody><tr><td>event</td><td>T</td><td>The name of the event to subscribe to, e.g. <code dir="auto">'annotatioUpdated'</code>.</td></tr><tr><td>callback</td><td>LifecycleEvents&#x3C;E>[T]</td><td>The callback function to be executed when the event is triggered.</td></tr></tbody></table>
+<h3 id="off">off</h3>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="js"><code><div class="ec-line"><div class="code"><span style="--0:#D8DEE9">anno</span><span style="--0:#ECEFF4">.</span><span style="--0:#88C0D0">off</span><span style="--0:#D8DEE9">(event</span><span style="--0:#ECEFF4">,</span><span style="--0:#D8DEE9"> callback)</span><span style="--0:#94AFCA">;</span></div></div></code></pre><div class="copy"><button title="Copy to clipboard" data-copied="Copied!" data-code="anno.off(event, callback);"><div></div></button></div></figure></div>
+<p>Unsubscribes from a lifecycle event.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Argument</th><th>Type</th><th>Value</th></tr></thead><tbody><tr><td>event</td><td>T</td><td>The name of the event to unsubscribe from, e.g. <code dir="auto">'annotatioUpdated'</code>.</td></tr><tr><td>callback</td><td>LifecycleEvents&#x3C;E>[T]</td><td>The callback function to be removed from the event.</td></tr></tbody></table> </div> <footer class="sl-flex astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n">   </div> <div class="pagination-links astro-u2l5gyhi" dir="ltr"> <a href="/guides/openseadragon/" rel="prev" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg>  <span class="astro-u2l5gyhi"> Previous <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">OpenSeadragon</span> </span> </a> <a href="/react/image-annotation/" rel="next" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg>  <span class="astro-u2l5gyhi"> Next <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">React Image Annotation</span> </span> </a> </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>
