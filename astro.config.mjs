@@ -34,6 +34,9 @@ export default defineConfig({
       label: 'Guides',
       autogenerate: { directory: 'guides' }
     }, {
+      label: 'API Reference',
+      autogenerate: { directory: 'api-reference' }
+    }, {
       label: 'React',
       autogenerate: { directory: 'react' }
     }, {
