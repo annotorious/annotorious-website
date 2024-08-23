@@ -23,6 +23,8 @@
 
 .openseadragon-example .actions button {
   all: unset;
+  background-color: var(--sl-color-bg-sidebar);
+  border: 1px solid var(--sl-color-hairline-shade);
   border-radius: 0.25rem;
   color: var(--sl-color-gray-4);
   cursor: pointer;
@@ -43,6 +45,7 @@
 
 .openseadragon-example .actions button.active {
   background-color: var(--sl-color-text-accent);
+  border-color: var(--sl-color-text-accent);
   color: #fff;
 }
 

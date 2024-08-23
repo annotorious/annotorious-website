@@ -42,6 +42,14 @@ h1, h2, h3, h4 {
   font-weight: 700;
 }
 
+table {
+  background-color: var(--sl-color-bg-sidebar);
+  border: 1px solid (--sl-color-hairline-shade);
+  border-radius: 0.25rem;
+  margin-top: 1.5rem !important;
+  padding: 1rem 1.5rem;
+}
+
 .sl-markdown-content h2 {
   margin-top: 3rem !important;
 }
