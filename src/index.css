@@ -67,3 +67,7 @@ h1, h2, h3, h4 {
 svg.a9s-annotationlayer {
   margin-top: 0 !important;
 }
+
+.a9s-annotation {
+  cursor: pointer;
+}
