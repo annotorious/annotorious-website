@@ -21,9 +21,6 @@ export default defineConfig({
         label: 'Getting Started',
         link: 'getting-started',
       }, {
-        label: 'OpenSeadragon',
-        link: 'openseadragon'
-      }, {
         label: 'Installation',
         slug: 'installation'
       }, {

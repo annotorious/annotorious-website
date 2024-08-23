@@ -1,12 +1,17 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import { Icon } from '@astrojs/starlight/components';
-import { ImageExample } from '../../components/ImageExample';
+import { ImageExample } from '../components/ImageExample';
+import { OpenSeadragonExample } from '../components/OpenSeadragonExample';
 import { Check } from 'lucide-react';
 ---
 <StarlightPage 
   frontmatter={{ title: 'Getting Started' }}
   headings={[{
+    depth: 2,
+    slug:'openseadragon',
+    text: 'OpenSeadragon'
+  }, {
     depth: 2,
     slug:'javascript-api',
     text: 'JavaScript API'
@@ -34,6 +39,46 @@ import { Check } from 'lucide-react';
     a touch device.
   </p>
 
+  <h2 id="openseadragon">OpenSeadragon</h2>
+
+  <p>
+    Annotorious integrates seamlessly with <a href="https://openseadragon.github.io/" target="_blank">OpenSeadragon</a>, 
+    allowing you to annotate high-resolution zoomable images. Try it out below:
+    use the buttons to switch between moving the image (zooming, panning) and
+    annotating. 
+  </p>
+
+  <p>
+    Start an annotation with a <strong>single click or tap</strong>. You can still
+    drag or zoom the image while annotating. When drawing a rectangle, a <strong>second
+    click or tap</strong> completes it. When drawing a polygon, <strong>a single click 
+    or tap</strong> adds a point. To close the polygon, <strong>double click</strong>
+    or <strong>keep your finger on the screen and hold for a moment</strong> on a 
+    touch device.
+  </p>
+
+  <p>
+    <OpenSeadragonExample client:only="react" />
+  </p>
+
+  <h2 id="javascript-api">JavaScript API</h2>
+
+  <p>
+    The JavaScript API for the Annotorious OpenSeadragon package is largely identical
+    to that of the standard package, with a few OpenSeadragon-specific additions.
+    Here are some key differences:
+  </p>
+
+  <ul>
+    <li>Use <code>createOSDAnnotator</code> instead of <code>createImageAnnotator</code>.</li>
+    <li>The first argument to <code>createOSDAnnotator</code> is the OpenSeadragon viewer instance, not an image element.</li>
+  </ul>
+
+  <p>
+    For full API documentation, including OpenSeadragon-specific methods and options, see the <a href="/api-reference">API Reference</a>.
+  </p>
+
+
   <h2 id="javascript-api">JavaScript API</h2>
 
   <p>
@@ -52,10 +97,6 @@ import { Check } from 'lucide-react';
     <li>set filters,</li>
     <li>apply data-driven styles, etc.</li>
   </ul>
-
-  <p>
-    See the <a href="/api-reference">API Reference</a> for full documentation.
-  </p>
 
   <h2 id="using-annotorious">Using Annotorious</h2>
 
@@ -92,7 +133,7 @@ import { Check } from 'lucide-react';
     <tbody>
       <tr>
         <td>
-          <span><Icon name="seti:javascript" /> Vanilla JavaScript</span>
+          <span><Icon name="seti:javascript" /> Vanilla JS</span>
         </td>
         <td>
           <div><Check size={18} /></div>

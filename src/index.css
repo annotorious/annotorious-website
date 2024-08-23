@@ -50,6 +50,10 @@ table {
   padding: 1rem 1.5rem;
 }
 
+table tr:last-child td {
+  border-bottom: none;
+}
+
 .sl-markdown-content h2 {
   margin-top: 3rem !important;
 }
@@ -76,6 +80,7 @@ svg.a9s-annotationlayer {
   margin-top: 0 !important;
 }
 
-.a9s-annotation {
+/** Temporary fix **/
+svg.a9s-annotationlayer > g {
   cursor: pointer;
 }
