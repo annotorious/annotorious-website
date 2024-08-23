@@ -1,6 +1,7 @@
 ---
 title: User
 ---
+import { Aside } from '@astrojs/starlight/components';
 
 Represents a user in Annotorious. Used to associate annotations, targets and bodies 
 with specific user identities.
@@ -16,12 +17,13 @@ interface User {
 
 ## Examples
 
-You can set the current user for an Annotorious instance using the [setUser](/api-reference/image-annotator/#setUser) method.
+You can set the current user for an Annotorious instance using the [setUser](/api-reference/image-annotator/#setUser) method. You should set a User right after initializing Annotorious, and any time the user login status in your application changes. 
+
 ```ts
 anno.setUser({
-  id: 'jane_doe',
-  name: 'Jane Doe',
-  avatar: 'https://example.com/jane_doe_avatar.jpg'
+  id: 'aboutgeo',
+  name: 'Rainer',
+  avatar: 'https://example.com/rainer_avatar.jpg'
 });
 ```
 
@@ -32,7 +34,57 @@ const currentUser = anno.getUser();
 console.log(currentUser.name); // Outputs: 'Jane Doe'
 ```
 
-## User 
+## Annotation Attribution
+
+Setting a user object is not required for Annotorious to work. But once a user is
+set, Annotorious will automatically insert the user data into any body or target 
+that is created or modified.
+
+```ts
+{
+  id: '7fb76422-3a8c-4c87-bbad-7c8bb68399a0',
+  bodies: [{
+    purpose: 'commenting',
+    value: 'A comment!',
+    creator: {
+      id: 'aboutgeo',
+      name: 'Rainer',
+      avatar: 'https://example.com/rainer_avatar.jpg'
+    },
+    created: 'Fri Aug 23 2024 13:02:44 GMT+0200'
+  }]
+  target: {
+    selector: {
+      type: 'RECTANGLE',
+      geometry: {
+        bounds: {
+            minX: 272,
+            minY: 169,
+            maxX: 393,
+            maxY: 259
+        },
+        x: 272,
+        y: 169,
+        w: 121,
+        h: 90,
+      }
+    },
+    creator: {
+      id: 'aboutgeo',
+      name: 'Rainer',
+      avatar: 'https://example.com/rainer_avatar.jpg'
+    },
+    created:  'Fri Aug 23 2024 13:02:44 GMT+0200'
+  }
+}
+```
+
+__Note:__ Annotorious uses user data __exclusively__ for inserting it into 
+the annotation. It neither provides any authentication functionality itself, 
+nor interacts with a login system on your behalf. Authentication and authorization
+remains up to your application.
+
+## User Properties 
 
 ### id
 
@@ -61,33 +113,3 @@ The display name of the user. Can be used in the UI to show who created an annot
 - Optional
 
 A URL to the user's avatar image. Can be used to display the user's profile picture in the annotation UI.
-
-## Using User Information
-
-User information can be utilized in various ways within Annotorious:
-
-1. **Attribution**: When creating new annotations, the current user's ID is automatically associated with the annotation.
-
-2. **Filtering**: You can use user information to filter annotations, showing only those created by specific users.
-
-```ts
-anno.setFilter((annotation) => {
-  return annotation.creator.id === 'jane_doe';
-});
-```
-
-3. **Custom Rendering**: In custom UI components, you can use the user's name and avatar for personalized displays.
-
-4. **Permissions**: Although not built into Annotorious directly, you can use the user information to implement custom permission logic.
-
-```ts
-anno.on('createSelection', (selection) => {
-  const currentUser = anno.getUser();
-  if (currentUser.isGuest) {
-    // Prevent guests from creating annotations
-    return false;
-  }
-});
-```
-
-Remember to handle cases where optional fields might be undefined. For example, always check if `name` or `avatar` are available before using them in your UI components.
