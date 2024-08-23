@@ -1,7 +1,6 @@
 ---
 title: User
 ---
-import { Aside } from '@astrojs/starlight/components';
 
 Represents a user in Annotorious. Used to associate annotations, targets and bodies 
 with specific user identities.
