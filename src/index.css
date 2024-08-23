@@ -47,7 +47,7 @@ table {
   border: 1px solid (--sl-color-hairline-shade);
   border-radius: 0.25rem;
   margin-top: 1.5rem !important;
-  padding: 1rem 1.5rem;
+  padding: 0.5rem 1.5rem !important;
 }
 
 table tr:last-child td {
