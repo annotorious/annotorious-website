@@ -79,8 +79,3 @@ table tr:last-child td {
 svg.a9s-annotationlayer {
   margin-top: 0 !important;
 }
-
-/** Temporary fix **/
-svg.a9s-annotationlayer > g {
-  cursor: pointer;
-}
