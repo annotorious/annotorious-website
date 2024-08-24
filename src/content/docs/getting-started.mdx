@@ -1,0 +1,57 @@
+---
+title: Getting Started MDX
+---
+import { Check } from 'lucide-react';
+import { ImageExample } from '../../components/ImageExample';
+import { OpenSeadragonExample } from '../../components/OpenSeadragonExample';
+import { UsingAnnotoriousTable } from '../../components/UsingAnnotoriousTable';
+
+Annotorious is a JavaScript library for adding image annotation 
+capabilities to your web application. Try it out below: __click__ or 
+__tap__ the annotation to edit. __Click or tap anywhere and drag__
+to create a new annotation.
+
+<ImageExample client:only="react" />
+
+Use the buttons to switch between rectangle and polygon drawing modes. To 
+close a polygon shape, __double click with your mouse__, or 
+__keep your finger on the screen and hold for a moment__ on 
+a touch device.
+
+## OpenSeadragon
+
+Annotorious integrates seamlessly with [OpenSeadragon](https://openseadragon.github.io), 
+allowing you to annotate high-resolution zoomable images. Try it out below:
+use the buttons to switch between moving the image (zooming, panning) and
+annotating. 
+
+Start an annotation with a __single click or tap__. You can still
+drag or zoom the image while annotating. When drawing a rectangle, a 
+__second click or tap__ completes it. When drawing a polygon, __a single
+click or tap__ adds a point. To close the polygon, __double click__
+or __keep your finger on the screen and hold for a moment__ on a 
+touch device.
+
+<OpenSeadragonExample client:only="react" />
+
+## JavaScript API
+
+The Annotorious JavaScript API gives you programmatic control over 
+annotations, enables you to customize behavior and visual styling, and
+integrate Annotorious with the rest of your application. 
+
+With the API, you can:
+
+- add, remove or update annotations programmatically
+- listen to user events
+- set filters
+- apply data-driven styles, etc.
+
+## Using Annotorious
+
+You can use Annotorious into your project in several ways depending
+on your preferred JavaScript framework. Annotorious supports vanilla 
+JavaScript, and provides bindings for [React](https://react.dev/). 
+Bindings for [Svelte](https://svelte.dev/) are currently under development.
+
+<UsingAnnotoriousTable />

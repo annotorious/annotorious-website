@@ -1,0 +1,12 @@
+
+table.using-annotorious td > span {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.using-annotorious td > div,
+.using-annotorious th > div {
+  display: flex;
+  justify-content: center;
+}
