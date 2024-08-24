@@ -71,11 +71,6 @@ table tr:last-child td {
   margin-top: 0.75rem;
 }
 
-.sl-markdown-content table {
-  display: table;
-  width: 100%;
-}
-
 svg.a9s-annotationlayer {
   margin-top: 0 !important;
 }
