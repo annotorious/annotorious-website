@@ -5,18 +5,18 @@ import { Move, Square, TriangleRight } from 'lucide-react';
 import './OpenSeadragonExample.css';
 import '@annotorious/react/annotorious-react.css';
 
-let OpenSeadragonExample: () => JSX.Element = () => null as unknown as JSX.Element; 
+let OpenSeadragonExample: () => JSX.Element = () => null as unknown as JSX.Element;
 
 if (typeof window !== 'undefined') {
-  const { 
-    Annotorious, 
-    OpenSeadragonAnnotator, 
-    OpenSeadragonViewer, 
-    ShapeType, 
-    useAnnotator 
+  const {
+    Annotorious,
+    OpenSeadragonAnnotator,
+    OpenSeadragonViewer,
+    ShapeType,
+    useAnnotator
   } = await import('@annotorious/react');
 
-  const ANNOTATION = {
+  const ANNOTATIONS = [{
     id: '4c4ee2bf-50e0-4bad-8176-76372b6ccf4b',
     bodies: [],
     target: {
@@ -25,10 +25,10 @@ if (typeof window !== 'undefined') {
         type: ShapeType.RECTANGLE,
         geometry: {
           bounds: {
-              minX: 4713,
-              minY: 1859,
-              maxX: 4845,
-              maxY: 1956
+            minX: 4713,
+            minY: 1859,
+            maxX: 4845,
+            maxY: 1956
           },
           x: 4713,
           y: 1859,
@@ -37,13 +37,46 @@ if (typeof window !== 'undefined') {
         }
       }
     }
-  }
+  }, {
+    id: '007dd938-6a11-4cb8-98a7-116456a8b9de',
+    bodies: [],
+    target: {
+      annotation: '007dd938-6a11-4cb8-98a7-116456a8b9de',
+      selector: {
+        type: ShapeType.POLYGON,
+        geometry: {
+          bounds: {
+            minX: 63,
+            minY: 1522,
+            maxX: 462,
+            maxY: 1653
+          },
+          points: [
+            [ 63, 1599 ],
+            [ 79, 1647 ],
+            [ 193, 1631 ],
+            [ 216, 1653 ],
+            [ 368, 1638 ],
+            [ 462, 1606 ],
+            [ 427, 1535 ],
+            [ 391, 1526 ],
+            [ 365, 1547 ],
+            [ 325, 1554 ],
+            [ 297, 1522 ],
+            [ 227, 1529 ],
+            [ 204, 1560 ],
+            [ 106, 1568 ]
+          ]
+        }
+      }
+    }
+  }]
 
   const options: OpenSeadragon.Options = {
     prefixUrl: 'https://cdn.jsdelivr.net/npm/openseadragon@latest/build/openseadragon/images/',
     tileSources: {
       type: 'image',
-      url:  '/images/schoenbrunn.jpg'
+      url: '/images/schoenbrunn.jpg'
     },
     gestureSettingsMouse: {
       clickToZoom: false,
@@ -63,7 +96,7 @@ if (typeof window !== 'undefined') {
     useEffect(() => {
       if (!anno) return;
 
-      anno.addAnnotation(ANNOTATION);
+      anno.setAnnotations(ANNOTATIONS);
 
       return () => {
         anno.clearAnnotations();
@@ -81,7 +114,7 @@ if (typeof window !== 'undefined') {
         </OpenSeadragonAnnotator>
 
         <div className='actions'>
-          <button 
+          <button
             className={tool === undefined ? 'active' : undefined}
             onClick={() => setTool(undefined)}>
             <Move size={15} /> Move Image
