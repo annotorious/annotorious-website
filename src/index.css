@@ -56,6 +56,11 @@ table {
 
   table { display: table !important; }
 
+  .expressive-code .copy button {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  
 }
 
 table tr:last-child td {

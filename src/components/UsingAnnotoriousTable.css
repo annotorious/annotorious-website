@@ -1,5 +1,7 @@
-table.using-annotorious td {
+table.using-annotorious td,
+table.using-annotorious th {
   vertical-align: middle;
+  white-space: nowrap;
 }
 
 table.using-annotorious td > span {

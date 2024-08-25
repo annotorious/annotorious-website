@@ -26,31 +26,38 @@ anno.on('createAnnotation', function(annotation) {
   console.log('created', annotation);
 });
 
-// Load annotations in W3C Web Annotation format
-anno.loadAnnotations('./annotations.w3c.json');
+// Load annotations from a JSON file
+anno.loadAnnotations('./annotations.json');
 ```
 
 ## Step-by-Step Guide
 
 <Steps>
-1. In your JavaScript file, import `createImageAnnotator` and the Annotorious stylesheet:
+1. In your JavaScript file, import `createImageAnnotator`.
 
-   ```bash frame="none"
+   ```js
    import { createImageAnnotator } from '@annotorious/annotorious';
+   ```
+
+2. __Important:__ import the Annotorious CSS stylesheet.
+
+   ```js
    import '@annotorious/annotorious/annotorious.css';
    ```
 
-2. Create an annotator instance on your image:
+2. Create an annotator instance on your image. You can pass
+   either the ID of the image element, or the DOM element itself.
 
-   ```bash frame="none"
+   ```js
    const anno = createImageAnnotator('sample-image');
+
+   // Alternative:
+   const anno = createImageAnnotator(document.getElementById('sample-image));
    ```
 
-   You can pass either the ID of the image element or the DOM element itself.
+3. __Optional:__ you can pass [options](/api-reference/annotorious-opts) to customize the annotator.
 
-3. You can pass an options object to customize the annotator:
-
-   ```bash frame="none"
+   ```js
    const anno = createImageAnnotator('sample-image', {
      drawingEnabled: true,
      style: {
@@ -60,15 +67,13 @@ anno.loadAnnotations('./annotations.w3c.json');
    });
    ```
 
-   See the [API Reference](/api-reference) for more information.
-
-4. Load existing annotations (optional):
+4. Load existing annotations. Read more about the data model [on the next page](/guides/data-model).
    
-   ```bash frame="none"
-   anno.loadAnnotations('./annotations.w3c.json');
+   ```js
+   anno.loadAnnotations('./annotations.json');
    ```
 
-5. Handle events:
+5. Handle events. Read more about [lifecycle events](/api-reference/lifecycle-events).
 
    ```bash frame="none"
    anno.on('createAnnotation', (annotation) => {
@@ -87,7 +92,8 @@ anno.loadAnnotations('./annotations.w3c.json');
 
 ## Script Import
 
-If you are not using a build system, you can include Annotorious via CDN:
+If you are not using a build system, you can include Annotorious via CDN. 
+The `createImageAnnotator` function is available under the global `Annotorious` object.
 
 ```html
 <html>
@@ -112,7 +118,7 @@ If you are not using a build system, you can include Annotorious via CDN:
 Annotorious provides methods to work with Annotations programmatically:
 
 ```js
-// Add a new annotation
+// Add an annotation to this annotator
 anno.addAnnotation({
   id: '7fb76422-3a8c-4c87-bbad-7c8bb68399a0',
   target: {
@@ -135,8 +141,8 @@ anno.addAnnotation({
 });
 ```
 
-By default, Annotorious uses its native data model, which is optimized 
+By default, Annotorious uses its own native data model, which is optimized 
 for performance and ease of use. However, Annotorious also supports 
 the [W3C Web Annotation Data Model](https://www.w3.org/TR/annotation-model/).
-The next section introduces Annotorious' native data model in more detail, 
+The next section introduces the Annotorious annotation data model in more detail, 
 and explains how to use the W3C Web Annotation format through the `W3CImageAdapter`.
