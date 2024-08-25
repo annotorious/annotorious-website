@@ -1,3 +1,6 @@
+table.using-annotorious td {
+  vertical-align: middle;
+}
 
 table.using-annotorious td > span {
   align-items: center;
