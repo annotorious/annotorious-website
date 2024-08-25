@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@annotorious/react": "3.0.0-rc.32",
-    "@astrojs/cloudflare": "^11.0.4",
     "@astrojs/react": "^3.6.2",
     "@astrojs/starlight": "^0.26.1",
     "@types/react": "^18.3.4",
