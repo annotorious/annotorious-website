@@ -7,17 +7,24 @@
 }
 
 .openseadragon-example .osd-container {
+  aspect-ratio: 16/9;
   background-color: #f1f5f9;
   border: 1px solid var(--sl-color-hairline-shade);
-  height: 400px;
   width: 100%;
 }
 
 .openseadragon-example .actions {
+  align-items: stretch;
   display: flex;
-  gap: 0.5rem;
+  justify-content: space-between;
   margin-top: 0.5rem;
   margin-bottom: 2rem;
+}
+
+.openseadragon-example .actions > div {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0;
 }
 
 .openseadragon-example .actions button {

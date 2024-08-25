@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { AnnotoriousOpenSeadragonAnnotator } from '@annotorious/react';
-import { Move, Square, TriangleRight } from 'lucide-react';
+import { Move, Square, Trash2, TriangleRight } from 'lucide-react';
 
 import './OpenSeadragonExample.css';
 import '@annotorious/react/annotorious-react.css';
@@ -13,7 +13,8 @@ if (typeof window !== 'undefined') {
     OpenSeadragonAnnotator,
     OpenSeadragonViewer,
     ShapeType,
-    useAnnotator
+    useAnnotator,
+    useSelection
   } = await import('@annotorious/react');
 
   const ANNOTATIONS = [{
@@ -93,6 +94,8 @@ if (typeof window !== 'undefined') {
 
     const anno = useAnnotator<AnnotoriousOpenSeadragonAnnotator>();
 
+    const selection = useSelection();
+
     useEffect(() => {
       if (!anno) return;
 
@@ -102,6 +105,9 @@ if (typeof window !== 'undefined') {
         anno.clearAnnotations();
       }
     }, [anno]);
+
+    const onDelete = (ids: string[]) =>
+      ids.forEach(id => anno.removeAnnotation(id));
 
     return (
       <div className="openseadragon-example">
@@ -114,23 +120,33 @@ if (typeof window !== 'undefined') {
         </OpenSeadragonAnnotator>
 
         <div className='actions'>
-          <button
-            className={tool === undefined ? 'active' : undefined}
-            onClick={() => setTool(undefined)}>
-            <Move size={15} /> Move
-          </button>
+          <div>
+            <button
+              className={tool === undefined ? 'active' : undefined}
+              onClick={() => setTool(undefined)}>
+              <Move size={15} /> Move
+            </button>
 
-          <button
-            className={tool === 'rectangle' ? 'rectangle active' : 'rectangle'}
-            onClick={() => setTool('rectangle')}>
-            <Square size={15} /> Rectangle
-          </button>
+            <button
+              className={tool === 'rectangle' ? 'rectangle active' : 'rectangle'}
+              onClick={() => setTool('rectangle')}>
+              <Square size={15} /> Rectangle
+            </button>
 
-          <button
-            className={tool === 'polygon' ? 'polygon active' : 'polygon'}
-            onClick={() => setTool('polygon')}>
-            <TriangleRight size={15} /> Polygon
-          </button>
+            <button
+              className={tool === 'polygon' ? 'polygon active' : 'polygon'}
+              onClick={() => setTool('polygon')}>
+              <TriangleRight size={15} /> Polygon
+            </button>
+          </div>
+
+          <div>
+            {selection.selected.length > 0 && (
+              <button onClick={() => onDelete(selection.selected.map(s => s.annotation.id))}>
+                <Trash2 size={15} />
+              </button>
+            )}
+          </div>
         </div>
       </div>
     )
