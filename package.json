@@ -10,7 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@annotorious/react": "file:../annotorious/packages/annotorious-react",
+    "@annotorious/react": "3.0.0-rc.32",
     "@astrojs/react": "^3.6.2",
     "@astrojs/starlight": "^0.26.1",
     "@types/react": "^18.3.4",
