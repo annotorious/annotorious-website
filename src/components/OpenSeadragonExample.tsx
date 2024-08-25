@@ -117,7 +117,7 @@ if (typeof window !== 'undefined') {
           <button
             className={tool === undefined ? 'active' : undefined}
             onClick={() => setTool(undefined)}>
-            <Move size={15} /> Move Image
+            <Move size={15} /> Move
           </button>
 
           <button
