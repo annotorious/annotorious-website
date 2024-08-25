@@ -2,3 +2,143 @@
 title: OpenSeadragon
 description: Using Annotorious to annotate zoomabile images in OpenSeadragon.
 ---
+import { Steps } from '@astrojs/starlight/components';
+
+This guide explains how to use Annotorious together with [OpenSeadragon](https://openseadragon.github.io/) 
+to annotate high-resolution zoomable images.
+
+## Quick Start
+
+Here's a basic example to get you started. The code below creates an OpenSeadragon viewer, 
+initializes Annotorious on the viewer, attaches an event listener, and loads 
+annotations from a file.
+
+```js
+import OpenSeadragon from 'openseadragon';
+import { createOSDAnnotator } from '@annotorious/openseadragon';
+
+// Import essential CSS styles
+import '@annotorious/openseadragon/annotorious-openseadragon.css';
+
+// Initialize OpenSeadragon viewer
+const viewer = OpenSeadragon({
+  element: document.getElementById('my-openseadragon-container'),
+  tileSources: {
+    type: 'image',
+    url: '/images/sample-image.jpg'
+  }
+};
+
+// Initialize annotator
+const anno = createOSDAnnotator(viewer);
+
+// Attach listeners to handle annotation events
+anno.on('createAnnotation', function(annotation) {
+  console.log('created', annotation);
+});
+
+// Load annotations from a JSON file
+anno.loadAnnotations('./annotations.json');
+```
+
+## Step-by-Step Guide
+
+<Steps>
+1. In your JavaScript file, import OpenSeadragon from the `openseadragon` package, and `createOSDAnnotator` 
+   from the Annotorious OpenSeadragon plugin package.
+
+   ```js
+   import OpenSeadragon from 'openseadragon';
+   import { createOSDAnnotator } from '@annotorious/openseadragon';
+   ```
+
+2. __Important:__ import the Annotorious CSS stylesheet.
+
+   ```js
+   import '@annotorious/openseadragon/annotorious-openseadragon.css';
+   ```
+
+3. Create an OpenSeadragon viewer instance in an existing DIV element. [Full documentation is
+   on the OpenSeadragon project website](https://openseadragon.github.io/#examples-and-features).
+
+   ```js 
+   const viewer = OpenSeadragon({
+     element: document.getElementById('my-openseadragon-container'),
+     tileSources: {
+       type: 'image',
+       url: '/images/sample-image.jpg'
+     }
+   };
+   ```
+4. Create an annotator instance on the viewer.
+
+   ```js
+   const anno = createOSDAnnotator(viewer);
+   ```
+
+5. __Optional:__ you can pass [options](/api-reference/annotorious-opts) to customize the annotator.
+
+   ```js
+   const anno = createOSDAnnotator(viewer, {
+     drawingEnabled: true,
+     style: {
+      fill: '#ff0000',
+      fillOpacity: 0.25
+     }
+   });
+   ```
+
+6. Handle events. Read more about [lifecycle events](/api-reference/lifecycle-events).
+
+   ```bash frame="none"
+   anno.on('createAnnotation', (annotation) => {
+     console.log('Annotation created:', annotation);
+   });
+
+   anno.on('updateAnnotation', (annotation, previous) => {
+     console.log('Annotation updated:', annotation);
+   });
+
+   anno.on('deleteAnnotation', (annotation) => {
+     console.log('Annotation deleted:', annotation);
+   });
+   ```
+
+7. Load existing annotations. Read more about the data model [on the next page](/guides/data-model).
+   Note that annotation coordinates are relative to the base resolution of the image.
+   
+   ```js
+   anno.loadAnnotations('./annotations.json');
+   ```
+</Steps>
+
+## Script Import
+
+If you are not using a build system, you can include Annotorious via CDN. 
+The `createOSDAnnotator` function is available under the global `AnnotoriousOSD` object.
+
+```html
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/openseadragon@latest/build/openseadragon/openseadragon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@annotorious/openseadragon@latest/dist/annotorious-openseadragon.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@annotorious/openseadragon@latest/dist/annotorious-openseadragon.css">
+  </head>
+  <body>
+    <div
+    <script>
+      window.onload = function() {
+        var viewer = OpenSeadragon({
+          element: document.getElementById('my-openseadragon-container'),
+          tileSources: {
+            type: 'image',
+            url: '/images/sample-image.jpg'
+          }
+        };
+
+        var anno = AnnotoriousOSD.createOSDAnnotator(viewer);
+      }
+    </script>
+  </body>
+</html>
+```

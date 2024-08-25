@@ -45,7 +45,7 @@ anno.loadAnnotations('./annotations.json');
    import '@annotorious/annotorious/annotorious.css';
    ```
 
-2. Create an annotator instance on your image. You can pass
+3. Create an annotator instance on your image. You can pass
    either the ID of the image element, or the DOM element itself.
 
    ```js
@@ -55,7 +55,7 @@ anno.loadAnnotations('./annotations.json');
    const anno = createImageAnnotator(document.getElementById('sample-image));
    ```
 
-3. __Optional:__ you can pass [options](/api-reference/annotorious-opts) to customize the annotator.
+4. __Optional:__ you can pass [options](/api-reference/annotorious-opts) to customize the annotator.
 
    ```js
    const anno = createImageAnnotator('sample-image', {
@@ -65,12 +65,6 @@ anno.loadAnnotations('./annotations.json');
       fillOpacity: 0.25
      }
    });
-   ```
-
-4. Load existing annotations. Read more about the data model [on the next page](/guides/data-model).
-   
-   ```js
-   anno.loadAnnotations('./annotations.json');
    ```
 
 5. Handle events. Read more about [lifecycle events](/api-reference/lifecycle-events).
@@ -87,6 +81,12 @@ anno.loadAnnotations('./annotations.json');
    anno.on('deleteAnnotation', (annotation) => {
      console.log('Annotation deleted:', annotation);
    });
+   ```
+
+6. Load existing annotations. Read more about the data model [on the next page](/guides/data-model).
+   
+   ```js
+   anno.loadAnnotations('./annotations.json');
    ```
 </Steps>
 
