@@ -16,8 +16,9 @@
 
 :root[data-theme='dark'] .splash-demo .glow {
   background: 
-    linear-gradient(90deg, rgb(106, 5, 106) 0%, rgb(16, 70, 187) 50%, rgb(13, 102, 45) 100%);   
-
+    linear-gradient(90deg, #7c9fff 0%, rgb(129, 7, 129) 50%, rgb(14, 131, 57) 100%);   
+  filter: blur(140px);
+  opacity: 0.6;
 }
 
 .splash-demo .mock-browser {
