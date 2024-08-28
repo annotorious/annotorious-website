@@ -30,6 +30,14 @@ anno.setStyle();
 | strokeOpacity | number          | 1       | Shape stroke opacity       |
 | strokeWidth   | number          | 1.5     | Stroke with in pixel unit  |
 
+## Color
+
+You can specify the color in one of three formats:
+
+- __RGB:__ a string in the format `rgb(r, g, b)` where r, g, and b are numbers between 0 and 255.
+- __RGBA:__ a string in the format `rgba(r, g, b, a)` where r, g, and b are numbers between 0 and 255, and a is a number between 0 and 1 representing the alpha (opacity) value.
+- __HEX:__ a string starting with # followed by 3 or 6 hexadecimal digits, e.g. `#ff0000` for red.
+
 ## Dynamic Styling
 
 In addition to a static style, `setStyle` also accepts a __function that returns
