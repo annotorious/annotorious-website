@@ -2,7 +2,7 @@
 title: DrawingStyle
 ---
 
-The `DrawingStyle` defines the visual appearance of annotations in Annotorious. You
+Defines the visual appearance of annotations in Annotorious. You
 can set the style via the [setStyle](#) method of your annotator instance. 
 
 ```ts
@@ -20,48 +20,21 @@ To reset the style to the defaults, clear the style like so:
 anno.setStyle();
 ```
 
-## DrawingStyle
+## Properties
 
-### fill
+| Property      | Type            | Default | Description                |
+|---------------|-----------------|---------|----------------------------|
+| fill          | [Color](#color) | #ffffff | Shape fill color           |
+| fillOpacity   | number          | 0.25    | Shape fill opacity (0 - 1) |
+| stroke        | [Color](#color) | #000000 | Shape stroke color         |
+| strokeOpacity | number          | 1       | Shape stroke opacity       |
+| strokeWidth   | number          | 1.5     | Stroke with in pixel unit  |
 
-- Type: [Color](#color)
-- Optional
+## Dynamic Styling
 
-The fill color of the annotation. Must be specified in HEX format.
-
-### fillOpacity
-
-- Type: `number`
-- Optional
-
-The opacity of the annotation fill, ranging from 0 (fully transparent) to 1 (fully opaque).
-
-### stroke
-
-- Type: [Color](#color)
-- Optional
-
-The stroke (outline) color of the annotation. Must be specified in HEX format.
-
-### strokeOpacity
-
-- Type: `number`
-- Optional
-
-The opacity of the annotation stroke, ranging from 0 (fully transparent) to 1 (fully opaque).
-
-### strokeWidth
-
-- Type: `number`
-- Optional
-
-The width of the annotation stroke in pixels.
-
-## Dynamic Styles
-
-In addition to static `DrawingStyle` objects, `setStyle` also accepts
-functions that return a `DrawingStyle`. You can use this to implement
-[data-driven styles](#) for your annotations.
+In addition to a static style, `setStyle` also accepts a __function that returns
+a style__. You can use this to implement dynamic styles that depend on the 
+data of your annotation.
 
 ```ts
 anno.setStyle((annotation, state) => {
