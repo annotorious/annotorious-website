@@ -4,14 +4,6 @@
 
 :root {
   --sl-font: 'Nunito Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-:root[data-theme='light'] {
-  --sl-color-bg: #fff;
-  --sl-color-bg-nav: #fff;
-  --sl-color-bg-sidebar: #f8fafc;
-  --sl-color-hairline-shade: #e2e8f0;
-  --sl-color-text-accent: #f8942c;
   --sl-text-h1: 2rem;
   --sl-text-h2: 1.5rem;
   --sl-text-h3: 1.15rem;
@@ -20,6 +12,18 @@
   --sl-text-4xl: 1.8rem;
   --sl-text-5xl: 2.25rem;
   --sl-text-6xl: 2.8rem;
+}
+
+:root[data-theme='light'] {
+  --sl-color-bg: #fff;
+  --sl-color-bg-nav: #fff;
+  --sl-color-bg-sidebar: #f8fafc;
+  --sl-color-hairline-shade: #e2e8f0;
+  --sl-color-text-accent: #f8942c;
+}
+
+:root[data-theme='dark'] {
+  --sl-color-text-accent: #7c9fff;
 }
 
 .social-icons a {
@@ -33,7 +37,7 @@
 }
 
 .right-sidebar {
-  background-color: #f8fafc;
+  background-color: var(--sl-color-bg-sidebar);
 }
 
 code {
