@@ -2,17 +2,11 @@
 title: AnnotationState
 ---
 
-The `AnnotationState` represents the current state of an annotation in the user interface. 
+Represents the current state of an annotation in the user interface. The AnnotationState is
+passed to [dynamic style functions](/api-reference/drawing-style/#dynamic-styling) as an
+argument.
 
-```ts
-interface AnnotationState {
-  selected?: boolean;
-  hovered?: boolean;
-}
-```
-The annotation state is passed to dynamic style functions as an argument to 
-[allow for state-dependent styling](/api-reference/drawing-style#dynamic-styles).
-
+## Example
 
 ```ts
 anno.setStyle((annotation, state) => {
@@ -34,3 +28,10 @@ anno.setStyle((annotation, state) => {
   };
 });
 ```
+
+## Properties
+
+| Property      | Type    | Description                                             |
+|---------------|---------|---------------------------------------------------------|
+| selected      | boolean | Whether the annotation is currently selected.           |
+| hovered       | boolean | Whether the mouse currently hovers over the annotation. |
