@@ -2,42 +2,47 @@
 title: Selection
 ---
 
+Users can select annotations by clicking or tapping. The default behavior of Annotorious is to 
+make the selected annotation shape editable, allowing the user to move, resize or change it.
+
+You can customize this behavior via the [userSelectAction init option](/api-reference/image-annotator/#init-options) and
+the [setUserSelectAction](/api-reference/image-annotator/#setuserselectaction) method. 
+
 ## UserSelectAction
 
-The `userSelectAction` prop controls the behavior when a user clicks or taps on an annotation. Valid values for selectAction are `EDIT`, `SELECT`, and `NONE`.
+| Value  | Description                                                                       |
+|--------|-----------------------------------------------------------------------------------|
+| EDIT   | Make the annotation shape editable when selected.                                 |
+| SELECT | Change annotation state and trigger the relevant event, but do not make editable. |
+| NONE   | Make the annotation inert. Clicking or tapping has no effect.                     |
 
-- __EDIT__ makes the annotation editable, allowing the users to modify its shape.
+## Examples
 
-- __SELECT__ ensures that clicking an annotation will trigger the relevant selection lifecycle events of the API. However, the annotation will not become editable.
+```js
+const anno = createImageAnnotator('sample-image', {
+  userSelectAction: 'SELECT' // Allow selection, but don't make editable
+});
+```
 
-- __NONE__ renders the annotation inert. Clicking on it will have no effect.
+You can also supply a function that takes an [ImageAnnotation](/api-reference/image-annotation) as input
+and returns a UserSelectAction.
 
-You can directly assign one of these values to userSelectAction. For example:
+```js
+const anno = createImageAnnotator('sample-image', {
+  // Only allow me to edit my own annotations
+  userSelectAction: (annotation) => {
+    const isMe = annotation.target.creator?.id === 'aboutgeo';
+    return isMe ? 'EDIT' : 'SELECT';
+  } 
+});
+```
+
+__A note for TypeScript users:__ UserSelectAction is also available as an enum for type safety.
 
 ```ts
-import { createImageAnnotator, UserSelectAction, W3CImageFormat } from '@annotorious/annotorious';
+import { createImageAnnotator, UserSelectAction } from '@annotorious/annotorious';
 
 const anno = createImageAnnotator('sample-image', {
   userSelectAction: SelectAction.EDIT
 });
 ```
-
-Alternatively, you can use a function that dynamically determines the `userSelectAction`` based on annotation properties or other conditions:
-
-```ts
-import { createImageAnnotator, UserSelectAction, W3CImageFormat } from '@annotorious/annotorious';
-
-const dynamicSelectAction = (annotation: Annotation) => {
-  const isMine = annotation.target.creator.id == 'me';
-  return isMine ? UserSelectAction.EDIT : UserSelectAction.SELECT;
-};
-
-const anno = createImageAnnotator('sample-image', {
-  userSelectAction: dynamicSelectAction
-});
-```
-
-__Note:__
-
-For TypeScript users, the valid values for `userSelectAction` are provided as enums for type safety. However, in plain JavaScript, you can use the string values ('EDIT', 'SELECT', 'NONE') directly.
-
