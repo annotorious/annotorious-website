@@ -23,6 +23,10 @@
   --sl-color-orange: #f8942d;
   --sl-color-orange-high: #6f4010;
   --sl-color-orange-low: #ffedda;
+
+  --sl-color-purple: #2d91f8;
+  --sl-color-purple-high: #156ac1;
+  --sl-color-purple-low: #b6daff;
 }
 
 :root[data-theme='dark'] {

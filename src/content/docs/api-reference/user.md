@@ -5,18 +5,9 @@ title: User
 Represents a user in Annotorious. Used to associate annotations, targets and bodies 
 with specific user identities.
 
-```ts
-interface User {
-  id: string;
-  isGuest?: boolean;
-  name?: string;
-  avatar?: string;
-}
-```
-
 ## Examples
 
-You can set the current user for an Annotorious instance using the [setUser](/api-reference/image-annotator/#setUser) method. You should set a User right after initializing Annotorious, and any time the user login status in your application changes. 
+You can set the current user for an Annotorious instance using the [setUser](/api-reference/image-annotator/#setuser) method. You should set a User right after initializing Annotorious, and any time the user login status in your application changes. 
 
 ```ts
 anno.setUser({
@@ -26,12 +17,21 @@ anno.setUser({
 });
 ```
 
-To get the current user, you can use the [getUser](/api-reference/image-annotator/#getUser) method:
+To get the current user, you can use the [getUser](/api-reference/image-annotator/#getuser) method:
 
 ```ts
 const currentUser = anno.getUser();
 console.log(currentUser.name); // Outputs: 'Jane Doe'
 ```
+
+## Properties
+
+| Property | Type    | Default      | Description                        |
+|----------|---------|--------------|------------------------------------|
+| id       | string  | __required__ | A unique identifier for the user.  |
+| isGuest  | boolean |              | Indicates whether the user is a guest or a registered user. This can be used to differentiate between authenticated users and temporary guests. |
+| name     | string  |              | User display name. Can be to show who created an annotation in your UI. |
+| avatar   | string  |              | URL to the user's avatar image. Can be used to display a profile picture in the UI. |
 
 ## Annotation Attribution
 
@@ -82,33 +82,3 @@ __Note:__ Annotorious uses user data __exclusively__ for inserting it into
 the annotation. It neither provides any authentication functionality itself, 
 nor interacts with a login system on your behalf. Authentication and authorization
 remains up to your application.
-
-## User Properties 
-
-### id
-
-- Type: `string`
-- Required
-
-A unique identifier for the user. This is the only required field.
-
-### isGuest
-
-- Type: `boolean`
-- Optional
-
-Indicates whether the user is a guest or a registered user. This can be used to differentiate between authenticated users and temporary guests.
-
-### name
-
-- Type: `string`
-- Optional
-
-The display name of the user. Can be used in the UI to show who created an annotation.
-
-### avatar
-
-- Type: `string`
-- Optional
-
-A URL to the user's avatar image. Can be used to display the user's profile picture in the annotation UI.
