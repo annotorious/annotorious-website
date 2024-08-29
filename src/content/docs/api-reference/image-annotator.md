@@ -274,7 +274,7 @@ Can bea [UserSelectAction](/api-reference/selection#userselectaction), or a __fu
 and returns a [UserSelectAction](/api-reference/selection#userselectaction). The following actions are available:
 
 - __EDIT__: make the annotation shape editable when selecting (default).
-- __SELECT__: just select. This will update the [AnnotationState](/api-reference/annotation-state) and trigger the [selectionChanged](/api-reference/lifecycle-events#selection-changed) event, but will not make the shape editable.
+- __SELECT__: just select. This will update the [AnnotationState](/api-reference/annotation-state) and trigger the [selectionChanged](/api-reference/events#selectionchanged) event, but will not make the shape editable.
 - __NONE__: the annotation is inert, clicking has no effect.
 
 
@@ -323,7 +323,7 @@ __Returns:__ [ImageAnnotation](/api-reference/imageannotation) - the previous ve
 anno.on(event, callback);
 ```
 
-Adds a [lifecycle event](/api-reference/lifecycle-events) listener.
+Adds a [lifecycle event](/api-reference/events) listener.
 
 | Argument | Type     | Description            |
 |----------|----------|------------------------|
@@ -336,7 +336,7 @@ Adds a [lifecycle event](/api-reference/lifecycle-events) listener.
 anno.off(event, callback);
 ```
 
-Removes a [lifecycle event](/api-reference/lifecycle-events) listener.
+Removes a [lifecycle event](/api-reference/events) listener.
 
 | Argument | Type     | Description            |
 |----------|----------|------------------------|
@@ -345,4 +345,4 @@ Removes a [lifecycle event](/api-reference/lifecycle-events) listener.
 
 ## Events
 
-For the list events available on the ImageAnnotator, refer to the full [lifecycle event reference](/api-reference/lifecycle-events).
+For the list events available on the ImageAnnotator, refer to the full [lifecycle event reference](/api-reference/events).
