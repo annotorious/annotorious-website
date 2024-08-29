@@ -1,11 +1,12 @@
 ---
 title: OpenSeadragon
-description: Using Annotorious to annotate zoomabile images in OpenSeadragon.
+description: Using Annotorious to annotate zoomable images in OpenSeadragon.
 ---
 import { Steps } from '@astrojs/starlight/components';
 
 This guide explains how to use Annotorious together with [OpenSeadragon](https://openseadragon.github.io/) 
-to annotate high-resolution zoomable images.
+to annotate high-resolution zoomable images, including images served via [IIIF](https://iiif.io) (International 
+Image Interoperability Framework).
 
 ## Quick Start
 
@@ -111,6 +112,39 @@ anno.loadAnnotations('./annotations.json');
    anno.loadAnnotations('./annotations.json');
    ```
 </Steps>
+
+## IIIF Example 
+
+You can use Annotorious and OpenSeadragon to annotate [IIIF images](https://iiif.io). 
+
+```js
+const viewer = OpenSeadragon({
+  element: document.getElementById('my-openseadragon-container'),
+  tileSources: {
+    '@context': 'http://iiif.io/api/image/2/context.json',
+    '@id': 'https://libimages1.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000001.jp2',
+    height: 7200,
+    width: 5233,
+    profile: [ 'http://iiif.io/api/image/2/level2.json' ],
+    protocol": 'http://iiif.io/api/image',
+    tiles: [{
+      scaleFactors: [ 1, 2, 4, 8, 16, 32 ],
+      width: 1024
+    }
+  }
+});
+```
+
+Alternatively, you can provide the link to the IIIF image `info.json` URL.
+
+```js
+const viewer = OpenSeadragon({
+  element: document.getElementById('my-openseadragon-container'),
+  tileSources: https://iiif.princeton.edu/loris/pudl0001%2F4609321%2Fs42%2F00000001.jp2/info.json
+});
+```
+
+For more information, see [OpenSeadragon IIIF documentation](https://openseadragon.github.io/examples/tilesource-iiif/).
 
 ## Script Import
 
