@@ -37,7 +37,9 @@ const anno = createImageAnnotator('sample-image', {
 });
 ```
 
-__A note for TypeScript users:__ UserSelectAction is also available as an enum for type safety.
+### TypeScript
+
+A note for TypeScript users: UserSelectAction is also available as an enum for type safety.
 
 ```ts
 import { createImageAnnotator, UserSelectAction } from '@annotorious/annotorious';
