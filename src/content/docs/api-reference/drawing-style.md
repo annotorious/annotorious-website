@@ -3,7 +3,8 @@ title: DrawingStyle
 ---
 
 Defines the visual appearance of annotations in Annotorious. You
-can set the style via the [setStyle](#) method of your annotator instance. 
+can set the style via the [setStyle](/api-reference/image-annotator#setstyle) 
+method of your annotator instance. 
 
 ```ts
 anno.setStyle({
@@ -41,8 +42,9 @@ You can specify the color in one of three formats:
 ## Dynamic Styling
 
 In addition to a static style, `setStyle` also accepts a __function that returns
-a style__. You can use this to implement dynamic styles that depend on the 
-data of your annotation.
+a style__. The function receives an [ImageAnnotation](/api-reference/image-annotation)
+and the [AnnotationState](/api-reference/annotation-state) as input. You can use this 
+to implement dynamic styles that depend on the data of your annotation.
 
 ```ts
 anno.setStyle((annotation, state) => {
