@@ -10,11 +10,11 @@ the [setUserSelectAction](/api-reference/image-annotator/#setuserselectaction) m
 
 ## UserSelectAction
 
-| Value  | Description                                                                       |
-|--------|-----------------------------------------------------------------------------------|
-| EDIT   | Make the annotation shape editable when selected.                                 |
-| SELECT | Change annotation state and trigger the relevant event, but do not make editable. |
-| NONE   | Make the annotation inert. Clicking or tapping has no effect.                     |
+| Value      | Description                                                                       |
+|------------|-----------------------------------------------------------------------------------|
+| __EDIT__   | Make the annotation shape editable when selected.                                 |
+| __SELECT__ | Change annotation state and trigger the relevant event, but do not make editable. |
+| __NONE__   | Make the annotation inert. Clicking or tapping has no effect.                     |
 
 ## Examples
 
