@@ -3,8 +3,8 @@ title: DrawingStyle
 ---
 
 Defines the visual appearance of annotations in Annotorious. You
-can set the style via the [setStyle](/api-reference/image-annotator#setstyle) 
-method of your annotator instance. 
+can set the style on your annotator instance via the [setStyle](/api-reference/image-annotator#setstyle) 
+method.
 
 ```ts
 anno.setStyle({
