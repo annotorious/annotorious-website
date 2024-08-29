@@ -1,5 +1,5 @@
 ---
-title: Lifecycle Events
+title: Events
 ---
 
 Lifecycle events are emitted by the annotator in response to user activities. You can
