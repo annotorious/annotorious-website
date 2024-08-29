@@ -40,11 +40,13 @@ export default defineConfig({
       }
     }, {
       label: 'React',
+      collapsed: true,
       autogenerate: {
         directory: 'react'
       }
     }, {
       label: 'Svelte',
+      collapsed: true,
       autogenerate: {
         directory: 'svelte'
       }
