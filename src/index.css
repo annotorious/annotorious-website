@@ -11,7 +11,7 @@
   --sl-text-3xl: 1.4rem;
   --sl-text-4xl: 1.8rem;
   --sl-text-5xl: 2.25rem;
-  --sl-text-6xl: 2.8rem;
+  --sl-text-6xl: 3.4rem;
 }
 
 :root[data-theme='light'] {
@@ -20,6 +20,9 @@
   --sl-color-bg-sidebar: #f8fafc;
   --sl-color-hairline-shade: #e2e8f0;
   --sl-color-text-accent: #f8942c;
+  --sl-color-orange: #f8942d;
+  --sl-color-orange-high: #6f4010;
+  --sl-color-orange-low: #ffedda;
 }
 
 :root[data-theme='dark'] {
@@ -83,12 +86,12 @@ table tr:last-child td {
 }
 
 .sl-markdown-content h3 {
-  margin-top: 1.5rem !important;
+  margin-top: 3rem !important;
 }
 
 .sl-markdown-content p + h3,
 .sl-markdown-content table + h3 {
-  margin-top: 3rem !important;
+  margin-top: 4.5rem !important;
 }
 
 .sl-markdown-content h3 + p {
