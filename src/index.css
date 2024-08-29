@@ -20,9 +20,10 @@
   --sl-color-bg-sidebar: #f8fafc;
   --sl-color-hairline-shade: #e2e8f0;
   --sl-color-text-accent: #f8942c;
-  --sl-color-orange: #f8942d;
-  --sl-color-orange-high: #6f4010;
-  --sl-color-orange-low: #ffedda;
+
+  --sl-color-orange: #2d91f8;
+  --sl-color-orange-high: #156ac1;
+  --sl-color-orange-low: #b6daff;
 
   --sl-color-purple: #2d91f8;
   --sl-color-purple-high: #156ac1;
