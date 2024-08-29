@@ -17,7 +17,7 @@ Retrieves a single annotation by its ID and subscribes to changes.
 |----------|----------------|---------------------------------------------------------|
 | id       | string         | The ID of the annotation to retrieve.                   |
 
-__Returns:__ [ImageAnnotation](/api-reference/image-annotation)) | undefined
+__Returns:__ [ImageAnnotation](/api-reference/image-annotation) | undefined
 
 
 ### useAnnotations
