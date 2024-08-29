@@ -13,7 +13,7 @@ You can set the current user for an Annotorious instance using the [setUser](/ap
 anno.setUser({
   id: 'aboutgeo',
   name: 'Rainer',
-  avatar: 'https://example.com/rainer_avatar.jpg'
+  avatar: 'https://example.com/lego-saruman.jpg'
 });
 ```
 
@@ -48,7 +48,7 @@ that is created or modified.
     creator: {
       id: 'aboutgeo',
       name: 'Rainer',
-      avatar: 'https://example.com/rainer_avatar.jpg'
+      avatar: 'https://example.com/lego-saruman.jpg'
     },
     created: 'Fri Aug 23 2024 13:02:44 GMT+0200'
   }]
@@ -71,7 +71,7 @@ that is created or modified.
     creator: {
       id: 'aboutgeo',
       name: 'Rainer',
-      avatar: 'https://example.com/rainer_avatar.jpg'
+      avatar: 'https://example.com/lego-saruman.jpg'
     },
     created:  'Fri Aug 23 2024 13:02:44 GMT+0200'
   }
