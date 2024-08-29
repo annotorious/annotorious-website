@@ -1,20 +1,22 @@
 ---
-title: ImageAnnotator
+title: OpenSeadragonAnnotator
 ---
 
 The main entry point into the Annotorious API. An object of this 
-type is returned when you call the `createImageAnnotator` method.
+type is returned when you call the `createOSDAnnotator` method.
 
 ```js
-import { createImageAnnotator } from '@annotorious/annotorious';
+import { createOSDAnnotator } from '@annotorious/openseadragon';
 
-const anno = createImageAnnotator('sample-image');
+// ...
+
+const anno = createOSDAnnotator(viewer);
 ```
 
 You can provide an options object to customize the annotator behavior.
 
 ```js
-const anno = createImageAnnotator('sample-image', {
+const anno = createOSDAnnotator(viewer, {
   style: { fill: #ff0000, fillOpacity: 0.4 }
 });
 ```
@@ -26,8 +28,8 @@ const anno = createImageAnnotator('sample-image', {
 |------------------|-----------------------------------------------|---------|---------------------------------------|
 | adapter          | [FormatAdapter](/api-reference/formatadapter) |         | An optional format crosswalk adapter. |
 | autoSave         | boolean                                       | false   | When set to `true`, annotation update events trigger instantly when the user is idle. If `false`, update events only triger after the user actively de-selects the annotation after editing. |
-| drawingEnabled   | boolean                                       | true    | Enables or disables drawing functionality .  |
-| drawingMode      | "click" \| "drag"                             | "drag"  | Determines how drawing is initiated.                  |
+| drawingEnabled   | boolean                                       | false   | Enables or disables drawing functionality .  |
+| drawingMode      | "click" \| "drag"                             |         | Determines how drawing is initiated. For UX purposes, the default depends on the device type. On desktop, default will be "click". On touch devices, default will be "drag". |
 | userSelectAction | [UserSelectActionExpression](/api-reference/selection#userselectactionexpression) | "EDIT" | Action to perform on user selection. |
 | style            | [DrawingStyleExpression](/api-reference/drawingstyle#drawingstyleexpression)  | Annotation style. |
 
@@ -35,7 +37,7 @@ const anno = createImageAnnotator('sample-image', {
 
 | Field   | Type           | Description                                                      |
 |---------|----------------|------------------------------------------------------------------|
-| element | HTMLDivElement | A container element that Annotorious generates around the image. |
+| viewer | [OpenSeadragon.Viewer](https://openseadragon.github.io/docs/OpenSeadragon.Viewer.html) | Reference to the OpenSeadragon viewer instance. |
 
 
 ## Instance Methods
@@ -89,6 +91,45 @@ anno.destroy();
 ```
 Destroy this ImageAnnotator instance, removing all annotations and the Annotorious
 container element.
+
+### fitBounds
+
+```js
+anno.fitBounds(arg, opts?);
+```
+
+Fits the OpenSeadragon viewer to the bounds of the given annotation.
+
+| Argument | Type                                                        | Default      | Description                      |
+|----------|-------------------------------------------------------------|--------------|----------------------------------|
+| arg      | [ImageAnnotation](/api-reference/imageannotation) \| string | __required__ | The annotation or annotation ID. |
+| opts     | FitboundsOptions \| string                                  |              | Additional options.              |
+
+### FitBoundsOptions
+
+```js
+anno.fitBounds(arg, { immediately: true, padding: 20 });
+```
+
+Additional options to control `fitBounds` behavior.
+
+| Property    | Type                                       | Default | Description                                      |
+|-------------|--------------------------------------------|---------|--------------------------------------------------|
+| immediately | boolean                                    | false   | Whether to use animated transition or not.       |
+| padding     | number \| [number, number, number, number] | 0       | Optional padding (pixels) when applying the fit. |
+
+### fitBoundsWithConstraints
+
+```js
+anno.fitBoundsWithConstraints(arg, opts?);
+```
+
+Similar to `fitBounds`, but using the [OpenSeadragon fitBoundsWithConstraints](https://openseadragon.github.io/docs/OpenSeadragon.Viewport.html#fitBoundsWithConstraints) method underneath.
+
+| Argument | Type                                                        | Default      | Description                      |
+|----------|-------------------------------------------------------------|--------------|----------------------------------|
+| arg      | [ImageAnnotation](/api-reference/imageannotation) \| string | __required__ | The annotation or annotation ID. |
+| opts     | FitboundsOptions \| string                                  |              | Additional options.              |
 
 ### getAnnotationById
 
