@@ -21,7 +21,7 @@ To get the current user, you can use the [getUser](/api-reference/image-annotato
 
 ```ts
 const currentUser = anno.getUser();
-console.log(currentUser.name); // Outputs: 'Jane Doe'
+console.log(currentUser.name); // Outputs: 'Rainer'
 ```
 
 ## Properties
