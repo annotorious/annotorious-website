@@ -9,7 +9,10 @@ your own custom popups in React.
 
 <ImagePopupExample client:only="react" />
 
-...TODO...
+## Basic Example
+
+Here's a basic example of how to use the ImageAnnotationPopup component
+to build a custom popup:
 
 ```tsx
 import { 
@@ -40,5 +43,80 @@ export default function App() {
 
 ## Editing Body Payload
 
-TODO
+You can use popups not only to display information, but also to edit it. 
+In accordance with the [W3C Web Annotation Data Model](https://www.w3.org/TR/annotation-model/), 
+Annotorious stores custom payload in [AnnotationBody](/api-reference/image-annotation/#annotationbody)
+objects. The ImageAnnotationPopup makes it easy to manipulate the current 
+annotation's bodies through callback props:
 
+- `onCreateBody(body: AnnotationBody)`: creates a new body on the annotation.
+- `onDeleteBody(id: string)`: remove the body with the given ID from the annotation. 
+- `onUpdateBody(current: AnnotationBody, next: AnnotationBody)`: modifies a body
+  by replacing an existing one with a new version.
+
+The example below shows a slightly more complex popup, which allows the 
+user to view and edit a comments stored in an [AnnotationBody](/api-reference/image-annotation/#annotationbody)
+with a `commenting` purpose.
+
+```tsx
+import { useState, useEffect } from 'react';
+import { 
+  Annotorious, 
+  ImageAnnotationPopup,
+  ImageAnnotator,
+  AnnotationBody
+} from '@annotorious/react';
+
+const CommentPopup = (props: PopupContentProps) => {
+
+  const { annotation, onCreateBody, onUpdateBody } = props;
+
+  const [comment, setComment] = useState('');
+
+  useEffect(() => {
+    const commentBody = annotation.bodies.find(body => body.purpose === 'commenting');
+    setComment(commentBody ? commentBody.value : '');
+  }, [bodies]);
+
+  const onSave = () => {
+    const updated = {
+      purpose: 'commenting',
+      value: comment
+    };
+
+    const commentBody = annotation.bodies.find(body => body.purpose === 'commenting');
+    if (commentBody) {
+      onUpdateBody(commentBody, updated);
+    } else {
+      onCreateBody(updated);
+    }
+  };
+
+  return (
+    <div>
+      <textarea 
+        value={comment} 
+        onChange={e => setComment(e.target.value)} />
+
+      <button onClick={onSave}>Save</button>
+    </div>
+  )
+
+}
+
+export default function App() {
+  return (
+    <Annotorious>
+      <ImageAnnotator>
+        <img src="example.jpg" />
+      </ImageAnnotator>
+
+      <ImageAnnotationPopup popup={CommentPopup} />
+    </Annotorious>
+  );
+}
+```
+
+## OpenSeadragon
+
+TODO
