@@ -1,0 +1,39 @@
+.image-popup-example {
+  margin-top: 1.5rem;
+  max-width: 100%;
+  width: fit-content;
+}
+
+.image-popup-example .actions {
+  align-items: stretch;
+  display: flex;
+  height: 2.2rem;
+  justify-content: space-between;
+  margin-top: 0rem;
+  margin-bottom: 2rem;
+}
+
+.image-popup-example .actions > div {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0;
+}
+
+.image-popup-example .actions button {
+  all: unset;
+  background-color: var(--sl-color-bg-sidebar);
+  border: 1px solid var(--sl-color-hairline-shade);
+  border-radius: 0.25rem;
+  color: var(--sl-color-gray-4);
+  cursor: pointer;
+  display: flex;
+  font-size: 0.825rem;
+  font-weight: 600;
+  gap: 0.325rem;
+  margin-top: 0;
+  padding: 0.25rem 0.625rem;
+}
+
+.image-popup-example .actions button:hover:not(.active) {
+  color: var(--sl-color-white);
+}

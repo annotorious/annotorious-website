@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import { TriangleRight, Square, Trash2 } from 'lucide-react';
-import type { AnnotoriousImageAnnotator, DrawingTool, ImageAnnotation, RectangleGeometry } from '@annotorious/react';
+import { useEffect } from 'react';
+import { Trash2 } from 'lucide-react';
+import type { AnnotoriousImageAnnotator, ImageAnnotation, RectangleGeometry } from '@annotorious/react';
 
-import './ImageExample.css';
+import './ImagePopupExample.css';
 import '@annotorious/react/annotorious-react.css';
 
-let ImageExample: () => JSX.Element = () => null as unknown as JSX.Element; 
+let ImagePopupExample: () => JSX.Element = () => null as unknown as JSX.Element; 
 
 if (typeof window !== 'undefined') {
   const { Annotorious, ImageAnnotator, ShapeType, useAnnotator, useSelection } = await import('@annotorious/react');
@@ -36,15 +36,13 @@ if (typeof window !== 'undefined') {
   const App = () => {
     const anno = useAnnotator<AnnotoriousImageAnnotator>();
 
-    const [tool, setTool] = useState<DrawingTool>('rectangle');
-
     const selection = useSelection();
 
     useEffect(() => {
       if (!anno) return;
 
       anno.addAnnotation(SAMPLE);
-
+      
       return () => {
         anno.clearAnnotations();
       }
@@ -54,26 +52,13 @@ if (typeof window !== 'undefined') {
       ids.forEach(id => anno.removeAnnotation(id));
 
     return (
-      <div className="image-example">      
-        <ImageAnnotator 
-          tool={tool}>
+      <div className="image-popup-example">      
+        <ImageAnnotator>
           <img src="/640px-Hallstatt.jpg" />
         </ImageAnnotator>
 
         <div className='actions'>
-          <div>
-            <button 
-              className={tool === 'rectangle' ? 'active' : undefined}
-              onClick={() => setTool('rectangle')}>
-              <Square size={15} /> Rectangle
-            </button>
-
-            <button
-              className={tool === 'polygon' ? 'polygon active' : 'polygon'}
-              onClick={() => setTool('polygon')}>
-              <TriangleRight size={15} /> Polygon
-            </button>
-          </div>
+          <div />
 
           <div>
             {selection.selected.length > 0 && (
@@ -87,7 +72,7 @@ if (typeof window !== 'undefined') {
     )
   }
 
-  ImageExample = () => {
+  ImagePopupExample = () => {
 
     return (
       <Annotorious>
@@ -98,4 +83,4 @@ if (typeof window !== 'undefined') {
   }
 }
 
-export { ImageExample };
+export { ImagePopupExample };

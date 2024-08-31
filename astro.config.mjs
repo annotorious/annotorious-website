@@ -44,6 +44,7 @@ export default defineConfig({
       items: [
         { label: 'Annotating Images', slug: 'react/image-annotation' },
         { label: 'OpenSeadragon and IIIF', slug: 'react/openseadragon-iiif' },
+        { label: 'Building Custom Popups', slug: 'react/custom-popups' },
         { label: 'Component Reference', slug: 'react/component-reference' },
         { label: 'Hooks Reference', slug: 'react/hooks-reference' },
       ],

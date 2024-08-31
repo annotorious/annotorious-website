@@ -95,10 +95,10 @@ export default function App() {
 
 You can apply custom styling to annotations via the `style` prop. The style can 
 be:
-- A [DrawingStyle](/api-referece/drawing-style) object.
+- A [DrawingStyle](/api-reference/drawing-style) object.
 - A function that receives the [ImageAnnotation](/api-reference/image-annotation) and
   the [AnnotationState](/api-reference/annotation-state) as an input, and returns
-  a [DrawingStyle](/api-referece/drawing-style).
+  a [DrawingStyle](/api-reference/drawing-style).
 
 ```tsx
 const style = (annotation: ImageAnnotation, state: AnnotationState) => ({
@@ -165,9 +165,6 @@ const allowEditingMyOwn = (annotation: ImageAnnotation) => {
   <OpenSeadragonViewer options={OSD_OPTS} />
 </OpenSeadragonAnnotator>
 ```
-## Building a Selection Popup
-
-TODO...
 
 ## W3C Format Adapter
 
