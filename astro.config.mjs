@@ -44,7 +44,8 @@ export default defineConfig({
       items: [
         { label: 'Annotating Images', slug: 'react/image-annotation' },
         { label: 'OpenSeadragon and IIIF', slug: 'react/openseadragon-iiif' },
-        { label: 'API-Reference', autogenerate: { directory: 'react/api-reference' } },
+        { label: 'Component Reference', slug: 'react/component-reference' },
+        { label: 'Hooks Reference', slug: 'react/hooks-reference' },
       ],
     }, {
       label: 'Svelte',

@@ -1,0 +1,185 @@
+---
+title: Component Reference
+---
+
+## Annotorious
+
+A required root context component. You can use [Annotorious-provided hooks](/react/hooks-reference/)
+anywhere below the `Annotorious` component.
+
+```tsx
+<Annotorious>
+  <ImageAnnotator>
+    <img src="example.jpg" />
+  </ImageAnnotator>
+</Annotorious>
+```
+
+## Image components
+
+These components provide React bindings for the standard version of Annotorious, 
+for annotating JPEG or PNG images.
+
+### ImageAnnotator
+
+Wraps an image and applies an annotation layer to it. 
+
+```tsx
+import { Annotorious, ImageAnnotator } from '@annotorious/react';
+
+import '@annotorious/react/annotorious-react.css';
+
+export default function App() {
+  return (
+    <Annotorious>
+      <ImageAnnotator
+        containerClassName="annotation-layer"
+        tool="polygon">
+        <img src="example.jpg" />
+      </ImageAnnotator>
+    </Annotorious>
+  );
+}
+```
+
+#### Props
+
+This components supports all of the init options of the vanilla 
+JS [createImageAnnotator](/api-reference/image-annotator/) function as 
+props, as well as some additional ones:
+
+| Prop               | Type                                             | Default     | Description                                     |
+|--------------------|--------------------------------------------------|-------------|-------------------------------------------------|
+| adapter            | [FormatAdapter](#formatadapter)                  |             | An optional format crosswalk adapter.           |
+| autoSave           | boolean                                          | false       | When set to `true`, annotation update events trigger instantly when the user is idle. If `false`, update events only triger after the user actively de-selects the annotation after editing. |
+| containerClassName | string                                           |             | `className` applied to the DIV wrapper element. |       
+| drawingEnabled     | boolean                                          | true        | Enables or disables drawing functionality.      |
+| drawingMode        | "click" \| "drag"                                | "drag"      | Determines how drawing is initiated.            |
+| filter             | [Filter](/api-reference/filter)                  |             | A function to control which annotations to display, and which to hide. |
+| userSelectAction   | [UserSelectAction](/api-reference/selection)     | "EDIT"      | A `userSelectAction` or function which determines what happens when the user selects an annotation interactively. |
+| style              | [StyleDefinition]((/api-reference/drawing-style) |             | Sets the global (static or data-driven) drawing style. |
+| tool               | "rectangle" \| "polygon"                         | "rectangle" | Changes the current drawing tool.               |
+
+### ImagePopup
+
+...TODO...
+
+## OpenSeadragon Components
+
+These components provide React bindings for the OpenSeadragon version of Annotorious, 
+for annotating high-resolution zoomable images and IIIF images.
+
+### OpenSeadragonAnnotator
+
+Wraps an [OpenSeadragonViewer](/react/components/openseadragon-viewer/) and 
+applies an annotation layer to it. 
+
+```tsx
+import { Annotorious, OpenSeadragonAnnotator, OpenSeadragonViewer } from '@annotorious/react';
+
+import '@annotorious/react/annotorious-react.css';
+
+export default function App() {
+  return (
+    <Annotorious>
+      <OpenSeadragonAnnotator     
+        drawingEnabled={false}
+        tool="polygon">
+            
+        <OpenSeadragonViewer 
+          className="openseadragon" 
+          options={OSD_OPTIONS} />
+      </OpenSeadragonAnnotator>
+    </Annotorious>
+  );
+}
+```
+
+#### Props
+
+This components supports all of the init options of the vanilla 
+JS [createImageAnnotator](/api-reference/image-annotator/) function as 
+props, as well as some additional ones:
+
+| Prop             | Type                                             | Default     | Description                                     |
+|------------------|--------------------------------------------------|-------------|-------------------------------------------------|
+| adapter          | [FormatAdapter](#formatadapter)                  |             | An optional format crosswalk adapter.           |
+| autoSave         | boolean                                          | false       | When set to `true`, annotation update events trigger instantly when the user is idle. If `false`, update events only triger after the user actively de-selects the annotation after editing. |
+| drawingEnabled   | boolean                                          | true        | Enables or disables drawing functionality.      |
+| drawingMode      | "click" \| "drag"                                | "drag"      | Determines how drawing is initiated.            |
+| filter           | [Filter](/api-reference/filter)                  |             | A function to control which annotations to display, and which to hide. |
+| userSelectAction | [UserSelectAction](/api-reference/selection)     | "EDIT"      | A `userSelectAction` or function which determines what happens when the user selects an annotation interactively. |
+| style            | [StyleDefinition]((/api-reference/drawing-style) |             | Sets the global (static or data-driven) drawing style. |
+| tool             | "rectangle" \| "polygon"                         | "rectangle" | Changes the current drawing tool.               |
+
+
+### OpenSeadragonViewer
+
+A helper component that wraps an [OpenSeadragon](https://openseadragon.github.io) viewer.
+
+```tsx
+import { Annotorious, OpenSeadragonViewer } from '@annotorious/react';
+
+const OSD_OPTIONS =  {
+  tileSources: {
+    type: 'image',
+    url: '/images/sample-image.jpg'
+  }
+};
+
+export default function App() {
+  return (
+    <Annotorious>
+      <OpenSeadragonViewer 
+        className="openseadragon" 
+        options={OSD_OPTIONS} />
+    </Annotorious>
+  );
+}
+```
+
+#### Props
+
+| Prop      | Type   | Default     | Description                                                 |
+|-----------|--------|-------------|-------------------------------------------------------------|
+| className | string |             | `className` to apply to the OpenSeadragon container element |
+| options   | [OpenSeadragon.Options](https://openseadragon.github.io/docs/OpenSeadragon.html#.Options) | __required__ | OpenSeadragon viewer options. |
+
+Note that it is not necessary to provide an `element` or `id` attribute in the OpenSeadragon viewer options.
+(The OpenSeadragon container element will be generated from the React component.) 
+
+### OpenSeadragonPopup
+
+An helper component for creating your own annotation popup. The popup opens when
+the annotation is selected, either by user action or programmatically.
+
+```js
+import { 
+  Annotorious, 
+  OpenSeadragonAnnotator, 
+  OpenSeadragonPopup
+  OpenSeadragonViewer 
+} from '@annotorious/react';
+
+import '@annotorious/react/annotorious-react.css';
+
+export default function App() {
+  return (
+    <Annotorious>
+      <OpenSeadragonAnnotator     
+        drawingEnabled={false}
+        tool="polygon">
+            
+        <OpenSeadragonViewer 
+          className="openseadragon" 
+          options={OSD_OPTIONS} />
+
+        <OpenSeadragonPopup 
+          popup={props => (
+            <div className="annotorious-popup">Hello World</div>
+          )} />
+      </OpenSeadragonAnnotator>
+    </Annotorious>
+  );
+}
+```
