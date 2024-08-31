@@ -35,6 +35,7 @@ export default defineConfig({
       }
     }, {
       label: 'API Reference',
+      collapsed: true,
       autogenerate: {
         directory: 'api-reference'
       }
