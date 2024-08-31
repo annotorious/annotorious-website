@@ -40,9 +40,11 @@ export default defineConfig({
       }
     }, {
       label: 'React',
-      autogenerate: {
-        directory: 'react'
-      }
+      items: [
+        { label: 'Annotating Images', slug: 'react/image-annotation' },
+        { label: 'OpenSeadragon and IIIF', slug: 'react/openseadragon-iiif' },
+        { label: 'API-Reference', autogenerate: { directory: 'react/api-reference' } },
+      ],
     }, {
       label: 'Svelte',
       autogenerate: {
