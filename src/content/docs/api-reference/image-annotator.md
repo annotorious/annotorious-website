@@ -26,7 +26,7 @@ const anno = createImageAnnotator('sample-image', {
 |------------------|-----------------------------------------------|---------|---------------------------------------|
 | adapter          | [FormatAdapter](/api-reference/formatadapter) |         | An optional format crosswalk adapter. |
 | autoSave         | boolean                                       | false   | When set to `true`, annotation update events trigger instantly when the user is idle. If `false`, update events only triger after the user actively de-selects the annotation after editing. |
-| drawingEnabled   | boolean                                       | true    | Enables or disables drawing functionality .  |
+| drawingEnabled   | boolean                                       | true    | Enables or disables drawing functionality. |
 | drawingMode      | "click" \| "drag"                             | "drag"  | Determines how drawing is initiated.                  |
 | userSelectAction | [UserSelectActionExpression](/api-reference/selection#userselectactionexpression) | "EDIT" | Action to perform on user selection. |
 | style            | [DrawingStyleExpression](/api-reference/drawingstyle#drawingstyleexpression)  | Annotation style. |
@@ -276,7 +276,7 @@ Sets the global (static or data-driven) [DrawingStyle](/api-reference/drawingsty
 anno.setUser(user);
 
 // Clear the current user
-anno.setStyle();
+anno.setUser();
 ```
 
 Sets the current user. Annotorious will use this information to insert [attribution data](/api-reference/user#annotation-attribution) 
@@ -294,7 +294,7 @@ anno.setUserSelectAction(action);
 
 Changes the current `userSelectAction`, which determines what happens when the user selects an annotation interactively.
 
-Can bea [UserSelectAction](/api-reference/selection#userselectaction), or a __function__ that receives the annotation as input 
+Can be a [UserSelectAction](/api-reference/selection#userselectaction), or a __function__ that receives the annotation as input 
 and returns a [UserSelectAction](/api-reference/selection#userselectaction). The following actions are available:
 
 - __EDIT__: make the annotation shape editable when selecting (default).

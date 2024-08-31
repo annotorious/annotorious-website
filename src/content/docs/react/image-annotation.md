@@ -26,20 +26,6 @@ export default function App() {
 #### Annotorious
 This component provides context for all parts of an annotation layer on an image. Annotorious hooks can be used below this component.
 
-#### ImageAnnotator
-This component wraps an image component and applies an annotation layer to it.
-
-| Prop               | Type                                            | Default       |
-|--------------------|-------------------------------------------------|---------------|
-| `adapter`          | [FormatAdapter](#formatadapter)                 | -             |
-| `autoSave`         | `boolean`                                       | `false`       |
-| `drawingEnabled`   | `boolean`                                       | `true`        |
-| `drawingMode`      | `'click'` \| `'drag'`                           | `'drag'`      |
-| `filter`           | [FilterDefinition](#filter)                     | -             |
-| `userSelectAction` | [UserSelectActionDefinition](#userselectaction) | `'EDIT'`      |
-| `style`            | [StyleDefinition](#style)                       | -             |
-| `theme`            | `'dark'` \| `'light'` \| `'auto'`               | `'light'`     |
-| `tool`             | `'rectangle'` \| `'light'`                      | `'rectangle'` |
 
 #### FormatAdapter
 
