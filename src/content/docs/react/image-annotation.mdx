@@ -2,6 +2,8 @@
 title: React Image Annotation
 description: Using Annotorious to annotate images in React.
 ---
+import { Steps } from '@astrojs/starlight/components';
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 Add an annotation layer to an image using the Annotorious React components. 
 
@@ -21,11 +23,95 @@ export default function App() {
 }
 ```
 
-### Components
+## Step-by-Step Guide
 
-#### Annotorious
-This component provides context for all parts of an annotation layer on an image. Annotorious hooks can be used below this component.
+<Steps>
+1. Import the `Annotorious` and `ImageAnnotator` components.
 
+   ```ts
+   import { Annotorious, ImageAnnotator } from '@annotorious/react';
+   ```
+
+2. Import Annotorious base CSS styles.
+
+   ```ts
+   import '@annotorious/react/annotorious-react.css';
+   ```
+
+3. __Important:__ wrap your application with the `<Annotatorious>` root context tag -
+   other Annotorious components depend on it. You can use Annotorious-provided hooks 
+   anywhere below the context tag.
+
+   <Tabs>
+     <TabItem label="App.tsx">
+       ```tsx
+       export default function App() {
+         return (
+           <Annotorious>
+             <MyAnnotatableImage />
+           </Annotorious>
+         );
+       }
+       ```
+     </TabItem>
+     
+     <TabItem label="MyAnnotatableImage.tsx">
+       ```tsx
+       export const MyAnnotatableImage = () => {
+
+         // You can use Annotorious hooks here!
+         const annotations = useAnnotations();
+
+         // ...
+
+         return (
+           <ImageAnnotator>
+             <img src="example.jpg" />
+           </ImageAnnotator>
+         );
+       }
+       ```
+     </TabItem>
+   </Tabs>
+</Steps>
+
+## Annotation Styling
+
+You can apply custom styling to annotations via the `style` prop. The style can 
+be:
+- a [DrawingStyle](/api-referece/drawing-style) object
+- a function that receives the [ImageAnnotation](/api-reference/image-annotation) and
+  the [AnnotationState](/api-reference/annotation-state) as an input, and returns
+  a [DrawingStyle](/api-referece/drawing-style).
+
+```tsx
+const style = (annotation: ImageAnnotation, state: AnnotationState) => ({
+  fill: state.hovered ? '#ff0000' : '#ffffff',
+  fillOpacity: 0.25
+});
+
+<ImageAnnotator style={style}>
+  <img src="example.jpg" />
+</ImageAnnotator>
+```
+
+## Annotation Filter
+
+Using a filter, you can dynamically control the visibility of specific annotations,
+based on their data or external criteria. The filter is a function that receives 
+the [ImageAnnotation](/api-reference/image-annotation) as an input, and returns a boolean. 
+`true` makes the annotation visible, `false` hides it.
+
+```tsx
+const showImportantFilter = (annotation: Annotation) => {
+  // Show only if the annotation has an 'important' tag
+  return annotation.bodies.some(b => b.purpose === 'tagging' && b.value === 'important');
+};
+
+<ImageAnnotator filter={showImportantFilter}>
+  <img src="example.jpg" />
+</ImageAnnotator>;
+```
 
 #### FormatAdapter
 
@@ -44,21 +130,7 @@ import { Annotorious, ImageAnnotator, W3CImageFormat } from '@annotorious/react'
 
 ```
 
-#### Filter
 
-Using a filter, you can dynamically control annotation visibility based on specified conditions. The filter is a function that takes an annotation as an input, and must return a boolean. Return `true` to make the annotation visible, and `false` to hide it.
-
-```tsx
-const showImportantFilter = (annotation: Annotation) => {
-  const isImportant = annotation.bodies.some(b => b.purpose === 'highlighting');
-
-  return isImportant;
-};
-
-<ImageAnnotator filter={showImportantFilter}>
-  <img src="example.jpg" />
-</ImageAnnotator>;
-```
 
 #### UserSelectAction
 
@@ -105,34 +177,3 @@ const action: UserSelectAction = UserSelectAction.EDIT;
 const action = 'EDIT';
 ```
 
-#### Style
-
-The `style` prop allows you to customize the visual appearance of annotations. You can define a style as either an object or a function.
-
-The object should have the following shape:
-
-```tsx
-const style = {
-  fill: '#ff2222',     // Fill color in hex format
-  fillOpacity: 0.25,   // Fill opacity (0 to 1)
-  stroke: '#ff0000',   // Stroke color in hex format
-  strokeOpacity: 0.9,  // Stroke opacity (0 to 1)
-  strokeWidth: 2       // Stroke width in pixels
-}
-```
-
-Alternatively, you can use a function that takes the annotation as input and returns a style object:
-
-```ts
-const dynamicStyle = (annotation: Annotation) => {
-  const isImportant = annotation.bodies.some(b => b.purpose === 'highlighting');
-
-  return {
-    fill: '#ffff00',
-    fillOpacity: isImportant ? 0.5 : 0,
-    stroke: '#000000',
-    strokeOpacity: 1,
-    strokeWidth: 2
-  };
-};
-```
