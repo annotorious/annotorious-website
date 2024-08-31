@@ -75,7 +75,7 @@ export default function App() {
    </Tabs>
 </Steps>
 
-## Annotation Styling
+## Styling
 
 You can apply custom styling to annotations via the `style` prop. The style can 
 be:
@@ -95,7 +95,7 @@ const style = (annotation: ImageAnnotation, state: AnnotationState) => ({
 </ImageAnnotator>
 ```
 
-## Annotation Filter
+## Filters
 
 Using a filter, you can dynamically control the visibility of specific annotations,
 based on their data or external criteria. The filter is a function that receives 
@@ -113,67 +113,66 @@ const showImportantFilter = (annotation: Annotation) => {
 </ImageAnnotator>;
 ```
 
-#### FormatAdapter
+## Selection Behavior
 
-The `adapter` prop is an optional object that introduces crosswalk functionality between Annotorious' internal annotation data model and different standards. This allows seamless integration of external annotation standards, such as the [W3C Web Annotation standard](https://www.w3.org/TR/annotation-model/), into Annotorious. The adapter will handle the process of parsing and serializing annotations between Annotorious' internal format and the chosen external standard for you. 
+When a user selects an annotation by click or tap, the default behavior is 
+that the shape will become editable. You can change this behavior through 
+the `userSelectAction` prop. The prop accepts:
 
-When using a format adapter, it impacts all methods of the vanilla `anno` Annotator instance. Currently, the W3C adapter is only available adapter for Annotorious.
+- a [UserSelectAction](/api-reference/selection/#userselectaction) object.
+- a function that receives an [ImageAnnotation](/api-reference/image-annotation) as
+  input, and returns a [UserSelectAction](/api-reference/selection/#userselectaction).
+
+A [UserSelectAction](/api-reference/selection/#userselectaction) has one of the three
+following values.
+
+- __EDIT:__ makes the annotation editable, allowing the users to modify its shape (default).
+- __SELECT:__ clicking an annotation triggers the relevant [selection event](/api-reference/events/#selectionchanged),
+  but the annotation will not become editable.
+- __NONE:__ the annotation is inert. Clicking or tapping it has no effect.
+
+```tsx
+import { UserSelectAction } from '@annotorious/react'; 
+
+// Make all annotations 'read-only'.
+<ImageAnnotator userSelectAction={UserSelectAction.SELECT}>
+  <img src="example.jpg" />
+</ImageAnnotator>
+
+// Function: only allow editing on my own annotation.
+const allowEditingMyOwn = (annotation: ImageAnnotation) => {
+  const isMine = annotation.target.creator.id == 'me';
+  return isMine ? UserSelectAction.EDIT : UserSelectAction.SELECT;
+};
+
+<ImageAnnotator userSelectAction={allowEditingMyOwn}>
+  <img src="example.jpg" />
+</ImageAnnotator>
+```
+
+## W3C Format Adapter
+
+A [FormatAdapter](/api-reference/format-adapter/) adds support for 
+different annotation data formats, by introducing crosswalk functionality 
+between Annotorious' internal annotation data model and other standards. 
+
+You can supply a format adapter through the optional `adapter` prop.
+Currently, the only available adapter is for the 
+[W3C Web Annotation Data Model](https://www.w3.org/TR/annotation-model/).
 
 ```tsx
 import { Annotorious, ImageAnnotator, W3CImageFormat } from '@annotorious/react';
 
 <Annotorious>
-  <ImageAnnotator adapter={W3CImageFormat()}>
+  <ImageAnnotator adapter={W3CImageFormat('example.jpg')}>
     <img src="example.jpg" />
   </ImageAnnotator>
 </Annotorious>
 
 ```
 
+Read more about the [Annotorious Data Format, the W3C Format and the differences here](/guides/data-model/).
 
 
-#### UserSelectAction
 
-The `userSelectAction` prop controls the behavior when a user clicks or taps on an annotation. Valid values for userSelectAction are `EDIT`, `SELECT`, and `NONE`.
-
-- __EDIT__ makes the annotation editable, allowing the users to modify its shape.
-
-- __SELECT__ ensures that clicking an annotation will trigger the relevant selection lifecycle events of the API. However, the annotation will not become editable.
-
-- __NONE__ renders the annotation inert. Clicking on it will have no effect.
-
-You can directly assign one of these values to userSelectAction. For example:
-
-```tsx
-import { UserSelectAction } from '@annotorious/react'; 
-
-<ImageAnnotator userSelectAction={UserSelectAction.EDIT}>
-  <img src="example.jpg" />
-</ImageAnnotator>
-```
-
-Alternatively, you can use a function that dynamically determines the `userSelectAction`` based on annotation properties or other conditions:
-
-```tsx
-const dynamicSelectAction = (annotation: Annotation) => {
-  const isMine = annotation.target.creator.id == 'me';
-  return isMine ? UserSelectAction.EDIT : UserSelectAction.SELECT;
-};
-
-<ImageAnnotator userSelectAction={dynamicSelectAction}>
-  <img src="example.jpg" />
-</ImageAnnotator>
-```
-
-__Note:__
-
-For TypeScript users, the valid values for `userSelectAction` are provided as enums for type safety. However, in plain JavaScript, you can use the string values ('EDIT', 'SELECT', 'NONE') directly.
-
-```ts 
-// TypeScript
-const action: UserSelectAction = UserSelectAction.EDIT;
-
-// JavaScript
-const action = 'EDIT';
-```
 
