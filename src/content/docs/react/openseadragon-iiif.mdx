@@ -1,23 +1,34 @@
 ---
-title: React Image Annotation
-description: Using Annotorious to annotate images in React.
+title: React OpenSeadragon and IIIF
+description: Using Annotorious with OpenSeadragon in React.
 ---
 import { Steps } from '@astrojs/starlight/components';
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 
-Add an annotation layer to an image using the Annotorious React components. 
+Use Annotorious together with [OpenSeadragon](https://openseadragon.github.io/) to 
+annotate high-resolution zoomable images with React, including images served via the
+[International Image Interoperability Framework](https://iiif.io/) (IIIF) standard.
 
 ```tsx
-import { Annotorious, ImageAnnotator } from '@annotorious/react';
+import { 
+  Annotorious, 
+  OpenSeadragonAnnotator,
+  OpenSeadragonViewer 
+} from '@annotorious/react';
 
 import '@annotorious/react/annotorious-react.css';
 
 export default function App() {
   return (
     <Annotorious>
-      <ImageAnnotator>
-        <img src="example.jpg" />
-      </ImageAnnotator>
+      <OpenSeadragonAnnotator>
+        <OpenSeadragonViewer options={{
+          tileSources: {
+            type: 'image',
+            url: '/images/sample-image.jpg'
+          }
+        }} />
+      </OpenSeadragonAnnotator>
     </Annotorious>
   );
 }
@@ -26,10 +37,10 @@ export default function App() {
 ## Step-by-Step Guide
 
 <Steps>
-1. Import the `Annotorious` and `ImageAnnotator` components.
+1. Import the `Annotorious`, `OpenSeadragonViewer` and `OpenSeadragonAnnotator` components.
 
    ```ts
-   import { Annotorious, ImageAnnotator } from '@annotorious/react';
+   import { Annotorious, OpenSeadragonAnnotator, OpenSeadragonViewer } from '@annotorious/react';
    ```
 
 2. Import Annotorious base CSS styles.
@@ -48,16 +59,16 @@ export default function App() {
        export default function App() {
          return (
            <Annotorious>
-             <MyAnnotatableImage />
+             <MyAnnotatableViewer />
            </Annotorious>
          );
        }
        ```
      </TabItem>
      
-     <TabItem label="MyAnnotatableImage.tsx">
+     <TabItem label="MyAnnotatableViewer.tsx">
        ```tsx
-       export const MyAnnotatableImage = () => {
+       export const MyAnnotatableViewer = () => {
 
          // You can use Annotorious hooks here!
          const annotations = useAnnotations();
@@ -65,9 +76,14 @@ export default function App() {
          // ...
 
          return (
-           <ImageAnnotator>
-             <img src="example.jpg" />
-           </ImageAnnotator>
+           <OpenSeadragonAnnotator>
+             <OpenSeadragonViewer options={{
+               tileSources: {
+                 type: 'image',
+                 url: '/images/sample-image.jpg'
+               }
+             }} />
+           </OpenSeadragonAnnotator>
          );
        }
        ```
@@ -90,9 +106,9 @@ const style = (annotation: ImageAnnotation, state: AnnotationState) => ({
   fillOpacity: 0.25
 });
 
-<ImageAnnotator style={style}>
-  <img src="example.jpg" />
-</ImageAnnotator>
+<OpenSeadragonAnnotator style={style}>
+  <OpenSeadragonViewer options={OSD_OPTS} />
+</OpenSeadragonAnnotator>
 ```
 
 ## Filters
@@ -108,9 +124,9 @@ const showImportantFilter = (annotation: Annotation) => {
   return annotation.bodies.some(b => b.purpose === 'tagging' && b.value === 'important');
 };
 
-<ImageAnnotator filter={showImportantFilter}>
-  <img src="example.jpg" />
-</ImageAnnotator>;
+<OpenSeadragonAnnotator filter={showImportantFilter}>
+  <OpenSeadragonViewer options={OSD_OPTS} />
+</OpenSeadragonAnnotator>;
 ```
 
 ## Selection Behavior
@@ -135,9 +151,9 @@ following values.
 import { UserSelectAction } from '@annotorious/react'; 
 
 // Make all annotations 'read-only'.
-<ImageAnnotator userSelectAction={UserSelectAction.SELECT}>
-  <img src="example.jpg" />
-</ImageAnnotator>
+<OpenSeadragonAnnotator userSelectAction={UserSelectAction.SELECT}>
+  <OpenSeadragonViewer options={OSD_OPTS} />
+</OpenSeadragonAnnotator>
 
 // Function: only allow editing on my own annotation.
 const allowEditingMyOwn = (annotation: ImageAnnotation) => {
@@ -145,11 +161,10 @@ const allowEditingMyOwn = (annotation: ImageAnnotation) => {
   return isMine ? UserSelectAction.EDIT : UserSelectAction.SELECT;
 };
 
-<ImageAnnotator userSelectAction={allowEditingMyOwn}>
-  <img src="example.jpg" />
-</ImageAnnotator>
+<OpenSeadragonAnnotator userSelectAction={allowEditingMyOwn}>
+  <OpenSeadragonViewer options={OSD_OPTS} />
+</OpenSeadragonAnnotator>
 ```
-
 ## Building a Selection Popup
 
 TODO...
@@ -165,12 +180,17 @@ Currently, the only available adapter is for the
 [W3C Web Annotation Data Model](https://www.w3.org/TR/annotation-model/).
 
 ```tsx
-import { Annotorious, ImageAnnotator, W3CImageFormat } from '@annotorious/react';
+import { 
+  Annotorious, 
+  OpenSeadragonAnnotator, 
+  OpenSeadragonViewer,
+   W3CImageFormat 
+} from '@annotorious/react';
 
 <Annotorious>
-  <ImageAnnotator adapter={W3CImageFormat('example.jpg')}>
-    <img src="example.jpg" />
-  </ImageAnnotator>
+  <OpenSeadragonAnnotator adapter={W3CImageFormat('example.jpg')}>
+    <OpenSeadragonViewer options={OSD_OPTS} />
+  </OpenSeadragonAnnotator>
 </Annotorious>
 
 ```
