@@ -1,6 +1,17 @@
-@import url('/fonts/NunitoSans-Var:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Megrim&display=swap');
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url('/fonts/NunitoSans-Variable.ttf'); 
+}
+
+@font-face {
+  font-family: Raleway;
+  src: url('/fonts/Raleway-Variable.ttf'); 
+}
+
+@font-face {
+  font-family: Megrim;
+  src: url('/fonts/Megrim-Regular.ttf'); 
+}
 
 :root {
   --sl-font: 'Nunito Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Open Sans', 'Helvetica Neue', sans-serif;
