@@ -76,7 +76,7 @@ callback props.
 
 <Aside type="tip">
 The callback props simplify body creation and updates by handling certain fields automatically.
-You __do not need to provide all properties of the Annotation Body yourself.__ Annotorious will 
+You __do not need to provide all properties of the AnnotationBody yourself.__ Annotorious will 
 automatically fill in a unique body ID, creator identity information, and timestamp data 
 (created/updated) if you leave them blank.
 </Aside>
@@ -147,4 +147,41 @@ export default function App() {
 
 ## OpenSeadragon
 
-TODO
+Building popups for OpenSeadragon works exactly the same way. There is only one crucial
+difference: be sure to use the [OpenSeadragonAnnotationPopup](/react/components-reference/#openseadragonannotationpopup)
+component instead of [ImageAnnotationPopup]/react/components-reference/#imageannotationpopup).
+This component will also handle popup positioning correctly when zooming and panning the viewer.
+
+```tsx
+import { 
+  Annotorious, 
+  OpenSeadragonAnnotationPopup,
+  OpenSeadragonAnnotator,
+  OpenSeadragonViewer
+} from '@annotorious/react';
+
+import './App.css';
+import '@annotorious/react/annotorious-react.css';
+
+export default function App() {
+  return (
+    <Annotorious>
+      <OpenSeadragonAnnotator>
+        <OpenSeadragonViewer options={{
+          tileSources: {
+            type: 'image',
+            url: '/images/sample-image.jpg'
+          }
+        }} />
+      </OpenSeadragonAnnotator>
+
+      <OpenSeadragonAnnotationPopup
+        popup={(props: PopupContentProps) => (
+          <div>
+            Hello World
+          </div>
+        )} />
+    </OpenSeadragonAnnotationPopup>
+  );
+}
+```
