@@ -1,62 +1,89 @@
 ---
 title: Annotation Popups
 ---
+import { Aside } from '@astrojs/starlight/components';
 import { ImagePopupExample } from '../../../components/react/ImagePopupExample';
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
-Popups that show information about an annotation when the user clicks on them 
-are a common requirement. Annotorious makes it easy to build
-your own custom popups in React.
+A Popup that shows information about an annotation when the user clicks on it 
+is a common requirement. Annotorious makes it easy to build your own custom popups
+in React with the [ImageAnnotationPopup](/react/components-reference/#imageannotationpopup)
+component.
 
 <ImagePopupExample client:only="react" />
 
 ## Basic Example
 
-Here's a basic example of how to use the ImageAnnotationPopup component
-to build a custom popup:
+Here's a basic example of how to build a custom popup with the 
+[ImageAnnotationPopup](/react/components-reference/#imageannotationpopup)
+component:
 
-```tsx
-import { 
-  Annotorious, 
-  ImageAnnotationPopup,
-  ImageAnnotator
-} from '@annotorious/react';
+<Tabs>
+  <TabItem label="App.tsx">
+    ```tsx
+    import { 
+      Annotorious, 
+      ImageAnnotationPopup,
+      ImageAnnotator
+    } from '@annotorious/react';
+    
+    import '@annotorious/react/annotorious-react.css';
+    
+    export default function App() {
+      return (
+        <Annotorious>
+          <ImageAnnotator>
+            <img src="example.jpg" />
+          </ImageAnnotator>
+    
+          <ImageAnnotationPopup
+            popup={(props: PopupContentProps) => (
+              <div>
+                Hello World
+              </div>
+            )} />
+        </Annotorious>
+      );
+    }
+    ```
+  </TabItem>
+  
+  <TabItem label="App.css">
+    ```css
+    .a9s-popup {
+      background-color: #ffffff;
+    }
+    ```
+  </TabItem>
+</Tabs>
 
-import '@annotorious/react/annotorious-react.css';
-
-export default function App() {
-  return (
-    <Annotorious>
-      <ImageAnnotator>
-        <img src="example.jpg" />
-      </ImageAnnotator>
-
-      <ImageAnnotationPopup
-        popup={(props: PopupContentProps) => (
-          <div>
-            Hello World
-          </div>
-        )} />
-    </Annotorious>
-  );
-}
-```
+[ImageAnnotationPopup](/react/components-reference/#imageannotationpopup) is completely
+unstyled. Be sure to add CSS styles according to your needs. 
 
 ## Editing Body Payload
 
-You can use popups not only to display information, but also to edit it. 
-In accordance with the [W3C Web Annotation Data Model](https://www.w3.org/TR/annotation-model/), 
-Annotorious stores custom payload in [AnnotationBody](/api-reference/image-annotation/#annotationbody)
-objects. The ImageAnnotationPopup makes it easy to manipulate the current 
-annotation's bodies through callback props:
+Popups aren not just for displaying information – they're also great for editing annotation
+content. Annotorious follows the [W3C Web Annotation Data Model](https://www.w3.org/TR/annotation-model/), 
+storing custom payload in [AnnotationBody](/api-reference/image-annotation/#annotationbody) objects. 
+The ImageAnnotationPopup component provides an easy way to manipulate these bodies through 
+callback props.
 
-- `onCreateBody(body: AnnotationBody)`: creates a new body on the annotation.
-- `onDeleteBody(id: string)`: remove the body with the given ID from the annotation. 
-- `onUpdateBody(current: AnnotationBody, next: AnnotationBody)`: modifies a body
-  by replacing an existing one with a new version.
+- `onCreateBody(body: Partial<AnnotationBody>)`: adds a new body to the annotation.
+- `onDeleteBody(id: string)`: removes a body from the anntation using its ID. 
+- `onUpdateBody(current: AnnotationBody, next: Partial<AnnotationBody>)`: modifies an 
+  existing body by replacing it with an updated version.
 
-The example below shows a slightly more complex popup, which allows the 
-user to view and edit a comments stored in an [AnnotationBody](/api-reference/image-annotation/#annotationbody)
-with a `commenting` purpose.
+<Aside type="tip">
+The callback props simplify body creation and updates by handling certain fields automatically.
+You __do not need to provide all properties of the Annotation Body yourself.__ Annotorious will 
+automatically fill in a unique body ID, creator identity information, and timestamp data 
+(created/updated) if you leave them blank.
+</Aside>
+
+### Example: Editable Comments
+
+Let's look at a more advanced popup that allows users to view and edit comments.
+In this example, we will store comments in a body with a `commenting` purpose.
 
 ```tsx
 import { useState, useEffect } from 'react';
