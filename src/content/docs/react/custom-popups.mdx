@@ -53,6 +53,13 @@ component:
     ```css
     .a9s-popup {
       background-color: #ffffff;
+      border-radius: 3px;
+      padding: 0.25rem 0.625rem;
+    }
+
+    /** SVG popup arrow style **/
+    .a9s-popup svg {
+      fill: #fff;
     }
     ```
   </TabItem>
@@ -104,7 +111,7 @@ const CommentPopup = (props: PopupContentProps) => {
   useEffect(() => {
     const commentBody = annotation.bodies.find(body => body.purpose === 'commenting');
     setComment(commentBody ? commentBody.value : '');
-  }, [bodies]);
+  }, [annotation.bodies]);
 
   const onSave = () => {
     const updated = {
@@ -181,7 +188,7 @@ export default function App() {
             Hello World
           </div>
         )} />
-    </OpenSeadragonAnnotationPopup>
+    </Annotorious>
   );
 }
 ```

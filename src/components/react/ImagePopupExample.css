@@ -37,3 +37,18 @@
 .image-popup-example .actions button:hover:not(.active) {
   color: var(--sl-color-white);
 }
+
+.a9s-popup {
+  border-radius: 3px;
+  margin-top: 0 !important;
+  background-color: #fff;
+  padding: 0.25rem 0.625rem;
+}
+
+.a9s-popup * {
+  margin-top: 0 !important;
+}
+
+.a9s-popup svg {
+  fill: #fff;
+}

@@ -8,7 +8,7 @@ import '@annotorious/react/annotorious-react.css';
 let ImagePopupExample: () => JSX.Element = () => null as unknown as JSX.Element; 
 
 if (typeof window !== 'undefined') {
-  const { Annotorious, ImageAnnotator, ShapeType, useAnnotator, useSelection } = await import('@annotorious/react');
+  const { Annotorious, ImageAnnotator, ImageAnnotationPopup, ShapeType, useAnnotator, useSelection } = await import('@annotorious/react');
 
   const SAMPLE: ImageAnnotation = {
     id: '7fb76422-3a8c-4c87-bbad-7c8bb68399a0',
@@ -56,6 +56,13 @@ if (typeof window !== 'undefined') {
         <ImageAnnotator>
           <img src="/640px-Hallstatt.jpg" />
         </ImageAnnotator>
+
+        <ImageAnnotationPopup
+          popup={() => (
+            <div>
+              Hello World
+            </div>
+          )} />
 
         <div className='actions'>
           <div />
