@@ -1,6 +1,6 @@
 --- 
 import { Icon } from '@astrojs/starlight/components';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, MonitorSmartphone, Puzzle, Rocket, Wrench } from 'lucide-react';
 import Card from './_card.astro';
 
 import '../index.css';
@@ -10,69 +10,150 @@ import '../index.css';
   </head>
 
   <body>
-    <div class="hero">
-      <h1>Annotorious</h1> 
-      <p>
-        Add image annotation functionality to your site 
-        with a few lines of JavaScript.
-      </p> 
+    <div class="container">
+      <div class="hero">
+        <div class="glow" />
 
-      <div class="cta">
-        <a href="/getting-started">
-          <span>Get Started</span> <ArrowRight size={18} />
-        </a>
+        <h1>Annotorious</h1> 
+        <p>
+          Add image annotation functionality to your site 
+          with a few lines of JavaScript.
+        </p> 
 
-        <a href="https://github.com/annotorious/annotorious">
-          <span>Github</span> <Icon name="github" />
-        </a>
+        <div class="cta">
+          <a href="/getting-started">
+            <span>Get Started</span> <ArrowRight size={22} />
+          </a>
+
+          <a href="https://github.com/annotorious/annotorious">
+            <span>Github</span> <Icon name="github" size="22px" />
+          </a>
+        </div>
       </div>
-    </div>
 
-    <div class="section">
-      <div class="card-grid">
-        <Card 
-          title="Integrate Anywhere." 
-          text="Get started quickly with minimal setup. Annotorious is client-only, with no server-side dependencies." />
+      <div class="section">
+        <div class="card-grid">
+          <Card 
+            title="Integrate Anywhere." 
+            text="Get started quickly with minimal setup. Annotorious is client-only, with no server-side dependencies.">
+            <Puzzle size={20} color="#1A75E5" />
+          </Card>
 
-        <Card 
-          title="Customize." 
-          text="Create your own look & feel. Define data-driven styles. Plug in your own tooltips, popups and editors." />
+          <Card 
+            title="Customize." 
+            text="Create your own look & feel. Define data-driven styles. Plug in your own tooltips, popups and editors.">
+            <Wrench size={20} color="#E51ADB"/>
+          </Card>
 
-        <Card 
-          title="Build." 
-          text="A comprehensive JavaScript API has everything you need to build your own, tailor-made annotation applications." />
+          <Card 
+            title="Build." 
+            text="A comprehensive JavaScript API has everything you need to build your own, tailor-made annotation applications.">
+            <Rocket size={20} color="#E58A1A"/>
+          </Card>
 
-        <Card 
-          title="Use Everywhere." 
-          text="Works on desktop and mobile. Supports touch interaction." />
+          <Card 
+            title="Use Everywhere." 
+            text="Works on desktop and mobile devices. Supports touch interaction.">
+            <MonitorSmartphone size={20} color="#1AE524"/>
+          </Card>
+        </div>
       </div>
-    </div>
 
-    <div class="section">
-      <div class="framework-logos">
-        <img src="/images/logo-js.svg" /> 
-        <img src="/images/logo-ts.svg" /> 
-        <img src="/images/logo-react.svg" /> 
-        <img src="/images/logo-svelte.svg" /> 
+      <div class="section">
+        <div class="framework-logos">
+          <img src="/images/logo-js.svg" /> 
+          <img src="/images/logo-ts.svg" /> 
+          <img src="/images/logo-react.svg" /> 
+          <img src="/images/logo-svelte.svg" /> 
+        </div>
+        
+        <p>
+          Install Annotorious via package manager or import directly with a script tag. 
+          With official bindings for React and Svelte and full TypeScript support.
+        </p>
       </div>
-      
-      <p>
-        Install Annotorious via package manager or import directly with a script tag. 
-        With official bindings for React and Svelte and full TypeScript support.
-      </p>
     </div>
   </body>
 </html>
 
 <style>
   html, body {
+    color: #353841;
     margin: 0;
     padding: 0;
     font-family: var(--sl-font);
   }
 
+  .container {
+    margin: 0 auto;
+    max-width: 1080px;
+    padding: 1rem 1.5rem;
+  }
+
+  .hero {
+    padding: 4rem 2rem 6rem 2rem;
+    position: relative;
+  }
+
+  .hero .glow {
+    background: 
+      linear-gradient(90deg, #F8942C 0%, rgba(44, 144, 248, 0.65) 68%);   
+    filter: blur(80px);
+    height: 60%;
+    opacity: 0.2;
+    position: absolute;
+    top: 40%;
+    transform: rotate(8deg);
+    width: 100%;
+    z-index: 0;
+  }
+
   .hero h1 {
     font-family: Megrim;
+    font-size: 3.8rem;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hero p {
+    font-size: 1.35rem;
+    font-weight: 300;
+    line-height: 160%;
+    margin: 0;
+    max-width: 30ch;
+    padding: 1rem 0;
+  }
+
+  .cta {
+    padding: 2rem 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta a {
+    align-items: center;
+    background-color: #f8942c;
+    border-radius: 1000vw;
+    color: #fff;
+    display: inline-flex;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .card-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   .framework-logos {
