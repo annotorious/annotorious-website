@@ -1,5 +1,7 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Code } from '@astrojs/starlight/components';
 import { Icon as AstroIcon } from 'astro-icon/components';
 import { Icon } from '@astrojs/starlight/components';
 import { SplashDemo } from '../components/SplashDemo';
@@ -25,16 +27,84 @@ import '../index.css';
       
   <SplashDemo client:only="react" />
 
-  <div class="section">
-    <div class="framework-logos">
-      <img src="/images/js.svg" /> 
-      <img src="/images/ts.svg" /> 
-      <img src="/images/react.svg" /> 
-      <Icon name="seti:svelte" color="#ff3e00" size="4rem" />
+  <div class="section">    
+    <CardGrid>
+      <Card title="Integrate Anywhere." icon="rocket">
+        Get started quickly with minimal setup. Client-only JavaScript with 
+        no server-side dependencies. 
+      </Card>
+
+      <Card title="Customizable" icon="puzzle">
+        Customize look & feel. Define data-driven styles. Add your own
+        annotation tooltips and popup editors. 
+      </Card>
+
+      <Card title="Rich API" icon="seti:json">
+        A rich API that has everything you need to build your 
+        own tailor-made annotation applications.
+      </Card>
+
+      <Card title="Cross-Platform" icon="ph:devices">
+        Works on desktop and mobile devices. Supports touch interaction.
+      </Card>
+    </CardGrid>
+
+    <div class="section center">
+      <h2>Framework Agnostic</h2>
+        
+      <p>
+        Install via package manager (npm, yarn, pnpm) or import directly with a script tag. With official 
+        bindings for React and Svelte and full TypeScript support.
+      </p>
+
+      <div class="framework-logos">
+        <img src="/images/js.svg" /> 
+        <img src="/images/ts.svg" /> 
+        <img src="/images/react.svg" /> 
+        <Icon name="seti:svelte" color="#ff3e00" size="4rem" />
+      </div>
     </div>
+
+    <Code lang="html" code={`
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@annotorious/annotorious@latest/dist/annotorious.css">
+<script src="https://cdn.jsdelivr.net/npm/@annotorious/annotorious@latest/dist/annotorious.js"></script>
+
+<script>
+  window.onload = function() {
+    var anno = Annotorious.createImageAnnotator('my-image');
+  }
+</script>
+      `} />
+
+      <Code lang="js" code={`
+import { createImageAnnotator } from '@annotorious/annotorious';
+
+// Import essential CSS styles
+import '@annotorious/annotorious/annotorious.css';
+
+// Image element ID or DOM element
+const anno = createImageAnnotator('sample-image');
+`} />
+
+<Code lang="tsx" code={`
+import { Annotorious, ImageAnnotator } from '@annotorious/react';
+
+import '@annotorious/react/annotorious-react.css';
+
+export default function App() {
+  return (
+    <Annotorious>
+      <ImageAnnotator>
+        <img src="example.jpg" />
+      </ImageAnnotator>
+    </Annotorious>
+  );
+}
+        `} />
   </div>
 
   <div class="footer">
+    <p>Community/Discussions</p>
     <p>
       <strong>© {new Date().getFullYear()} · <a href="https://rainersimon.io">Rainer Simon</a> · BSD-3-Clause License</strong>
     </p>
@@ -73,6 +143,27 @@ import '../index.css';
 
   :global(.a9s-annotationlayer) {
     height: 100% !important;
+  }
+
+  :global(article.card) {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 18px -6px rgba(0, 0, 0, 0.2);
+  }
+
+  :global(.expressive-code + .expressive-code) {
+    margin-top: 4rem;
+  }
+
+  .section {
+    padding: 4rem 0;
+  }
+
+  .center {
+    margin: 0 auto;
+    max-width: 65ch;
+    text-align: center;
   }
 
   .framework-logos {
