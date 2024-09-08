@@ -1,0 +1,89 @@
+--- 
+import { Icon } from '@astrojs/starlight/components';
+import { ArrowRight } from 'lucide-react';
+import Card from './_card.astro';
+
+import '../index.css';
+---
+<html>
+  <head>
+  </head>
+
+  <body>
+    <div class="hero">
+      <h1>Annotorious</h1> 
+      <p>
+        Add image annotation functionality to your site 
+        with a few lines of JavaScript.
+      </p> 
+
+      <div class="cta">
+        <a href="/getting-started">
+          <span>Get Started</span> <ArrowRight size={18} />
+        </a>
+
+        <a href="https://github.com/annotorious/annotorious">
+          <span>Github</span> <Icon name="github" />
+        </a>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="card-grid">
+        <Card 
+          title="Integrate Anywhere." 
+          text="Get started quickly with minimal setup. Annotorious is client-only, with no server-side dependencies." />
+
+        <Card 
+          title="Customize." 
+          text="Create your own look & feel. Define data-driven styles. Plug in your own tooltips, popups and editors." />
+
+        <Card 
+          title="Build." 
+          text="A comprehensive JavaScript API has everything you need to build your own, tailor-made annotation applications." />
+
+        <Card 
+          title="Use Everywhere." 
+          text="Works on desktop and mobile. Supports touch interaction." />
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="framework-logos">
+        <img src="/images/logo-js.svg" /> 
+        <img src="/images/logo-ts.svg" /> 
+        <img src="/images/logo-react.svg" /> 
+        <img src="/images/logo-svelte.svg" /> 
+      </div>
+      
+      <p>
+        Install Annotorious via package manager or import directly with a script tag. 
+        With official bindings for React and Svelte and full TypeScript support.
+      </p>
+    </div>
+  </body>
+</html>
+
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--sl-font);
+  }
+
+  .hero h1 {
+    font-family: Megrim;
+  }
+
+  .framework-logos {
+    align-items: flex-end;
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    padding-top: 2rem;
+  }
+
+  .framework-logos img {
+    height: 4rem;
+  }
+</style>
