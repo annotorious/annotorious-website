@@ -1,6 +1,8 @@
 --- 
 import { ArrowRight, Heart, MessagesSquare, MonitorSmartphone, Puzzle, Rocket, Wrench } from 'lucide-react';
-import { Bluesky, Github, Mastodon } from 'simple-icons-astro'
+import { Bluesky, Github, Mastodon } from 'simple-icons-astro';
+import { Code } from '@astrojs/starlight/components';
+import { CodeCarousel } from '../components/CodeCarousel';
 import Card from './_card.astro';
 
 import '../index.css';
@@ -16,13 +18,14 @@ import '../index.css';
       </a>
 
       <a href="https://github.com/orgs/annotorious/discussions">
-        <MessagesSquare size={22} /> Community 
+        <MessagesSquare size={22} strokeWidth={1.8} /> Community 
       </a>
 
       <a href="https://github.com/annotorious/annotorious">
         <Github size={22} /> Github 
       </a>
     </header>
+
     <div class="container">
       <div class="hero">
         <div class="glow" />
@@ -80,6 +83,12 @@ import '../index.css';
           Install Annotorious via package manager or import directly with a script tag. 
           With official bindings for React and Svelte and full TypeScript support.
         </p>
+
+        <CodeCarousel client:only="react">
+          <div>Foo</div>
+          <div>Bar</div>
+          <div>Baz</div>
+        </CodeCarousel>
       </div>
     </div>
 
@@ -233,6 +242,11 @@ import '../index.css';
 
   .framework-logos img {
     height: 4rem;
+  }
+
+  :global(.section .expressive-code) {
+    margin: 0 auto;
+    max-width: 75ch;
   }
 
   .section p {

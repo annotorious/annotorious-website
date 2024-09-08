@@ -1,0 +1,14 @@
+.slick-slider {
+  margin: 0 auto;
+  max-width: 85ch;
+}
+
+.slick-slide > div {
+  padding: 0 1rem;
+}
+
+.code-snippet pre {
+  border-radius: 0.5rem;
+  line-height: 180%;
+  padding: 1rem !important;
+}
