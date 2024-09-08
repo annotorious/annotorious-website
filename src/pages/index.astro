@@ -1,169 +1,226 @@
----
-import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
-import { Card, CardGrid } from '@astrojs/starlight/components';
-import { Code } from '@astrojs/starlight/components';
-import { Icon as AstroIcon } from 'astro-icon/components';
-import { Icon } from '@astrojs/starlight/components';
-import { SplashDemo } from '../components/SplashDemo';
+--- 
+import { ArrowRight, Heart, MessagesSquare, MonitorSmartphone, Puzzle, Rocket, Wrench } from 'lucide-react';
+import { Bluesky, Github, Mastodon } from 'simple-icons-astro'
+import Card from './_card.astro';
 
 import '../index.css';
 ---
-<StarlightPage frontmatter={{ 
-  template: 'splash', 
-  title: 'Annotorious',
-  hero: {
-    tagline: 'Add image annotation functionality to your site with a few lines of JavaScript.',
-    actions: [{
-      text: 'Get Started',
-      link: '/getting-started',
-      icon: 'right-arrow'
-    },{
-      text: 'View on Github',
-      link: 'https://github.com/annotorious/annotorious',
-      icon: 'github',
-      variant: 'minimal'
-    }]
-  }}}>
-      
-  <SplashDemo client:only="react" />
+<html>
+  <head>
+  </head>
 
-  <div class="section">    
-    <CardGrid>
-      <Card title="Integrate Anywhere." icon="rocket">
-        Get started quickly with minimal setup. Client-only JavaScript with 
-        no server-side dependencies. 
-      </Card>
+  <body>
+    <header>
+      <a class="sponsor" href="https://steadyhq.com/rainer-simon">
+        <Heart size={18} strokeWidth={2.5} /> Sponsor
+      </a>
 
-      <Card title="Customizable" icon="puzzle">
-        Customize look & feel. Define data-driven styles. Add your own
-        annotation tooltips and popup editors. 
-      </Card>
+      <a href="https://github.com/orgs/annotorious/discussions">
+        <MessagesSquare size={22} /> Community 
+      </a>
 
-      <Card title="Rich API" icon="seti:json">
-        A rich API that has everything you need to build your 
-        own tailor-made annotation applications.
-      </Card>
+      <a href="https://github.com/annotorious/annotorious">
+        <Github size={22} /> Github 
+      </a>
+    </header>
+    <div class="container">
+      <div class="hero">
+        <div class="glow" />
 
-      <Card title="Cross-Platform" icon="ph:devices">
-        Works on desktop and mobile devices. Supports touch interaction.
-      </Card>
-    </CardGrid>
+        <h1>Annotorious</h1> 
+        <p>
+          Add image annotation functionality to your site 
+          with a few lines of JavaScript.
+        </p> 
 
-    <div class="section center">
-      <h2>Framework Agnostic</h2>
+        <div class="cta">
+          <a href="/getting-started">
+            <span>Get Started</span> <ArrowRight size={22} />
+          </a>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="card-grid">
+          <Card 
+            title="Integrate Anywhere" 
+            text="Get started quickly with minimal setup. Client-only, with no server-side dependencies.">
+            <Puzzle size={20} color="#44af69" />
+          </Card>
+
+          <Card 
+            title="Customize" 
+            text="Create your own look & feel. Define data-driven styles. Plug in your own tooltips, popups and editors.">
+            <Wrench size={20} color="#f8333c"/>
+          </Card>
+
+          <Card 
+            title="Build" 
+            text="A comprehensive JavaScript API that has everything you need to build your own, tailor-made annotation applications.">
+            <Rocket size={20} color="#fcab10"/>
+          </Card>
+
+          <Card 
+            title="Use Everywhere" 
+            text="Annotorious works on desktop and mobile devices and supports touch interaction.">
+            <MonitorSmartphone size={20} color="#2b9eb3"/>
+          </Card>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="framework-logos">
+          <img src="/images/logo-js.svg" /> 
+          <img src="/images/logo-ts.svg" /> 
+          <img src="/images/logo-react.svg" /> 
+          <img src="/images/logo-svelte.svg" /> 
+        </div>
         
-      <p>
-        Install via package manager (npm, yarn, pnpm) or import directly with a script tag. With official 
-        bindings for React and Svelte and full TypeScript support.
-      </p>
-
-      <div class="framework-logos">
-        <img src="/images/logo-js.svg" /> 
-        <img src="/images/logo-ts.svg" /> 
-        <img src="/images/logo-react.svg" /> 
-        <Icon name="seti:svelte" color="#ff3e00" size="4rem" />
+        <p class="narrow">
+          Install Annotorious via package manager or import directly with a script tag. 
+          With official bindings for React and Svelte and full TypeScript support.
+        </p>
       </div>
     </div>
 
-    <Code lang="html" code={`
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@annotorious/annotorious@latest/dist/annotorious.css">
-<script src="https://cdn.jsdelivr.net/npm/@annotorious/annotorious@latest/dist/annotorious.js"></script>
+    <footer>
+      <p>
+        &copy; {new Date().getFullYear()} 
+        &centerdot;
+        <a href="https://rainersimon.io">Rainer Simon</a>
+        &centerdot; BSD-3-Clause License
+      </p>
 
-<script>
-  window.onload = function() {
-    var anno = Annotorious.createImageAnnotator('my-image');
-  }
-</script>
-      `} />
+      <p>
+        Need help? Join the <a href="https://github.com/orgs/annotorious/discussions">Discussion Forum</a>.
+      </p>
 
-      <Code lang="js" code={`
-import { createImageAnnotator } from '@annotorious/annotorious';
+      <ul>
+        <li>
+          <Github /> <a href="https://github.com/rsimon">Github</a>
+        </li>
 
-// Import essential CSS styles
-import '@annotorious/annotorious/annotorious.css';
+        <li>
+          <Mastodon /> <a href="https://vis.social/@aboutgeo">Mastodon</a>
+        </li>
 
-// Image element ID or DOM element
-const anno = createImageAnnotator('sample-image');
-`} />
+        <li> 
+          <Bluesky /> <a href="https://bsky.app/profile/aboutgeo.bsky.social">Bluesky</a>
+        </li>
 
-<Code lang="tsx" code={`
-import { Annotorious, ImageAnnotator } from '@annotorious/react';
-
-import '@annotorious/react/annotorious-react.css';
-
-export default function App() {
-  return (
-    <Annotorious>
-      <ImageAnnotator>
-        <img src="example.jpg" />
-      </ImageAnnotator>
-    </Annotorious>
-  );
-}
-        `} />
-  </div>
-
-  <div class="footer">
-    <!-- p>Community/Discussions</p-->
-    <p>
-      <strong>© {new Date().getFullYear()} · <a href="https://rainersimon.io">Rainer Simon</a> · BSD-3-Clause License</strong>
-    </p>
-
-    <p class="links">
-      <span> 
-        <Icon name="github" size="1.2rem" /> <a href="https://github.com/annotorious">github.com/annotorious</a>
-      </span>
-
-      <span>
-        <Icon name="mastodon" size="1.2rem" /> <a href="https://vis.social/@aboutgeo">aboutgeo</a>
-      </span>
-
-      <span>
-        <AstroIcon name="akar-icons:heart" size="1.2rem" /> <a href="https://steadyhq.com/rainer-simon">steadyhq.com/rainer-simon</a>
-      </span>
-    </p>
-  </div>
-</StarlightPage>
+        <li>
+          <Heart size={18} strokeWidth={2.5} /> <a href="https://steadyhq.com/rainer-simon">SteadyHQ</a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>
 
 <style>
-  :global(.hero, .hero *) {
-    align-items: center !important;
-    display: flex !important;
-    justify-content: center;
-    text-align: center;
+  html, body {
+    color: #353841;
+    font-family: var(--sl-font);
+    margin: 0;
+    padding: 0;
   }
 
-  :global(.hero) {
-    padding-block: clamp(2.5rem, calc(1rem + 4vmin), 8rem);
+  header {
+    box-sizing: border-box;
+    display: flex;
+    gap: 2.5rem;
+    justify-content: flex-end;
+    padding: 1.5rem 2rem;
   }
 
-  :global(.sl-container) {
+  header a {
+    align-items: center;
+    color: #353841;
+    display: flex;
+    gap: 0.325rem;
+    text-decoration: none;
+  }
+
+  header a.sponsor {
+    border: 1.5px solid rgba(53, 56, 65, 0.9);
+    border-radius: 1000vw;
+    padding: 0.325rem 0.825rem;
+  }
+
+  .container {
+    margin: 0 auto;
+    max-width: 1080px;
+    padding: 1rem 1.5rem;
+  }
+
+  .hero {
+    padding: 2rem 0 1rem 0;
     position: relative;
   }
 
-  :global(.a9s-annotationlayer) {
-    height: 100% !important;
+  .hero .glow {
+    background: 
+      linear-gradient(90deg, #fcab10 0%, #2b9eb3 80%);   
+    filter: blur(80px);
+    height: 60%;
+    opacity: 0.2;
+    position: absolute;
+    top: 40%;
+    left: -10%;
+    transform: rotate(6deg);
+    width: 120%;
+    z-index: 0;
   }
 
-  :global(article.card) {
-    background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: 0.75rem;
-    box-shadow: 0 2px 18px -6px rgba(0, 0, 0, 0.2);
+  .hero h1 {
+    font-family: Megrim;
+    font-size: 3.8rem;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
   }
 
-  :global(.expressive-code + .expressive-code) {
-    margin-top: 4rem;
+  .hero p {
+    font-size: 1.35rem;
+    font-weight: 300;
+    line-height: 160%;
+    margin: 0;
+    max-width: 30ch;
+    padding: 1rem 0;
   }
 
-  .section {
-    padding: 4rem 0;
+  .cta {
+    padding: 2rem 0;
+    position: relative;
+    z-index: 1;
   }
 
-  .center {
+  .cta a {
+    align-items: center;
+    background-color: #f8942c;
+    border-radius: 1000vw;
+    color: #fff;
+    display: inline-flex;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+  }
+
+  .section { 
+    margin-top: 5rem;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    width: 100%;
     margin: 0 auto;
-    max-width: 65ch;
-    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .card-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   .framework-logos {
@@ -178,36 +235,56 @@ export default function App() {
     height: 4rem;
   }
 
-  .footer {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    line-height: 1rem;
-    padding-top: 10rem;
+  .section p {
+    line-height: 180%;
+    margin: 0 auto;
+    padding: 2rem 0;
+    text-align: center;
   }
 
-  .footer p {
-    margin: 0;
+  .section p.narrow {
+    max-width: 65ch;
+  }
+
+  footer {
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #b9b9b9;
+    font-weight: 300;
+    margin-top: 6rem;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  footer p {
+    margin: 0.5rem 0;
     padding: 0;
   }
 
-  .footer p a {
-    color: #4f4f4f;
-    text-decoration: none;
+  footer a {
+    color: #fff;
   }
 
-  .footer p a:hover {
-    text-decoration: underline;
-  }
-
-  .footer p.links {
-    display: flex;
-    gap: 0.75rem;
-  }
-
-  .footer p.links span {
+  footer ul {
     align-items: center;
-    display: inline-flex;
-    gap: 0.325rem;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 4rem 0 0 0;
+  }
+
+  footer li {
+    color: #fff;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  footer li a {
+    text-decoration: none;
+  } 
+
+  footer li a:hover {
+    text-decoration: underline;
   }
 </style>
