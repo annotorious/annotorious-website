@@ -16,20 +16,30 @@ import '@annotorious/annotorious/annotorious.css';
 // Image element ID or DOM element
 const anno = createImageAnnotator('sample-image');
 
+// Attach listeners to handle annotation events
+anno.on('createAnnotation', function(annotation) {
+  console.log('created', annotation);
+});
+
 // Load annotations from a JSON file
 anno.loadAnnotations('./annotations.json');`;
 
 const snippet2 = 
-`<!-- Import JS and CSS -->
-<script src="https://cdn.jsdelivr.net/npm/@annotorious/annotorious@latest/dist/annotorious.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@annotorious/annotorious@latest/dist/annotorious.css">
+`<html>
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@annotorious/annotorious@latest/dist/annotorious.css">
+    <script src="https://cdn.jsdelivr.net/npm/@annotorious/annotorious@latest/dist/annotorious.js"></script>
+  </head>
+  <body>
+    <img id="my-image" src="my-image.jpg" />
 
-<script>
-  window.onload = function() {
-    // Image element ID or DOM element 
-    var anno = Annotorious.createImageAnnotator('my-image');
-  }
-</script>`;
+    <script>
+      window.onload = function() {
+        var anno = Annotorious.createImageAnnotator('my-image');
+      }
+    </script>
+  </body>
+</html>`;
 
 const snippet3 =
 `import { Annotorious, ImageAnnotator } from '@annotorious/react';
@@ -37,27 +47,27 @@ const snippet3 =
 import '@annotorious/react/annotorious-react.css';
 
 export default function App() {
+
   return (
     <Annotorious>
       <ImageAnnotator>
         <img src="example.jpg" />
       </ImageAnnotator>
     </Annotorious>
-  );
+  )
+
 }`;
 
 export const CodeCarousel = () => {
 
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  };
-
   return (
-    <Slider {...settings}>
+    <Slider
+      arrows={false}
+      autoplay
+      autoplaySpeed={3000}
+      dots
+      infinite
+      speed={500}>
       <div className="code-snippet">
         <SyntaxHighlighter language="javascript" style={nord}>
           {snippet1}
