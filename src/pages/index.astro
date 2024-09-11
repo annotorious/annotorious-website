@@ -1,11 +1,11 @@
 --- 
 import { ArrowRight, Heart, MessagesSquare, MonitorSmartphone, Puzzle, Rocket, Wrench } from 'lucide-react';
 import { Bluesky, Github, Mastodon } from 'simple-icons-astro';
-import { Code } from '@astrojs/starlight/components';
 import { CodeCarousel } from '../components/CodeCarousel';
 import Card from './_card.astro';
 
 import '../index.css';
+import { SplashDemo } from '../components/SplashDemo';
 ---
 <html>
   <head>
@@ -25,6 +25,8 @@ import '../index.css';
         <Github size={22} /> Github 
       </a>
     </header>
+
+    <SplashDemo />
 
     <div class="container">
       <div class="hero">
@@ -162,6 +164,7 @@ import '../index.css';
     margin: 0 auto;
     max-width: 1080px;
     padding: 1rem 1.5rem;
+    position: relative;
   }
 
   .hero {
