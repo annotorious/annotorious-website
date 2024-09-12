@@ -26,7 +26,7 @@ import { SplashDemo } from '../components/SplashDemo';
       </a>
     </header>
 
-    <SplashDemo />
+    <SplashDemo client:only="react" />
 
     <div class="container">
       <div class="hero">
@@ -39,13 +39,13 @@ import { SplashDemo } from '../components/SplashDemo';
         </p> 
 
         <div class="cta">
-          <a href="/getting-started">
+          <a href="/getting-started" class="clickable">
             <span>Get Started</span> <ArrowRight size={22} />
           </a>
         </div>
       </div>
 
-      <div class="section">
+      <div class="section clickable">
         <div class="card-grid">
           <Card 
             title="Integrate Anywhere" 
@@ -164,12 +164,14 @@ import { SplashDemo } from '../components/SplashDemo';
     margin: 0 auto;
     max-width: 1080px;
     padding: 1rem 1.5rem;
+    pointer-events: none;
     position: relative;
   }
 
   .hero {
     padding: 2rem 0 1rem 0;
     position: relative;
+    pointer-events: none;
   }
 
   .hero .glow {
@@ -181,6 +183,7 @@ import { SplashDemo } from '../components/SplashDemo';
     position: absolute;
     top: 40%;
     left: -10%;
+    pointer-events: none;
     transform: rotate(6deg);
     width: 120%;
     z-index: 0;
@@ -201,6 +204,10 @@ import { SplashDemo } from '../components/SplashDemo';
     margin: 0;
     max-width: 30ch;
     padding: 1rem 0;
+  }
+
+  .clickable {
+    pointer-events: all;
   }
 
   .cta {
