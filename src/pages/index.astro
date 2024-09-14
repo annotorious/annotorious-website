@@ -6,6 +6,7 @@ import { SplashDemo } from '../components/SplashDemo';
 import Card from './_card.astro';
 
 import '../index.css';
+import { Grid } from '../components/Grid';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +32,8 @@ import '../index.css';
       </a>
     </header>
 
-    <SplashDemo client:only="react" />
+    <Grid />
+    <!-- SplashDemo client:only="react" / -->
 
     <div class="container">
       <div class="hero">
@@ -267,6 +269,7 @@ import '../index.css';
 
   .section { 
     margin: 5rem 0;
+    pointer-events: all;
   }
 
   .section h2 {

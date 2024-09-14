@@ -64,10 +64,11 @@ export const CodeCarousel = () => {
     <Slider
       arrows={false}
       autoplay
-      autoplaySpeed={3000}
+      autoplaySpeed={8000}
       dots
       infinite
-      speed={500}>
+      speed={500}
+      swipe={false}>
       <div className="code-snippet">
         <SyntaxHighlighter language="javascript" style={nord}>
           {snippet1}
