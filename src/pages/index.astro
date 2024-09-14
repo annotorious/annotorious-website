@@ -316,7 +316,7 @@ import '../index.css';
 
   .supporter-logos {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     grid-gap: 0rem;
     margin: 0 auto;
     max-width: 65ch;
@@ -411,13 +411,26 @@ import '../index.css';
   }
 
   footer ul {
-    align-items: center;
     display: flex;
+    flex-direction: column;
     gap: 1.5rem;
     justify-content: center;
     list-style-type: none;
-    margin: 0;
-    padding: 4rem 0 0 0;
+    margin: 0 auto;
+    padding: 1rem 0 0 0;
+    width: fit-content;
+  }
+
+  @media (min-width: 768px) {
+
+    footer  ul {
+      align-items: center;
+      flex-direction: row;
+      margin: 0;
+      padding: 4rem 0 0 0;
+      width: auto;
+    }
+
   }
 
   footer li {
