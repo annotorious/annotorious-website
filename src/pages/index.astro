@@ -2,13 +2,18 @@
 import { ArrowRight, Heart, MessagesSquare, MonitorSmartphone, Puzzle, Rocket, Wrench } from 'lucide-react';
 import { Bluesky, Github, Mastodon } from 'simple-icons-astro';
 import { CodeCarousel } from '../components/CodeCarousel';
+import { SplashDemo } from '../components/SplashDemo';
 import Card from './_card.astro';
 
 import '../index.css';
-import { SplashDemo } from '../components/SplashDemo';
 ---
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Annotorious | JavaScript Image Annotation Library</title>
   </head>
 
   <body>
@@ -81,16 +86,26 @@ import { SplashDemo } from '../components/SplashDemo';
           <img src="/images/logo-svelte.svg" /> 
         </div>
         
-        <p class="narrow">
+        <p class="narrow center">
           Install Annotorious via package manager or import directly with a script tag. 
           With official bindings for React and Svelte and full TypeScript support.
         </p>
 
-        <CodeCarousel client:only="react">
-          <div>Foo</div>
-          <div>Bar</div>
-          <div>Baz</div>
-        </CodeCarousel>
+        <CodeCarousel client:only="react" />
+      </div>
+
+      <div class="section center">
+        <h2>Supporters</h2>
+
+        <div class="supporter-logos">
+          <a id="logo-performant" title="Performant Software" href="https://www.performantsoftware.com/">
+            <img src="/images/supporter-performant.svg" /> 
+          </a>
+
+          <a id="logo-luna" title="Luna Imaging" href="https://www.lunaimaging.com/">
+            <img class="dark" src="/images/supporter-luna.jpg" /> 
+          </a>
+        </div>
       </div>
     </div>
 
@@ -137,12 +152,27 @@ import { SplashDemo } from '../components/SplashDemo';
     padding: 0;
   }
 
+  .center {
+    text-align: center;
+  }
+
   header {
     box-sizing: border-box;
     display: flex;
-    gap: 2.5rem;
-    justify-content: flex-end;
-    padding: 1.5rem 2rem;
+    justify-content: space-between;
+    padding: 1.5rem 1.2rem;
+  }
+
+  @media (min-width: 480px) {
+
+    header {
+      box-sizing: border-box;
+      display: flex;
+      gap: 2.5rem;
+      justify-content: flex-end;
+      padding: 1.5rem 2rem;
+    }
+
   }
 
   header a {
@@ -163,7 +193,7 @@ import { SplashDemo } from '../components/SplashDemo';
     box-sizing: border-box;
     margin: 0 auto;
     max-width: 1080px;
-    padding: 1rem 1.5rem;
+    padding: 1rem 1.2rem;
     pointer-events: none;
     position: relative;
   }
@@ -172,11 +202,19 @@ import { SplashDemo } from '../components/SplashDemo';
     padding: 2rem 0 1rem 0;
     position: relative;
     pointer-events: none;
+    text-align: center;
+  }
+
+  @media (min-width: 480px) {
+
+    .hero {
+      text-align: left;
+    }
+
   }
 
   .hero .glow {
-    background: 
-      linear-gradient(90deg, #fcab10 0%, #2b9eb3 80%);   
+    background: linear-gradient(90deg, #fcab10 0%, #2b9eb3 80%);   
     filter: blur(80px);
     height: 60%;
     opacity: 0.2;
@@ -191,7 +229,7 @@ import { SplashDemo } from '../components/SplashDemo';
 
   .hero h1 {
     font-family: Megrim;
-    font-size: 3.8rem;
+    font-size: 3.6rem;
     font-weight: 300;
     margin: 0;
     padding: 0;
@@ -228,7 +266,22 @@ import { SplashDemo } from '../components/SplashDemo';
   }
 
   .section { 
-    margin-top: 5rem;
+    margin: 5rem 0;
+  }
+
+  .section h2 {
+    font-size: 2rem;
+    margin: 7rem 0 0 0;
+  }
+
+  .section p {
+    line-height: 180%;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+
+  .section p.narrow {
+    max-width: 65ch;
   }
 
   .card-grid {
@@ -239,18 +292,28 @@ import { SplashDemo } from '../components/SplashDemo';
     margin: 0 auto;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 480px) {
+
     .card-grid {
       grid-template-columns: repeat(2, 1fr);
     }
+    
   }
 
   .framework-logos {
-    align-items: flex-end;
     display: flex;
-    gap: 3rem;
-    justify-content: center;
-    padding-top: 2rem;
+    justify-content: space-between;
+    padding: 1.2rem;
+  }
+
+  @media (min-width: 480px) {
+
+    .framework-logos {
+      gap: 2rem;
+      justify-content: center;
+      padding: 2rem;
+    }
+
   }
 
   .framework-logos img {
@@ -262,22 +325,93 @@ import { SplashDemo } from '../components/SplashDemo';
     max-width: 75ch;
   }
 
-  .section p {
-    line-height: 180%;
+  .supporter-logos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-gap: 0rem;
     margin: 0 auto;
-    padding: 2rem 0;
-    text-align: center;
+    max-width: 65ch;
   }
 
-  .section p.narrow {
-    max-width: 65ch;
+  .supporter-logos > a {
+    box-sizing: border-box;
+    display: grid;
+    padding: 1rem;
+  }
+
+  .supporter-logos > a::before,
+  .supporter-logos > a > img {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+
+  .supporter-logos > a::before {
+    content: '';
+    padding-bottom: 60%;
+    display: block;
+  }
+
+  .supporter-logos a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .supporter-logos img {
+    box-sizing: border-box;
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+  }
+
+  .supporter-logos img.dark {
+    filter: grayscale(100%) opacity(0.35);
+  }
+
+  .supporter-logos a:hover img {
+    filter: grayscale(0%);
+  }
+
+  #logo-luna img {
+    padding: 20px;
+  }
+
+  @media (max-width: 480px) {
+
+    .supporter-logos {
+      display: flex;
+      flex-direction: column;
+      margin-top: 1rem;
+    }
+
+    .supporter-logos > a {
+      display: inline;
+      height: auto;
+      margin-top: 0.25rem;
+    }
+
+    .supporter-logos > a::before {
+      content: none;
+      height: 0;
+    }
+
+    .supporter-logos img {
+      max-height: 35px;
+    }
+
+    #logo-luna img {
+      padding: 3px;
+    }
+
   }
 
   footer {
     background-color: rgba(0, 0, 0, 0.85);
     color: #b9b9b9;
     font-weight: 300;
-    margin-top: 6rem;
     padding: 2rem;
     text-align: center;
   }
@@ -292,13 +426,26 @@ import { SplashDemo } from '../components/SplashDemo';
   }
 
   footer ul {
-    align-items: center;
     display: flex;
+    flex-direction: column;
     gap: 1.5rem;
     justify-content: center;
     list-style-type: none;
-    margin: 0;
-    padding: 4rem 0 0 0;
+    margin: 0 auto;
+    padding: 1rem 0 0 0;
+    width: fit-content;
+  }
+
+  @media (min-width: 480px) {
+
+    footer  ul {
+      align-items: center;
+      flex-direction: row;
+      margin: 0;
+      padding: 4rem 0 0 0;
+      width: auto;
+    }
+
   }
 
   footer li {
