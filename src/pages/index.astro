@@ -208,8 +208,7 @@ import '../index.css';
   }
 
   .hero .glow {
-    background: 
-      linear-gradient(90deg, #fcab10 0%, #2b9eb3 80%);   
+    background: linear-gradient(90deg, #fcab10 0%, #2b9eb3 80%);   
     filter: blur(80px);
     height: 60%;
     opacity: 0.2;
@@ -364,18 +363,22 @@ import '../index.css';
     filter: grayscale(0%);
   }
 
+  #logo-luna img {
+    padding: 10px;
+  }
+
   @media (max-width: 768px) {
 
     .supporter-logos {
       display: flex;
       flex-direction: column;
-      margin-top: 2.5rem;
+      margin-top: 1rem;
     }
 
     .supporter-logos > a {
       display: inline;
       height: auto;
-      margin-top: 1rem;
+      margin-top: 0.25rem;
     }
 
     .supporter-logos > a::before {
@@ -384,19 +387,19 @@ import '../index.css';
     }
 
     .supporter-logos img {
-      max-height: 60px;
+      max-height: 45px;
     }
-  }
 
-  #logo-luna img {
-    padding: 10px;
+    #logo-luna img {
+      padding: 3px;
+    }
+
   }
 
   footer {
     background-color: rgba(0, 0, 0, 0.85);
     color: #b9b9b9;
     font-weight: 300;
-    margin-top: 6rem;
     padding: 2rem;
     text-align: center;
   }
