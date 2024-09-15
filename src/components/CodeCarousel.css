@@ -3,10 +3,6 @@
   max-width: 920px;
 }
 
-.slick-slide > div {
-  padding: 0 1rem;
-}
-
 .code-snippet pre {
   border-radius: 0.5rem;
   line-height: 180%;
