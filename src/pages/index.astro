@@ -360,17 +360,6 @@ import { Grid } from '../components/Grid';
     width: 100%;
   }
 
-  .supporter-logos > a::before {
-      content: none;
-      height: 0;
-    }
-
-  .supporter-logos > a::before {
-    content: none;
-    padding-bottom: 60%;
-    display: block;
-  }
-
   .supporter-logos img {
     box-sizing: border-box;
     max-height: 35px;
@@ -405,12 +394,11 @@ import { Grid } from '../components/Grid';
        max-height: 50px;
     }
 
-    .supporter-logos > a::before,
-    .supporter-logos > a > img {
+    .supporter-logos > a::before {
       content: '';
+      display: block;
       grid-area: 1 / 1 / 2 / 2;
-    }
-
+      padding-bottom: 60%;
   }
 
   footer {
