@@ -146,7 +146,9 @@ export default function App() {
         <img src="example.jpg" />
       </ImageAnnotator>
 
-      <ImageAnnotationPopup popup={CommentPopup} />
+      <ImageAnnotationPopup popup={(props: PopupContentProps) => (
+        <CommentPopup {...props} />
+      )} />
     </Annotorious>
   );
 }
@@ -180,14 +182,14 @@ export default function App() {
             url: '/images/sample-image.jpg'
           }
         }} />
-      </OpenSeadragonAnnotator>
 
-      <OpenSeadragonAnnotationPopup
-        popup={(props: PopupContentProps) => (
-          <div>
-            Hello World
-          </div>
-        )} />
+        <OpenSeadragonAnnotationPopup
+          popup={(props: PopupContentProps) => (
+            <div>
+              Hello World
+            </div>
+          )} />
+      </OpenSeadragonAnnotator>
     </Annotorious>
   );
 }

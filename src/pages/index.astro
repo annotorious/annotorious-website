@@ -2,11 +2,11 @@
 import { ArrowRight, Heart, MessagesSquare, MonitorSmartphone, Puzzle, Rocket, Wrench } from 'lucide-react';
 import { Bluesky, Github, Mastodon } from 'simple-icons-astro';
 import { CodeCarousel } from '../components/CodeCarousel';
+import { Grid } from '../components/Grid';
 import { SplashDemo } from '../components/SplashDemo';
 import Card from './_card.astro';
 
 import '../index.css';
-import { Grid } from '../components/Grid';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +33,8 @@ import { Grid } from '../components/Grid';
     </header>
 
     <Grid />
-    <SplashDemo client:only="react" />
+    
+    <!-- SplashDemo client:only="react" / -->
 
     <div class="container">
       <div class="hero">
