@@ -10,7 +10,7 @@ export const Grid = () => {
     <svg className="grid" width={WIDTH} height={HEIGHT}>
       <defs>
         <pattern id="grid" width={GRID_SIZE} height={GRID_SIZE} patternUnits="userSpaceOnUse">
-          <path d={`M ${GRID_SIZE} 0 L 0 0 0 ${GRID_SIZE}`} fill="none" stroke="#c0d5ff" stroke-width={1} />
+          <path d={`M ${GRID_SIZE} 0 L 0 0 0 ${GRID_SIZE}`} fill="none" stroke="#c0d5ff" strokeWidth={1} />
         </pattern>
       </defs>
       <rect width="100%" height="100%" fill="white"/>
