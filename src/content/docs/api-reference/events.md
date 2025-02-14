@@ -112,7 +112,7 @@ When the user de-selects an annotation, the event will be fired with an empty ar
 ### updateAnnotation
 
 ```ts 
-anno.on('createAnnotation', ((updated, previous) => void) => {
+anno.on('updateAnnotation', ((updated, previous) => void) => {
   console.log('Annotation was updated.');
   console.log('Annotation before upate: ' + previous);
   console.log('Annotation after update: ' + updated);
