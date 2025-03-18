@@ -10,7 +10,7 @@ ease of use.
 
 <Aside type="tip">
 You can also use Annotorious with the W3C Model directly, through a built-in utility 
-called the `W3CImageAdapter`. [Learn more below](#the-w3c-adapter).
+called the `W3CImageFormat`. [Learn more below](#the-w3c-adapter).
 </Aside>
 
 ## Anatomy of an Annotation
@@ -185,26 +185,26 @@ enhance performance and simplify usage when building web applications:
 
 Despite the differences, Annotorious also provides a built-in feature 
 that allows you to use W3C Web annotations directly, through a 
-utility called the `W3CImageAdapter`.
+utility called the `W3CImageFormat`.
 
-The `W3CImageAdapter` automatically crosswalks annotations between 
+The `W3CImageFormat` automatically crosswalks annotations between 
 the W3C- and the Annotorious model, allowing you to use the Annotorious 
 API while still adhering to the W3C standard. Through the adapter, 
 Annotorious offers the best of both worlds - the performance and 
 ease of use of its native data model, with the flexibility to conform 
 to the W3C standard when needed.
 
-The `W3CImageAdapter` accepts a single constructor argument (type __string__), which 
+The `W3CImageFormat` accepts a single constructor argument (type __string__), which 
 will be used for the [source](https://www.w3.org/TR/annotation-model/#specific-resources)
 property of the annotation target.
 
 ```js
-import { createImageAnnotator, W3CImageAdapter } from '@annotorious/annotorious';
+import { createImageAnnotator, W3CImageFormat } from '@annotorious/annotorious';
 
 import '@annotorious/annotorious/annotorious.css';
 
 const anno = createImageAnnotator('sample-image', { 
-  adapter: W3CImageAdapter('sample-image')
+  adapter: W3CImageFormat('sample-image')
 });
 ```
 
