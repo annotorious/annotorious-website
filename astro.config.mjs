@@ -15,9 +15,9 @@ export default defineConfig({
       },
       themes: ['nord']
     },
-    social: {
-      github: 'https://github.com/annotorious/annotorious'
-    },
+    social: [{
+      icon: 'github', label: 'Github', href: 'https://github.com/annotorious/annotorious'
+    }],
     sidebar: [{
       label: 'Start Here',
       items: [{
