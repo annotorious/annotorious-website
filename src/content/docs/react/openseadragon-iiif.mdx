@@ -10,6 +10,7 @@ annotate high-resolution zoomable images with React, including images served via
 [International Image Interoperability Framework](https://iiif.io/) (IIIF) standard.
 
 ```tsx
+import { useMemo } from 'react';
 import { 
   Annotorious, 
   OpenSeadragonAnnotator,
@@ -19,15 +20,20 @@ import {
 import '@annotorious/react/annotorious-react.css';
 
 export default function App() {
+
+  // IMPORTANT! Memo-ize your options to avoid
+  // unexpected re-renders of the OSD viewer.
+  const options = useMemo(() => ({
+    tileSources: {
+      type: 'image',
+      url: '/images/sample-image.jpg'
+    }
+  }), []);
+
   return (
     <Annotorious>
       <OpenSeadragonAnnotator>
-        <OpenSeadragonViewer options={{
-          tileSources: {
-            type: 'image',
-            url: '/images/sample-image.jpg'
-          }
-        }} />
+        <OpenSeadragonViewer options={options} />
       </OpenSeadragonAnnotator>
     </Annotorious>
   );
@@ -49,9 +55,12 @@ export default function App() {
    import '@annotorious/react/annotorious-react.css';
    ```
 
-3. __Important:__ wrap your application with the `<Annotatorious>` root context tag -
+3. __Important:__ wrap your application with the `<Annotorious>` root context tag -
    other Annotorious components depend on it. You can use Annotorious-provided hooks 
    anywhere below the context tag.
+
+4. __Important:__ make sure to memo-ize your OpenSeadragon options to prevent unexpected
+  re-renders of the OSD viewer component!
 
    <Tabs>
      <TabItem label="App.tsx">
@@ -75,14 +84,18 @@ export default function App() {
 
          // ...
 
+         // IMPORTANT! Memo-ize your options to avoid
+         // unexpected re-renders of the OSD viewer.
+         const options = useMemo(() => ({
+          tileSources: {
+            type: 'image',
+            url: '/images/sample-image.jpg'
+          }
+         }), []);
+
          return (
            <OpenSeadragonAnnotator>
-             <OpenSeadragonViewer options={{
-               tileSources: {
-                 type: 'image',
-                 url: '/images/sample-image.jpg'
-               }
-             }} />
+             <OpenSeadragonViewer options={options} />
            </OpenSeadragonAnnotator>
          );
        }
