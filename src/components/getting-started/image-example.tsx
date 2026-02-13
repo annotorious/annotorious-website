@@ -57,7 +57,7 @@ if (typeof window !== 'undefined') {
       <div className="image-example">      
         <ImageAnnotator 
           tool={tool}>
-          <img src="/640px-Hallstatt.jpg" />
+          <img src="/images/640px-Hallstatt.jpg" />
         </ImageAnnotator>
 
         <div className='actions'>

@@ -54,7 +54,7 @@ if (typeof window !== 'undefined') {
     return (
       <div className="image-popup-example">      
         <ImageAnnotator>
-          <img src="/640px-Hallstatt.jpg" />
+          <img src="/images/640px-Hallstatt.jpg" />
         </ImageAnnotator>
 
         <ImageAnnotationPopup
