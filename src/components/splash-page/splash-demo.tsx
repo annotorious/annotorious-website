@@ -6,9 +6,52 @@ import '@annotorious/react/annotorious-react.css';
 
 let SplashDemo: () => JSX.Element = () => null as unknown as JSX.Element; 
 
+const annotation = {
+  id: '03aa4806-dc95-49df-b5d7-3a37c4db63f9',
+  bodies: [],
+  target: {
+    selector: {
+      type: 'POLYGON',
+      geometry: {
+        bounds: {
+          "minX": 7177.317180175782,
+          "minY": 5917.927227783203,
+          "maxX": 7644.310670166015,
+          "maxY": 6153.361885986328
+        },
+        points: [
+          [
+            7177.317180175782,
+            5971.744940185547
+          ],
+          [
+            7202.91031616211,
+            6153.361885986328
+          ],
+          [
+            7644.310670166015,
+            6096.254873046875
+          ],
+          [
+            7627.824537353516,
+            5917.927227783203
+          ]
+        ]
+      }
+    }
+  }
+};
+
 if (typeof window !== 'undefined') {
   const OpenSeadragon = await import('openseadragon');
-  const { Annotorious, OpenSeadragonAnnotator, OpenSeadragonViewer, useViewer } = await import('@annotorious/react');
+
+  const { 
+    Annotorious, 
+    OpenSeadragonAnnotator, 
+    OpenSeadragonViewer, 
+    useAnnotator,
+    useViewer 
+  } = await import('@annotorious/react');
 
   const options: OpenSeadragon.Options = {
     prefixUrl: 'https://cdn.jsdelivr.net/npm/openseadragon@latest/build/openseadragon/images/',
@@ -27,6 +70,8 @@ if (typeof window !== 'undefined') {
 
     const viewer = useViewer();
 
+    const anno = useAnnotator();
+
     useEffect(() => {
       if (!viewer) return;
 
@@ -39,6 +84,11 @@ if (typeof window !== 'undefined') {
           event.preventDefault = false;
       });
     }, [viewer]);
+
+    useEffect(() => {
+      if (!anno) return;
+      anno.setAnnotations([annotation]);
+    }, [anno]);
 
     const onZoom = (factor: number) =>
       viewer.viewport.zoomBy(factor);
@@ -69,7 +119,15 @@ if (typeof window !== 'undefined') {
       <div className="splash-demo">
         <Annotorious>
           <OpenSeadragonAnnotator
-            drawingEnabled={true}>
+            drawingMode="click"
+            drawingEnabled={true}
+            tool="polygon"
+            style={{
+              fill: '#f8942c',
+              fillOpacity: 0.25,
+              stroke: '#f8942c',
+              strokeWidth: 2
+            }}>
             <SplashDemoViewer />
           </OpenSeadragonAnnotator>
         </Annotorious>
