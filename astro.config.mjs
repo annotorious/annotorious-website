@@ -8,6 +8,7 @@ import icon from 'astro-icon';
 export default defineConfig({
   integrations: [starlight({
     title: 'Annotorious',
+    favicon: '/images/annotorious-touch-icon.png',
     customCss: ['./src/index.css'],
     expressiveCode: {
       styleOverrides: {
