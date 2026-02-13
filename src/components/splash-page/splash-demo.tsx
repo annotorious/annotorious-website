@@ -61,6 +61,7 @@ if (typeof window !== 'undefined') {
       dblClickToZoom: false,
       scrollToZoom: false
     },
+    showNavigationControl: false,
     minZoomLevel: 0.8,
     visibilityRatio: 1,
     preserveImageSizeOnResize: true

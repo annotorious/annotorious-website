@@ -5,6 +5,10 @@
   width: 100%;
 }
 
+.splash-demo .openseadragon-canvas {
+  outline: none;
+}
+
 .splash-demo .openseadragon-canvas > canvas:first-child {
   -webkit-mask-image: radial-gradient(farthest-corner at 100% 0%, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) 60%);
           mask-image: radial-gradient(farthest-corner at 100% 0%, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) 60%);
