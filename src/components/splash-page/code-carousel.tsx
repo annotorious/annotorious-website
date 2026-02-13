@@ -1,11 +1,11 @@
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { nord } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import Slider from 'react-slick';
+import nord from 'react-syntax-highlighter/dist/esm/styles/hljs/nord';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import './CodeCarousel.css';
+import './code-carousel.css';
 
 const snippet1 = 
 `import { createImageAnnotator } from '@annotorious/annotorious';

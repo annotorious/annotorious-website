@@ -1,6 +1,6 @@
 import { Check } from 'lucide-react';
 
-import './UsingAnnotoriousTable.css';
+import './using-annotorious-table.css';
 
 export const UsingAnnotoriousTable = () => {
 

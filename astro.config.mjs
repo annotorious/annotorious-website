@@ -26,9 +26,6 @@ export default defineConfig({
       }, {
         label: 'Installation',
         slug: 'installation'
-      }, {
-        label: 'Migrating from v2.7',
-        link: 'migration-guide'
       }]
     }, {
       label: 'Guides',
@@ -50,11 +47,6 @@ export default defineConfig({
         { label: 'Component Reference', slug: 'react/component-reference' },
         { label: 'Hooks Reference', slug: 'react/hooks-reference' },
       ],
-    }, {
-      label: 'Svelte',
-      autogenerate: {
-        directory: 'svelte'
-      }
     }]
   }), react(), icon()],
   output: "static"

@@ -1,0 +1,35 @@
+.splash-demo {
+  height: 640px;
+  left: 0;  
+  position: absolute;
+  width: 100%;
+  -webkit-mask-image: radial-gradient(farthest-corner at 100% 0%, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) 60%);
+          mask-image: radial-gradient(farthest-corner at 100% 0%, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) 60%);
+}
+
+.splash-demo .osd-container {
+  height: 100%;
+  width: 100%;
+}
+
+.splash-demo .zoom {
+  display: flex;
+  gap: 0.25rem;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.splash-demo .zoom button {
+  align-items: center;
+  aspect-ratio: 1;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+}

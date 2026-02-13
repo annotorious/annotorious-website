@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type JSX } from 'react';
 import { TriangleRight, Square, Trash2 } from 'lucide-react';
 import type { AnnotoriousImageAnnotator, DrawingTool, ImageAnnotation, RectangleGeometry } from '@annotorious/react';
 
-import './ImageExample.css';
+import './image-example.css';
 import '@annotorious/react/annotorious-react.css';
 
 let ImageExample: () => JSX.Element = () => null as unknown as JSX.Element; 

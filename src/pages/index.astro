@@ -1,8 +1,7 @@
 --- 
 import { ArrowRight, MessagesSquare, MonitorSmartphone, Puzzle, Rocket, Wrench } from 'lucide-react';
 import { Bluesky, Github, Mastodon } from 'simple-icons-astro';
-import { CodeCarousel } from '../components/CodeCarousel';
-import { Grid } from '../components/Grid';
+import { CodeCarousel, GridPattern, SplashDemo } from '../components/splash-page';
 import Card from './_card.astro';
 
 import '../index.css';
@@ -28,9 +27,9 @@ import '../index.css';
       </a>
     </header>
 
-    <Grid />
+    <GridPattern />
     
-    <!-- SplashDemo client:only="react" / -->
+    <SplashDemo client:only="react" />
 
     <div class="container">
       <div class="hero">
@@ -82,7 +81,6 @@ import '../index.css';
           <img src="/images/logo-js.svg" /> 
           <img src="/images/logo-ts.svg" /> 
           <img src="/images/logo-react.svg" /> 
-          <img src="/images/logo-svelte.svg" /> 
         </div>
         
         <p class="narrow center">
@@ -134,8 +132,6 @@ import '../index.css';
         </li>
       </ul>
     </footer>
-
-    <zapier-interfaces-chatbot-embed class="chatbot-embed" is-popup='true' chatbot-id='cmhho5s57002uzrdfe1v0inq9'></zapier-interfaces-chatbot-embed>
   </body>
 </html>
 

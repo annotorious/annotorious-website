@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type JSX } from 'react';
 import type { AnnotoriousOpenSeadragonAnnotator } from '@annotorious/react';
 import { Move, Square, Trash2, TriangleRight } from 'lucide-react';
 
-import './OpenSeadragonExample.css';
+import './openseadragon-example.css';
 import '@annotorious/react/annotorious-react.css';
 
 let OpenSeadragonExample: () => JSX.Element = () => null as unknown as JSX.Element;
@@ -112,8 +112,9 @@ if (typeof window !== 'undefined') {
     return (
       <div className="openseadragon-example">
         <OpenSeadragonAnnotator
+          drawingMode="click"
           drawingEnabled={tool !== undefined}
-          tool={tool || 'rectangle'}>
+          tool={tool}>
           <OpenSeadragonViewer
             className="osd-container"
             options={options} />

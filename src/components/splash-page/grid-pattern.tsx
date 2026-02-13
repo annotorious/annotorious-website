@@ -2,9 +2,9 @@ const WIDTH = 1920;
 const HEIGHT = 640;
 const GRID_SIZE = 40;
 
-import './Grid.css';
+import './grid-pattern.css';
 
-export const Grid = () => {
+export const GridPattern = () => {
 
   return (
     <svg className="grid" width={WIDTH} height={HEIGHT}>
