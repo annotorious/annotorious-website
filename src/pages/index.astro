@@ -1,5 +1,5 @@
 --- 
-import { ArrowRight, MessagesSquare, MonitorSmartphone, Puzzle, Rocket, Wrench } from 'lucide-react';
+import { ArrowRight, Handshake, MessagesSquare, MonitorSmartphone, Puzzle, Rocket, Wrench } from 'lucide-react';
 import { Bluesky, Github, Mastodon } from 'simple-icons-astro';
 import { CodeCarousel, GridPattern, SplashDemo } from '../components/splash-page';
 import Card from './_card.astro';
@@ -39,6 +39,10 @@ import '../index.css';
 
   <body>
     <header>
+      <a href="#professional-services">
+        <Handshake size={22} strokeWidth={1.8} /> Services 
+      </a>
+
       <a href="https://github.com/orgs/annotorious/discussions">
         <MessagesSquare size={22} strokeWidth={1.8} /> Community 
       </a>
@@ -112,7 +116,7 @@ import '../index.css';
         <CodeCarousel client:only="react" />
       </div>
 
-      <div class="section center get-support">
+      <div id="professional-services" class="section center get-support">
         <h2>Professional Support & Consulting</h2>
 
         <p class="narrow">
@@ -188,6 +192,8 @@ import '../index.css';
     max-width: 100vw;
     overflow-x: hidden;
     padding: 0;
+    scroll-behavior: smooth;
+    scroll-padding-top: 50px;
   }
 
   .center {
