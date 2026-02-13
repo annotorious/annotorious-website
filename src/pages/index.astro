@@ -91,6 +91,30 @@ import '../index.css';
         <CodeCarousel client:only="react" />
       </div>
 
+      <div class="section center get-support">
+        <h2>Professional Support & Consulting</h2>
+
+        <p class="narrow">
+          Annotorious is <a href="https://github.com/annotorious/annotorious/blob/main/LICENSE" target="_blank">open 
+          source</a> and free for personal and commercial use. For projects with production requirements, timelines, or institutional constraints, I offer consulting and professional support for <strong>integration</strong>, <strong>customization</strong>, and <strong>feature development</strong>.
+        </p>
+
+        <div class="get-support-contact">
+          <div class="cta secondary">
+            <a href="https://calendly.com/rainer-rainersimon/annotorious-consultation">
+              Book a 20-min Consultation
+            </a>
+          </div>
+
+          <cta class="cta tertiary">
+            <a href="mailto:hello@rainersimon.io">
+              <span>Email an inquiry</span>
+            </a>
+          </cta>
+        </div>
+        
+      </div>
+
       <div class="section center">
         <h2>Supporters</h2>
 
@@ -261,9 +285,34 @@ import '../index.css';
     border-radius: 1000vw;
     color: #fff;
     display: inline-flex;
+    font-weight: 600;
     gap: 0.75rem;
     padding: 1rem 1.25rem;
     text-decoration: none;
+  }
+
+  .cta.secondary a {
+    border: 1px solid #f8942c;
+    border-radius: 6px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .cta.secondary a:hover {
+    box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.15);
+  }
+
+  .cta.tertiary a {
+    background-color: #fff;
+    border: 1px solid #f8942c;
+    border-radius: 6px;
+    color: #f8942c;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .cta.tertiary a:hover {
+    box-shadow: inset 0 0 100px rgba(248, 148, 44, 0.15);
   }
 
   .section { 
@@ -280,6 +329,10 @@ import '../index.css';
     line-height: 180%;
     margin: 0 auto;
     padding: 2rem 0;
+  }
+  
+  .section p a {
+    color: #1a1a1a;
   }
 
   .section p.narrow {
@@ -325,6 +378,16 @@ import '../index.css';
   :global(.section .expressive-code) {
     margin: 0 auto;
     max-width: 75ch;
+  }
+
+  .get-support {
+    padding: 0 0 2rem 0;
+  }
+
+  .get-support-contact {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;;
   }
 
   .supporter-logos {
