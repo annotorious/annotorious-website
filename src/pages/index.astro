@@ -5,6 +5,9 @@ import { CodeCarousel, GridPattern, SplashDemo } from '../components/splash-page
 import Card from './_card.astro';
 
 import '../index.css';
+
+const title = 'Annotorious | Image Annotation Library for JavaScript, TypeScript and React';
+const description = 'Open-source JavaScript image annotation library with TypeScript and React support. Add image annotation to your web app with a few lines of code. Works with OpenSeadragon and IIIF.';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +15,9 @@ import '../index.css';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Annotorious | JavaScript Image Annotation Library</title>
+    <title>{title}</title>
+
+    <link rel="canonical" href="https://annotorious.dev/" />
 
     <link rel="icon" type="image/png" sizes="180x180" href="/images/annotorious-touch-icon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/annotorious-touch-icon.png">
@@ -23,18 +28,81 @@ import '../index.css';
     <link rel="apple-touch-icon" sizes="57x57" href="/images/annotorious-touch-icon-114.png" />
     <link rel="apple-touch-icon" href="/images/annotorious-touch-icon.png">
 
-    <meta name="description" content="Add drawing, commenting and labeling functionality to images on your website with a few lines of JavaScript.">
+    <meta name="description" content={description}>
 
-    <meta name="twitter:title" content="Annotorious | JavaScript Image Annotation Library" />
+    <meta name="twitter:title" content={title} />
     <meta name="twitter:image:src" content="https://annotorious.dev/images/annotorious-social-large.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:description" content="Add drawing, commenting and labeling functionality to images on your website with a few lines of JavaScript.">
+    <meta name="twitter:description" content={description}>
 
-    <meta property="og:title" content="Annotorious | JavaScript Image Annotation Library" />
-    <meta property="og:description" content="Add drawing, commenting and labeling functionality to images on your website with a few lines of JavaScript.">
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description}>
     <meta property="og:url" content="https://annotorious.dev" />
     <meta property="og:image" content="https://annotorious.dev/images/annotorious-social-large.png" />
     <meta property="og:type" content="object" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Annotorious",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Web Browser",
+        "description": "JavaScript image annotation library with TypeScript and React support",
+        "programmingLanguage": ["JavaScript", "TypeScript"],
+        "softwareVersion": "3.0",
+        "releaseNotes": "https://github.com/annotorious/annotorious",
+        "softwareHelp": "https://annotorious.dev/getting-started",
+        "url": "https://annotorious.dev",
+        "downloadUrl": "https://www.npmjs.com/package/@annotorious/annotorious",
+        "codeRepository": "https://github.com/annotorious/annotorious",
+        "license": "https://opensource.org/licenses/BSD-3-Clause",
+        "keywords": "javascript, typescript, react, image annotation, annotation library, openseadragon, iiif"
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [{
+          "@type": "Question",
+          "name": "What is Annotorious?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Annotorious is an open-source JavaScript library for adding image annotation functionality to web applications. It provides full TypeScript support and official React bindings for React image annotation."
+          }
+        }, {
+          "@type": "Question",
+          "name": "Does Annotorious support React?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Annotorious includes official React bindings for seamless React image annotation integration."
+          }
+        }, {
+          "@type": "Question",
+          "name": "Is TypeScript supported?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Annotorious is built with TypeScript and includes complete type definitions for TypeScript image annotation development."
+          }
+        }, {
+          "@type": "Question",
+          "name": "Does Annotorious work on mobile devices?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Annotorious supports touch interactions and works on desktop and mobile devices for JavaScript image annotation."
+          }
+        }, {
+          "@type": "Question",
+          "name": "Why should I choose Annotorious as a JavaScript image annotation library?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Annotorious is a popular open-source JavaScript image annotation library with TypeScript support, React bindings, and touch support. It's free for personal and commercial use and works with OpenSeadragon and IIIF."
+          }
+        }]
+      }
+    </script>
   </head>
 
   <body>
@@ -60,10 +128,11 @@ import '../index.css';
       <div class="hero">
         <div class="glow" />
 
-        <h1 class="text-shadow">Annotorious</h1> 
+        <h1 class="text-shadow">Annotorious<span class="sr-only"> - Image Annotation Library for JavaScript, TypeScript and React</span></h1> 
+
         <p class="text-shadow">
-          Add image annotation functionality to your site 
-          with a few lines of JavaScript.
+          Add image annotation to your site 
+          with a few lines of code - JavaScript, TypeScript, React.
         </p> 
 
         <div class="cta">
@@ -74,6 +143,10 @@ import '../index.css';
       </div>
 
       <div class="section clickable">
+        <h2 class="sr-only">
+          JavaScript Image Annotation Made Simple
+        </h2>
+
         <div class="card-grid">
           <Card 
             title="Integrate Anywhere" 
@@ -103,14 +176,15 @@ import '../index.css';
 
       <div class="section">
         <div class="framework-logos">
-          <img src="/images/logo-js.svg" /> 
-          <img src="/images/logo-ts.svg" /> 
-          <img src="/images/logo-react.svg" /> 
+          <img src="/images/logo-js.svg" alt="JavaScript support for image annotation" /> 
+          <img src="/images/logo-ts.svg" alt="TypeScript image annotation with full type safety" /> 
+          <img src="/images/logo-react.svg" alt="React bindings for image annotation components" />
         </div>
         
         <p class="narrow center">
-          Install Annotorious via package manager or import directly with a script tag. 
-          With official bindings for React and Svelte and full TypeScript support.
+          Built with TypeScript for type-safe image annotation development. Official React bindings 
+          make React image annotation integration simple. JavaScript developers can use it directly 
+          via npm or CDN. Works with OpenSeadragon for deep zoom images and IIIF.
         </p>
 
         <CodeCarousel client:only="react" />
@@ -219,6 +293,18 @@ import '../index.css';
     scroll-padding-top: 50px;
   }
 
+  .sr-only {
+    	position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+  }
+
   .center {
     text-align: center;
   }
@@ -319,7 +405,7 @@ import '../index.css';
     font-weight: 300;
     line-height: 160%;
     margin: 0;
-    max-width: 30ch;
+    max-width: 36ch;
     padding: 1rem 0;
   }
 
