@@ -238,16 +238,46 @@ const description = 'Open-source JavaScript image annotation library with TypeSc
           href="https://waitlister.me/p/annotorious-serverless-storage">Join the waitlist</a>
       </div>
 
-      <div class="section center">
-        <h2>Supporters</h2>
+      <div class="section center" style="border-top:1px solid #e2e2e2;">
+        <h2>Who's Using Annotorious</h2>
+
+        <p class="narrow" style="max-width:80ch;">
+          Annotorious has originated in the cultural heritage field and is widely used to enable annotation 
+          functionality in open source digital asset management systems like <a href="https://github.com/anvc/scalar">Scalar</a> or 
+          <a href="https://archipelago.nyc/)">Archipelago</a>. It also makes frequent guest appearances in <a href="https://github.com/Bayer-Group/pavo">digital 
+          pathology</a>, <a href="https://github.com/zap200281/PLabel">AI data labeling</a>, media management, and even projects 
+          by <a href="https://github.com/nasa/isaac/blob/3578a0dfa178e7fad357a02a87d83018209c150b/pano/pano_view/static/js/isaac_source_image.js">NASA</a>
+          and <a href="https://github.com/usnistgov/WIPP-frontend">NIST</a>. 
+        </p>
+
+        <h2>Partners & Supporters</h2>
 
         <div class="supporter-logos">
           <a id="logo-performant" title="Performant Software" href="https://www.performantsoftware.com/">
-            <img src="/images/supporter-performant.svg" /> 
+            <img 
+              src="/images/supporter-performant.svg" 
+              loading="lazy" /> 
           </a>
 
           <a id="logo-luna" title="Luna Imaging" href="https://www.lunaimaging.com/">
-            <img class="dark" src="/images/supporter-luna.jpg" /> 
+            <img 
+              class="dark" 
+              style="padding:5px 0" 
+              src="/images/supporter-luna.jpg" 
+              loading="lazy" /> 
+          </a>
+
+          <a id="logo-immarkus" title="IMMARKUS" href="https://immarkus.xmarkus.org/">
+            <img 
+              src="/images/supporter-immarkus.png" 
+              loading="lazy"/> 
+          </a>
+
+          <a id="logo-liiive" title="IMMARKUS" href="https://liiive.now/">
+            <img 
+              class="dark"
+              src="/images/supporter-liiive.png" 
+              loading="lazy"/> 
           </a>
         </div>
       </div>
@@ -533,10 +563,10 @@ const description = 'Open-source JavaScript image annotation library with TypeSc
 
   .supporter-logos {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
     grid-gap: 0rem;
     margin: 0 auto;
-    max-width: 65ch;
+    max-width: 80vw;
   }
 
   .supporter-logos {
